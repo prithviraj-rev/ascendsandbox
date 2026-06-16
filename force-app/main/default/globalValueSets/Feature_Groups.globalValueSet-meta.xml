@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Solution Planning and Design</fullName>
+        <default>false</default>
+        <label>Solution Planning and Design</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce Configuration</fullName>
+        <default>false</default>
+        <label>Salesforce Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Cloud Configuration</fullName>
+        <default>false</default>
+        <label>Sales Cloud Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Service Cloud Configuration</fullName>
+        <default>false</default>
+        <label>Service Cloud Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Financial Services Cloud Configuration</fullName>
+        <default>false</default>
+        <label>Financial Services Cloud Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Experience Cloud</fullName>
+        <default>false</default>
+        <label>Experience Cloud Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Manufacturing Cloud Configuration</fullName>
+        <default>false</default>
+        <label>Manufacturing Cloud Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Marketing Cloud Configuration</fullName>
+        <default>false</default>
+        <label>Marketing Cloud Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Account Engagement Configuration</fullName>
+        <default>false</default>
+        <label>Account Engagement Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Field Service Lightning Configuration</fullName>
+        <default>false</default>
+        <label>Field Service Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>CPQ Configuration</fullName>
+        <default>false</default>
+        <label>Revenue Cloud Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>MuleSoft Configuration</fullName>
+        <default>false</default>
+        <label>MuleSoft Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Data Cloud Configuration</fullName>
+        <default>false</default>
+        <label>Data Cloud Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Service Cloud Voice Configuration</fullName>
+        <default>false</default>
+        <label>Service Cloud Voice Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Shield Configuration</fullName>
+        <default>false</default>
+        <label>Shield Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Maps Configuration</fullName>
+        <default>false</default>
+        <label>Maps Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Engagement Configuration</fullName>
+        <default>false</default>
+        <label>Sales Engagement Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>CRM Analytics Configuration</fullName>
+        <default>false</default>
+        <label>CRM Analytics Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>HubSpot Sales Hub Configuration</fullName>
+        <default>false</default>
+        <label>HubSpot Sales Hub Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>HubSpot Marketing Hub Configuration</fullName>
+        <default>false</default>
+        <label>HubSpot Marketing Hub Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>HubSpot Service Hub Configuration</fullName>
+        <default>false</default>
+        <label>HubSpot Service Hub Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Operations Hub Configuration</fullName>
+        <default>false</default>
+        <label>Operations Hub Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Smart CRM Configuration</fullName>
+        <default>false</default>
+        <label>Smart CRM Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Breeze Configuration</fullName>
+        <default>false</default>
+        <label>Breeze Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Breeze Agent Configuration</fullName>
+        <default>false</default>
+        <label>Breeze Agent Configuration</label>
+    </customValue>
+    <customValue>
+        <fullName>Development</fullName>
+        <default>false</default>
+        <label>Development</label>
+    </customValue>
+    <customValue>
+        <fullName>Integrations</fullName>
+        <default>false</default>
+        <label>Integrations</label>
+    </customValue>
+    <customValue>
+        <fullName>Data Migration</fullName>
+        <default>false</default>
+        <label>Data Migration</label>
+    </customValue>
+    <customValue>
+        <fullName>Reports and Dashboards</fullName>
+        <default>false</default>
+        <label>Reports and Dashboards</label>
+    </customValue>
+    <customValue>
+        <fullName>Test and Deploy</fullName>
+        <default>false</default>
+        <label>Test and Deploy</label>
+    </customValue>
+    <customValue>
+        <fullName>Training</fullName>
+        <default>false</default>
+        <label>Training</label>
+    </customValue>
+    <customValue>
+        <fullName>Support</fullName>
+        <default>false</default>
+        <label>Support</label>
+    </customValue>
+    <customValue>
+        <fullName>Project Management</fullName>
+        <default>false</default>
+        <label>Project Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce Customization</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Salesforce Customization</label>
+    </customValue>
+    <customValue>
+        <fullName>Post Implementation Support</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Post Implementation Support</label>
+    </customValue>
+    <customValue>
+        <fullName>Testing</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Testing</label>
+    </customValue>
+    <customValue>
+        <fullName>Conga</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Conga</label>
+    </customValue>
+    <customValue>
+        <fullName>Applied Epic</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Applied Epic</label>
+    </customValue>
+    <customValue>
+        <fullName>eSignature</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>eSignature</label>
+    </customValue>
+    <customValue>
+        <fullName>Marketing Cloud</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Marketing Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>Staff Augmentation</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Staff Augmentation</label>
+    </customValue>
+    <customValue>
+        <fullName>Financial Services Cloud</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Financial Services Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>Single Sign On</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Single Sign On</label>
+    </customValue>
+    <customValue>
+        <fullName>Deployments</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Deployments</label>
+    </customValue>
+    <customValue>
+        <fullName>Mobile</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Mobile</label>
+    </customValue>
+    <customValue>
+        <fullName>Outlook Integration</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Outlook Integration</label>
+    </customValue>
+    <customValue>
+        <fullName>Automation</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Automation</label>
+    </customValue>
+    <customValue>
+        <fullName>Non-Profit Starter Pack Setup</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Non-Profit Starter Pack Setup</label>
+    </customValue>
+    <customValue>
+        <fullName>Pardot Implementation</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Pardot Implementation</label>
+    </customValue>
+    <customValue>
+        <fullName>Integrations (3rd Party/App Exchange/APIs)</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Integrations (3rd Party/App Exchange/APIs)</label>
+    </customValue>
+    <masterLabel>Feature Groups</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_lookup_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>Assignment__r.Projects__c &lt;&gt;  Project_Line_Item__r.Project__c</errorConditionFormula>
+    <errorMessage>Assignment and Project Line Item must be selected from the same Project</errorMessage>
+</ValidationRule>

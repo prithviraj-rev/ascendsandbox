@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_any_Relationship_Field</fullName>
+    <active>true</active>
+    <description>Delete and recreate if a relationship should change to avoid issues with rollups</description>
+    <errorConditionFormula>NOT(ISNEW()) &amp;&amp; 
+OR(ISCHANGED( Assignment__c ), ISCHANGED(Case__c)
+			, ISCHANGED(Resource__c))
+&amp;&amp; NOT( $Permission.Edit_TImecards_Once_Billing_Starts )</errorConditionFormula>
+    <errorMessage>You cannot change the Assignment, Case or Resource value. If these need to change, delete the case time record and create a new one on the correct case, assignment and resource.</errorMessage>
+</ValidationRule>

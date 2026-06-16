@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_modify_approved_records</fullName>
+    <active>true</active>
+    <errorConditionFormula>(ISPICKVAL( Timecard__r.Timesheet__r.Status__c  , &quot;Approved&quot;)  || PRIORVALUE(Timesheet_Status__c) = &quot;Approved&quot;) &amp;&amp; 
+(ISCHANGED( Date__c ) ||
+ISCHANGED( Hours__c ) ||
+ISCHANGED( Billable__c ) ||
+ISCHANGED( Description_of_Work__c ) ||
+ISCHANGED( Assignment__c ) ||
+ISCHANGED( Timecard__c ) ||
+ISCHANGED( Resource__c)) &amp;&amp;
+NOT( $Permission.Edit_TImecards_Once_Approved )</errorConditionFormula>
+    <errorMessage>You cannot edit this case time record once its related Timesheet has been approved. Contact the Heidi through chatter on this timecard if you need to make edits.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,32 @@
+<template>
+    <lightning-quick-action-panel header="Re-Build Daily Assignments" class="slds-is-relative">
+        <div>
+            <div class="slds-is-relative">
+                <div class="slds-modal__content slds-is-relative">
+                    <template lwc:if={showModalSpinner}>
+                        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                    </template>
+
+                    <div>
+                        <div class="slds-grid slds-size_1-of-1 slds-p-left_xx-small">
+                            <lightning-input label="Re-Calculate Actual Hours" type="checkbox" data-id="rebuild-actual" checked="true"></lightning-input>
+                        </div>
+
+                        <div class="slds-grid slds-size_1-of-1 slds-p-left_xx-small slds-m-top_xx-small">
+                            <lightning-input label="Re-Calculate Projected Hours" type="checkbox" data-id="rebuild-projected" checked="true"></lightning-input>
+                        </div>
+
+                        <div class="slds-grid slds-size_1-of-1 slds-p-left_xx-small slds-m-top_xx-small">
+                            <lightning-input label="Re-Create All Daily Assignments" type="checkbox" data-id="rebuild-daily-assignments" checked="true"></lightning-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-align_absolute-center c">
+                <lightning-button class="slds-m-right_x-small" label="Cancel" onclick={handleClose}></lightning-button>
+                <lightning-button variant="brand" label="Start" onclick={handleApply}></lightning-button>
+            </div>
+        </div>
+    </lightning-quick-action-panel>
+</template>

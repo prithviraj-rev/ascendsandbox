@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Once_CSAT_selected_it_cannot_be_changed</fullName>
+    <active>true</active>
+    <errorConditionFormula>Priorvalue( Satisfaction__c) &lt;&gt; &quot;&quot; 
+&amp;&amp; ISBLANK(text(Satisfaction__c))
+&amp;&amp; NOT(ISNEW())
+&amp;&amp; NOT(ISCHANGED( Current_Review__c ))</errorConditionFormula>
+    <errorDisplayField>Satisfaction__c</errorDisplayField>
+    <errorMessage>Once Satisfaction has been selected it cannot be unselected.</errorMessage>
+</ValidationRule>

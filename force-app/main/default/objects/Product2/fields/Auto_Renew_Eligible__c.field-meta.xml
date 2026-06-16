@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Renew_Eligible__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marks MS recurring products eligible for auto-renewal.</description>
+    <label>Auto-Renew Eligible</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

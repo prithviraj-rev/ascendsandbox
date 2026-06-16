@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BaseHours__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Monthly contracted hours for the Engagement. Equal to Project MS Base Hours.</inlineHelpText>
+    <label>Base Hours</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

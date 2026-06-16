@@ -1,0 +1,4540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision3</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>New MRR for Application or Data Management</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision10</name>
+        <label>myDecision10</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision13</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_11</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_11</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_11_A1</targetReference>
+            </connector>
+            <label>New MRR for Infrastructure</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>4.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision13</name>
+        <label>myDecision13</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision16</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_14</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_14</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_14_A1</targetReference>
+            </connector>
+            <label>Renewal or CO for Infrastructure</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>5.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision16</name>
+        <label>myDecision16</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision20</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_17</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_17</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_17_A1</targetReference>
+            </connector>
+            <label>New Project for Infrastructure</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>6.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision20</name>
+        <label>myDecision20</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision23</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_21</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_21</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_21_A1</targetReference>
+            </connector>
+            <label>New MRR for Cyber Security</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>7.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision23</name>
+        <label>myDecision23</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision26</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_24</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_24</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_24_A1</targetReference>
+            </connector>
+            <label>Renewal or CO for Cyber Security</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>8.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision26</name>
+        <label>myDecision26</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision30</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_27</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_27</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_27_A1</targetReference>
+            </connector>
+            <label>New Project for Cyber Security</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision3</name>
+        <label>myDecision3</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision6</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_4</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_4</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_4_A1</targetReference>
+            </connector>
+            <label>Renewal or CO for Application or Data Management</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>9.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision30</name>
+        <label>myDecision30</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision33</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_31</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_31</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_31_A1</targetReference>
+            </connector>
+            <label>New MRR for Service Desk</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>10.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision33</name>
+        <label>myDecision33</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision36</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_34</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_34</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_34_A1</targetReference>
+            </connector>
+            <label>Renewal or CO for Service Desk</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>11.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision36</name>
+        <label>myDecision36</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision40</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_37</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_37</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_37_A1</targetReference>
+            </connector>
+            <label>New Project - Service Desk</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>12.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision40</name>
+        <label>myDecision40</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision43</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_41</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_41</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_41_A1</targetReference>
+            </connector>
+            <label>New MRR for Salesforce</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>13.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision43</name>
+        <label>myDecision43</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision46</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_44</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_44</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_44_A1</targetReference>
+            </connector>
+            <label>Renewal or CO for Salesforce</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>14.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision46</name>
+        <label>myDecision46</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_47</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_47</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_47_A1</targetReference>
+            </connector>
+            <label>New Project for Salesforce</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision10</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_7</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_7</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_7_A1</targetReference>
+            </connector>
+            <label>New Project for Application or Data Management</label>
+        </rules>
+    </decisions>
+    <description>Service Line Item Creation From Opportunity with Sub-Contractor Dets</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c  /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_12_myRule_11_A1_1701735874</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c}  /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c  /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_15_myRule_14_A1_9890951591</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c}  /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0, [Opportunity].Duration_in_Months__c, 1)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_18_myRule_17_A1_4002639933</name>
+        <dataType>Number</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0, {!myVariable_current.Duration_in_Months__c}, 1)</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0,
+[Opportunity].TCV_w_Adjustments__c/[Opportunity].Duration_in_Months__c, 
+[Opportunity].TCV_w_Adjustments__c)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_19_myRule_17_A1_8305780047</name>
+        <dataType>Currency</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0,
+{!myVariable_current.TCV_w_Adjustments__c}/{!myVariable_current.Duration_in_Months__c}, 
+{!myVariable_current.TCV_w_Adjustments__c})</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_22_myRule_21_A1_3471530634</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c} /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_25_myRule_24_A1_8726786277</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c} /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0, [Opportunity].Duration_in_Months__c, 1)
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_28_myRule_27_A1_3467245637</name>
+        <dataType>Number</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0, {!myVariable_current.Duration_in_Months__c}, 1)</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0,
+[Opportunity].TCV_w_Adjustments__c/[Opportunity].Duration_in_Months__c, 
+[Opportunity].TCV_w_Adjustments__c)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_29_myRule_27_A1_4146619907</name>
+        <dataType>Currency</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0,
+{!myVariable_current.TCV_w_Adjustments__c}/{!myVariable_current.Duration_in_Months__c}, 
+{!myVariable_current.TCV_w_Adjustments__c})</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A1_0860974112</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c} /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c  /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_32_myRule_31_A1_2607830909</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c}  /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c  /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_35_myRule_34_A1_1037608264</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c}  /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0, [Opportunity].Duration_in_Months__c, 1)
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_38_myRule_37_A1_0315321045</name>
+        <dataType>Number</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0, {!myVariable_current.Duration_in_Months__c}, 1)</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0,
+[Opportunity].TCV_w_Adjustments__c/[Opportunity].Duration_in_Months__c, 
+[Opportunity].TCV_w_Adjustments__c)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_39_myRule_37_A1_7411570309</name>
+        <dataType>Currency</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0,
+{!myVariable_current.TCV_w_Adjustments__c}/{!myVariable_current.Duration_in_Months__c}, 
+{!myVariable_current.TCV_w_Adjustments__c})</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c  /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_42_myRule_41_A1_4216219576</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c}  /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c  /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_45_myRule_44_A1_2695029433</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c}  /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0, [Opportunity].Duration_in_Months__c, 1)
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_48_myRule_47_A1_6699217197</name>
+        <dataType>Number</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0, {!myVariable_current.Duration_in_Months__c}, 1)</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0,
+[Opportunity].TCV_w_Adjustments__c/[Opportunity].Duration_in_Months__c, 
+[Opportunity].TCV_w_Adjustments__c)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_49_myRule_47_A1_7187357557</name>
+        <dataType>Currency</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0,
+{!myVariable_current.TCV_w_Adjustments__c}/{!myVariable_current.Duration_in_Months__c}, 
+{!myVariable_current.TCV_w_Adjustments__c})</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Opportunity].TCV_w_Adjustments__c  /[Opportunity].Duration_in_Months__c </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_5_myRule_4_A1_3267436682</name>
+        <dataType>Currency</dataType>
+        <expression>{!myVariable_current.TCV_w_Adjustments__c}  /{!myVariable_current.Duration_in_Months__c}</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0, [Opportunity].Duration_in_Months__c, 1)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_8_myRule_7_A1_8873747705</name>
+        <dataType>Number</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0, {!myVariable_current.Duration_in_Months__c}, 1)</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>IF ([Opportunity].Duration_in_Months__c &gt;0,
+[Opportunity].TCV_w_Adjustments__c/[Opportunity].Duration_in_Months__c, 
+[Opportunity].TCV_w_Adjustments__c)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_9_myRule_7_A1_3848630227</name>
+        <dataType>Currency</dataType>
+        <expression>IF ({!myVariable_current.Duration_in_Months__c} &gt;0,
+{!myVariable_current.TCV_w_Adjustments__c}/{!myVariable_current.Duration_in_Months__c}, 
+{!myVariable_current.TCV_w_Adjustments__c})</expression>
+        <scale>18</scale>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Application Management&apos;) 
+|| ISPICKVAL([Opportunity].Service_Offering__c, &apos;Data Management&apos;)
+)
+&amp;&amp; 
+((
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Application Management&apos;) 
+|| ISPICKVAL([Opportunity].Service_Offering__c, &apos;Data Management&apos;)
+)
+&amp;&amp; 
+ [Opportunity].TCV_w_Adjustments__c  &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Application Management&apos;) 
+|| ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Data Management&apos;)
+)
+&amp;&amp; 
+((
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Application Management&apos;) 
+|| ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Data Management&apos;)
+)
+&amp;&amp; 
+ {!myVariable_current.TCV_w_Adjustments__c}  &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Infrastructure Management&apos;) 
+
+&amp;&amp; [Opportunity].TCV_w_Adjustments__c &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_11</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Infrastructure Management&apos;) 
+
+&amp;&amp; {!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+ 
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Infrastructure Management&apos;) 
+&amp;&amp; [Opportunity].TCV_w_Adjustments__c &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+&amp;&amp; [Opportunity].Total_Existing_MRR__c  &gt;0
+) 
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_14</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+ 
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Infrastructure Management&apos;) 
+&amp;&amp; {!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+&amp;&amp; {!myVariable_current.Total_Existing_MRR__c}  &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+
+(
+[Opportunity].TCV_w_Adjustments__c &gt; 0 
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_17</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+
+(
+{!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Cyber Security Management&apos;) 
+
+&amp;&amp; [Opportunity].TCV_w_Adjustments__c &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_21</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Cyber Security Management&apos;) 
+
+&amp;&amp; {!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Cyber Security Management&apos;) 
+&amp;&amp; [Opportunity].TCV_w_Adjustments__c &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+&amp;&amp; [Opportunity].Total_Existing_MRR__c  &gt;0
+) 
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_24</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Cyber Security Management&apos;) 
+&amp;&amp; {!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+&amp;&amp; {!myVariable_current.Total_Existing_MRR__c}  &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Cyber Security Management&apos;) 
+
+)
+&amp;&amp; 
+(
+[Opportunity].TCV_w_Adjustments__c &gt; 0 
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_27</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Cyber Security Management&apos;) 
+
+)
+&amp;&amp; 
+(
+{!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Service Desk&apos;)  
+
+&amp;&amp; [Opportunity].TCV_w_Adjustments__c &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+) 
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_31</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Service Desk&apos;)  
+
+&amp;&amp; {!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Service Desk&apos;) 
+&amp;&amp; [Opportunity].TCV_w_Adjustments__c &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+&amp;&amp; [Opportunity].Total_Existing_MRR__c  &gt;0
+) 
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_34</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Service Desk&apos;) 
+&amp;&amp; {!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+&amp;&amp; {!myVariable_current.Total_Existing_MRR__c}  &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Service Desk&apos;) 
+
+)
+&amp;&amp; 
+(
+[Opportunity].TCV_w_Adjustments__c &gt; 0 
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_37</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Service Desk&apos;) 
+
+)
+&amp;&amp; 
+(
+{!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Application Management&apos;) 
+|| ISPICKVAL([Opportunity].Service_Offering__c, &apos;Data Management&apos;)
+)
+&amp;&amp; 
+
+(
+[Opportunity].TCV_w_Adjustments__c &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+&amp;&amp; [Opportunity].Total_Existing_MRR__c  &gt;0
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_4</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Application Management&apos;) 
+|| ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Data Management&apos;)
+)
+&amp;&amp; 
+
+(
+{!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+&amp;&amp; {!myVariable_current.Total_Existing_MRR__c}  &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Salesforce&apos;) 
+
+&amp;&amp; [Opportunity].TCV_w_Adjustments__c &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_41</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Salesforce&apos;) 
+
+&amp;&amp; {!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+)  
+&amp;&amp;
+
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Salesforce&apos;) 
+&amp;&amp; [Opportunity].TCV_w_Adjustments__c &gt; 0 
+&amp;&amp; [Opportunity].Duration_in_Months__c &gt;0
+&amp;&amp; [Opportunity].Total_Existing_MRR__c  &gt;0
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_44</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+)  
+&amp;&amp;
+
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Salesforce&apos;) 
+&amp;&amp; {!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+&amp;&amp; {!myVariable_current.Duration_in_Months__c} &gt;0
+&amp;&amp; {!myVariable_current.Total_Existing_MRR__c}  &gt;0
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Salesforce&apos;) 
+
+)
+&amp;&amp; 
+(
+[Opportunity].TCV_w_Adjustments__c &gt; 0 
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_47</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Salesforce&apos;) 
+
+)
+&amp;&amp; 
+(
+{!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>(
+[Opportunity].Service_Lines__c &lt;1 
+&amp;&amp; PRIORVALUE([Opportunity].Service_Lines__c ) &lt;&gt; 1
+&amp;&amp;
+[Opportunity].RecordType.DeveloperName = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL([Opportunity].StageName , &apos;Propose&apos;)  
+|| ISPICKVAL([Opportunity].StageName , &apos;Contract&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Approve&apos;) 
+|| ISPICKVAL([Opportunity].StageName , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL([Opportunity].Service_Offering__c, &apos;Application Management&apos;) 
+|| ISPICKVAL([Opportunity].Service_Offering__c, &apos;Data Management&apos;)
+)
+&amp;&amp; 
+
+(
+[Opportunity].TCV_w_Adjustments__c &gt; 0 
+) </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_7</name>
+        <dataType>Boolean</dataType>
+        <expression>(
+{!myVariable_current.Service_Lines__c} &lt;1 
+&amp;&amp; PRIORVALUE({!myVariable_current.Service_Lines__c} ) &lt;&gt; 1
+&amp;&amp;
+{!myVariable_current.RecordType.DeveloperName} = &apos;Opportunity&apos;
+)
+&amp;&amp; 
+(
+ISPICKVAL({!myVariable_current.StageName} , &apos;Propose&apos;)  
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Contract&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Approve&apos;) 
+|| ISPICKVAL({!myVariable_current.StageName} , &apos;Closed Won&apos;)
+) 
+&amp;&amp;
+(
+ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Application Management&apos;) 
+|| ISPICKVAL({!myVariable_current.Service_Offering__c}, &apos;Data Management&apos;)
+)
+&amp;&amp; 
+
+(
+{!myVariable_current.TCV_w_Adjustments__c} &gt; 0 
+)</expression>
+    </formulas>
+    <interviewLabel>Service_Line_Item_Creation_From_Opportunity-3_InterviewLabel</interviewLabel>
+    <label>Service Line Item Creation From Opportunity</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Opportunity</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <recordCreates>
+        <name>myRule_11_A1</name>
+        <label>New MRR Service Line Item Infra</label>
+        <locationX>1100</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frx7AAA</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_12_myRule_11_A1_1701735874</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_14_A1</name>
+        <label>Renewal Service Line Item Infra</label>
+        <locationX>1400</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Existing MRR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Existing_MRR__c</field>
+            <value>
+                <elementReference>myVariable_current.Total_Existing_MRR__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frx7AAA</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewal/CO</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Renewal__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_15_myRule_14_A1_9890951591</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_17_A1</name>
+        <label>New Project Service Line Item Infra</label>
+        <locationX>1700</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxGAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>formula_18_myRule_17_A1_4002639933</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_19_myRule_17_A1_8305780047</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_1_A1</name>
+        <label>New MRR Service Line Item App/Data</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxHAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_2_myRule_1_A1_0860974112</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_21_A1</name>
+        <label>New MRR Service Line Item Cyber Sec</label>
+        <locationX>2100</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxDAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_22_myRule_21_A1_3471530634</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_24_A1</name>
+        <label>Renewal Service Line Item Cyber Sec</label>
+        <locationX>2400</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Existing MRR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Existing_MRR__c</field>
+            <value>
+                <elementReference>myVariable_current.Total_Existing_MRR__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxDAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewal/CO</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Renewal__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_25_myRule_24_A1_8726786277</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_27_A1</name>
+        <label>New Project Service Line Item Cyber Sec</label>
+        <locationX>2700</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxJAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>formula_28_myRule_27_A1_3467245637</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_29_myRule_27_A1_4146619907</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_31_A1</name>
+        <label>New MRR Service Line Item SD</label>
+        <locationX>3100</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxEAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_32_myRule_31_A1_2607830909</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_34_A1</name>
+        <label>Renewal Service Line Item SD</label>
+        <locationX>3400</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Existing MRR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Existing_MRR__c</field>
+            <value>
+                <elementReference>myVariable_current.Total_Existing_MRR__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxEAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewal/CO</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Renewal__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_35_myRule_34_A1_1037608264</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_37_A1</name>
+        <label>New Project Service Line Item SD</label>
+        <locationX>3700</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxFAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>formula_38_myRule_37_A1_0315321045</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_39_myRule_37_A1_7411570309</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_41_A1</name>
+        <label>New MRR Service Line Item Salesforce</label>
+        <locationX>4100</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxCAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_42_myRule_41_A1_4216219576</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_44_A1</name>
+        <label>Renewal Service Line Item Salesforce</label>
+        <locationX>4400</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Existing MRR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Existing_MRR__c</field>
+            <value>
+                <elementReference>myVariable_current.Total_Existing_MRR__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxCAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewal/CO</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Renewal__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_45_myRule_44_A1_2695029433</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_47_A1</name>
+        <label>New Project Service Line Item Salesforce</label>
+        <locationX>4700</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frx8AAA</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>formula_48_myRule_47_A1_6699217197</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_49_myRule_47_A1_7187357557</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_4_A1</name>
+        <label>Renewal Service Line Item App/Data</label>
+        <locationX>400</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Existing MRR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Existing_MRR__c</field>
+            <value>
+                <elementReference>myVariable_current.Total_Existing_MRR__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxHAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>myVariable_current.Duration_in_Months__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Renewal/CO</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Renewal__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_5_myRule_4_A1_3267436682</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_7_A1</name>
+        <label>New Project Service Line Item App/Data</label>
+        <locationX>700</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Opportunity ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Service</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Product2</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Product2Id</field>
+            <value>
+                <stringValue>01t3b000006frxBAAQ</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Duration in Months</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Quantity</field>
+            <value>
+                <elementReference>formula_8_myRule_7_A1_8873747705</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>myVariable_current.Est_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Monthly Rate</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>formula_9_myRule_7_A1_3848630227</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+    </recordCreates>
+    <startElementReference>myDecision</startElementReference>
+    <status>Draft</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+</Flow>

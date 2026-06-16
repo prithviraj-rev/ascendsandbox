@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ObjectName__c</fullName>
+    <description>The object name we are migrating. This is useful for bulk migration. It make no sense in single migration</description>
+    <externalId>true</externalId>
+    <label>ObjectName</label>
+    <length>45</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

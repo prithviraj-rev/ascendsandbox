@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>One_Relationship_Owner_Per_Team</fullName>
+    <active>true</active>
+    <description>Rule works with the the Relationship Owner Field &amp; Flow to make sure there is only one Relationship Owner on the team to get integrated with Hubspot.</description>
+    <errorConditionFormula>ISPICKVAL( TeamMemberRole__c , &apos;Contact Owner&apos;)  &amp;&amp; 
+NOT(ISBLANK( ContactId__r.Relationship_Owner__c )) &amp;&amp;
+NOT (ISCHANGED(UserId__c ))</errorConditionFormula>
+    <errorMessage>There is currently a Relationship Owner on this Contact. Please change the User in the current record or delete the current record to make Relationship Owner Adjustments.</errorMessage>
+</ValidationRule>

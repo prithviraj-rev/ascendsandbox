@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Aerospace and Defense</fullName>
+        <default>false</default>
+        <label>Aerospace and Defense</label>
+    </customValue>
+    <customValue>
+        <fullName>Agriculture and Mining</fullName>
+        <default>false</default>
+        <label>Agriculture and Mining</label>
+    </customValue>
+    <customValue>
+        <fullName>Automotive</fullName>
+        <default>false</default>
+        <label>Automotive</label>
+    </customValue>
+    <customValue>
+        <fullName>Communications</fullName>
+        <default>false</default>
+        <label>Communications</label>
+    </customValue>
+    <customValue>
+        <fullName>Consumer Goods</fullName>
+        <default>false</default>
+        <label>Consumer Goods</label>
+    </customValue>
+    <customValue>
+        <fullName>Energy and Utilities</fullName>
+        <default>false</default>
+        <label>Energy and Utilities</label>
+    </customValue>
+    <customValue>
+        <fullName>Engineering, Construction and Real Estate</fullName>
+        <default>false</default>
+        <label>Engineering, Construction and Real Estate</label>
+    </customValue>
+    <customValue>
+        <fullName>Financial Services: Banking</fullName>
+        <default>false</default>
+        <label>Financial Services: Banking</label>
+    </customValue>
+    <customValue>
+        <fullName>Financial Services: Capital Markets</fullName>
+        <default>false</default>
+        <label>Financial Services: Capital Markets</label>
+    </customValue>
+    <customValue>
+        <fullName>Financial Services: Insurance</fullName>
+        <default>false</default>
+        <label>Financial Services: Insurance</label>
+    </customValue>
+    <customValue>
+        <fullName>Financial Services: Wealth Management</fullName>
+        <default>false</default>
+        <label>Financial Services: Wealth Management</label>
+    </customValue>
+    <customValue>
+        <fullName>High Tech</fullName>
+        <default>false</default>
+        <label>High Tech</label>
+    </customValue>
+    <customValue>
+        <fullName>Higher Education</fullName>
+        <default>false</default>
+        <label>Higher Education</label>
+    </customValue>
+    <customValue>
+        <fullName>Manufacturing</fullName>
+        <default>false</default>
+        <label>Manufacturing</label>
+    </customValue>
+    <customValue>
+        <fullName>Media</fullName>
+        <default>false</default>
+        <label>Media</label>
+    </customValue>
+    <customValue>
+        <fullName>Non-Profit</fullName>
+        <default>false</default>
+        <label>Non-Profit</label>
+    </customValue>
+    <customValue>
+        <fullName>Oil and Gas</fullName>
+        <default>false</default>
+        <label>Oil and Gas</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Professional Services</fullName>
+        <default>false</default>
+        <label>Professional Services</label>
+    </customValue>
+    <customValue>
+        <fullName>Public Sector: Federal</fullName>
+        <default>false</default>
+        <label>Public Sector: Federal</label>
+    </customValue>
+    <customValue>
+        <fullName>Public Sector: State/Local</fullName>
+        <default>false</default>
+        <label>Public Sector: State/Local</label>
+    </customValue>
+    <customValue>
+        <fullName>Retail</fullName>
+        <default>false</default>
+        <label>Retail</label>
+    </customValue>
+    <customValue>
+        <fullName>Transport, Travel and Hospitality-Hospitality</fullName>
+        <default>false</default>
+        <label>Transport, Travel and Hospitality-Hospitality</label>
+    </customValue>
+    <customValue>
+        <fullName>Travel, Transportation &amp; Hospitality-Transportation</fullName>
+        <default>false</default>
+        <label>Travel, Transportation &amp; Hospitality-Transportation</label>
+    </customValue>
+    <customValue>
+        <fullName>Travel, Transportation &amp; Hospitality-Travel</fullName>
+        <default>false</default>
+        <label>Travel, Transportation &amp; Hospitality-Travel</label>
+    </customValue>
+    <customValue>
+        <fullName>Healthcare and Life Sciences</fullName>
+        <default>false</default>
+        <label>Healthcare and Life Sciences</label>
+    </customValue>
+    <customValue>
+        <fullName>Healthcare and Life Sciences: Provider</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Healthcare and Life Sciences: Provider</label>
+    </customValue>
+    <customValue>
+        <fullName>Healthcare and Life Sciences: Pharma</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Healthcare and Life Sciences: Pharma</label>
+    </customValue>
+    <customValue>
+        <fullName>Healthcare and Life Sciences: Payer</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Healthcare and Life Sciences: Payer</label>
+    </customValue>
+    <customValue>
+        <fullName>Healthcare and Life Sciences: Medical Devices</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Healthcare and Life Sciences: Medical Devices</label>
+    </customValue>
+    <masterLabel>Industry</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Advanced Consulting Services</fullName>
+        <default>false</default>
+        <label>Advanced Consulting Services</label>
+    </customValue>
+    <customValue>
+        <fullName>Application Solutions</fullName>
+        <default>false</default>
+        <label>Application Solutions</label>
+    </customValue>
+    <customValue>
+        <fullName>Azure Consumption</fullName>
+        <default>false</default>
+        <label>Azure Consumption</label>
+    </customValue>
+    <customValue>
+        <fullName>Cybersecurity</fullName>
+        <default>false</default>
+        <label>Cybersecurity</label>
+    </customValue>
+    <customValue>
+        <fullName>HubSpot</fullName>
+        <default>false</default>
+        <label>HubSpot</label>
+    </customValue>
+    <customValue>
+        <fullName>Infrastructure</fullName>
+        <default>false</default>
+        <label>Infrastructure</label>
+    </customValue>
+    <customValue>
+        <fullName>License Subscription</fullName>
+        <default>false</default>
+        <label>License Subscription</label>
+    </customValue>
+    <customValue>
+        <fullName>Onboarding</fullName>
+        <default>false</default>
+        <label>Onboarding</label>
+    </customValue>
+    <customValue>
+        <fullName>Private Cloud</fullName>
+        <default>false</default>
+        <label>Private Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>Product</fullName>
+        <default>false</default>
+        <label>Product</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce</fullName>
+        <default>false</default>
+        <label>Salesforce</label>
+    </customValue>
+    <customValue>
+        <fullName>Service Desk</fullName>
+        <default>false</default>
+        <label>Service Desk</label>
+    </customValue>
+    <customValue>
+        <fullName>Snap-On</fullName>
+        <default>false</default>
+        <label>Snap-On</label>
+    </customValue>
+    <customValue>
+        <fullName>VOIP</fullName>
+        <default>false</default>
+        <label>VOIP</label>
+    </customValue>
+    <customValue>
+        <fullName>Zingly</fullName>
+        <default>false</default>
+        <label>Zingly</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Service Desk Solutions</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Service Desk Solutions</label>
+    </customValue>
+    <customValue>
+        <fullName>Data Management</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Data Solutions</label>
+    </customValue>
+    <customValue>
+        <fullName>Industry Subject Matter Expertise</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Industry Subject Matter Expertise</label>
+    </customValue>
+    <customValue>
+        <fullName>Organizational Change Management</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Organizational Change Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Data-Driven Organization</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Data-Driven Organization</label>
+    </customValue>
+    <customValue>
+        <fullName>Not Applicable</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Not Applicable</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce/App/Data</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Salesforce/App/Data</label>
+    </customValue>
+    <customValue>
+        <fullName>Application Management</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Application Management</label>
+    </customValue>
+    <customValue>
+        <fullName>Strategic Advisory Services</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Strategic Advisory Services</label>
+    </customValue>
+    <customValue>
+        <fullName>Cloud/Infra/Desk</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cloud/Infra/Desk</label>
+    </customValue>
+    <customValue>
+        <fullName>CRM</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>CRM</label>
+    </customValue>
+    <masterLabel>Service Offering</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,27 @@
+.messages-container{
+    overflow-y: auto;
+}
+
+.notify-alert-container{
+    display: flex;
+    border-radius: 4px;
+    align-items: unset;
+    text-align: unset;
+    margin-top: 12px; /*var(--lwc-templateGutters);*/
+    padding: 8px;
+}
+
+.notify-alert-container.first{
+    margin-top: 0;
+}
+
+.notify-alert-container .left-icon-container{
+    flex-grow: 0;
+    padding-right: 10px;
+}
+
+.notify-alert-container .body-container{
+    flex-grow: 1;
+    padding-right: 5px;
+    overflow-y: auto;
+}

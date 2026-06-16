@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SKU_Company__c</fullName>
+    <label>Company Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>001 - Ascend</fullName>
+                <default>false</default>
+                <label>001 - Ascend</label>
+            </value>
+            <value>
+                <fullName>002 - Edafio</fullName>
+                <default>false</default>
+                <label>002 - Edafio</label>
+            </value>
+            <value>
+                <fullName>003 - NvYA</fullName>
+                <default>false</default>
+                <label>003 - NvYA</label>
+            </value>
+            <value>
+                <fullName>00N - future</fullName>
+                <default>false</default>
+                <label>00N - future</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mileage_requires_miles_field</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL( Category__c ,&quot;Mileage&quot;),ISBLANK( Miles__c ))</errorConditionFormula>
+    <errorDisplayField>Miles__c</errorDisplayField>
+    <errorMessage>If the Category is Mileage, then the Miles field is required</errorMessage>
+</ValidationRule>

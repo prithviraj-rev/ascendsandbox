@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <label>Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Airfare</fullName>
+                <default>false</default>
+                <label>Airfare</label>
+            </value>
+            <value>
+                <fullName>Certifications</fullName>
+                <default>false</default>
+                <label>Certifications</label>
+            </value>
+            <value>
+                <fullName>Dues / Subscriptions</fullName>
+                <default>false</default>
+                <label>Dues / Subscriptions</label>
+            </value>
+            <value>
+                <fullName>Education / Training</fullName>
+                <default>false</default>
+                <label>Education / Training</label>
+            </value>
+            <value>
+                <fullName>Employee Morale</fullName>
+                <default>false</default>
+                <label>Employee Morale</label>
+            </value>
+            <value>
+                <fullName>Equipment</fullName>
+                <default>false</default>
+                <label>Equipment</label>
+            </value>
+            <value>
+                <fullName>Internet</fullName>
+                <default>false</default>
+                <label>Internet</label>
+            </value>
+            <value>
+                <fullName>Lodging</fullName>
+                <default>false</default>
+                <label>Lodging</label>
+            </value>
+            <value>
+                <fullName>Marketing Event</fullName>
+                <default>false</default>
+                <label>Marketing Event</label>
+            </value>
+            <value>
+                <fullName>Meals</fullName>
+                <default>false</default>
+                <label>Meals</label>
+            </value>
+            <value>
+                <fullName>Mileage</fullName>
+                <default>false</default>
+                <label>Mileage</label>
+            </value>
+            <value>
+                <fullName>Networking Event</fullName>
+                <default>false</default>
+                <label>Networking Event</label>
+            </value>
+            <value>
+                <fullName>Parking / Tolls</fullName>
+                <default>false</default>
+                <label>Parking / Tolls</label>
+            </value>
+            <value>
+                <fullName>Phone</fullName>
+                <default>false</default>
+                <label>Phone</label>
+            </value>
+            <value>
+                <fullName>Postage</fullName>
+                <default>false</default>
+                <label>Postage</label>
+            </value>
+            <value>
+                <fullName>Rental / Taxi / Train</fullName>
+                <default>false</default>
+                <label>Rental / Taxi / Train</label>
+            </value>
+            <value>
+                <fullName>Supplies</fullName>
+                <default>false</default>
+                <label>Supplies</label>
+            </value>
+            <value>
+                <fullName>Travel time</fullName>
+                <default>false</default>
+                <label>Travel time</label>
+            </value>
+            <value>
+                <fullName>Website</fullName>
+                <default>false</default>
+                <label>Website</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

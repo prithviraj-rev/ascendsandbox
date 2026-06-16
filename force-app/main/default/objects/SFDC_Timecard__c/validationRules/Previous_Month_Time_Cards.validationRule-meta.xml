@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Previous_Month_Time_Cards</fullName>
+    <active>true</active>
+    <description>This prevents users adding time cards for previous months if time has been reviewed</description>
+    <errorConditionFormula>(NOT(ISBLANK(TEXT(Billing_Milestones__r.Invoice_Status__c))) || NOT(ISBLANK( PRIORVALUE( Invoice_Status_from_Billing_Milestone__c ) ))) &amp;&amp; 
+OR(ISNEW(),
+			ISCHANGED( Date__c ), 
+			ISCHANGED( Hours__c ), 
+			ISCHANGED( Type__c ), 
+ 		ISCHANGED( Name ), 
+ 		ISCHANGED( Billing_Milestones__c ), 
+			ISCHANGED( Assignment__c ), 
+			ISCHANGED( Description_of_Work__c )) &amp;&amp;
+NOT( $Permission.Edit_TImecards_Once_Billing_Starts )</errorConditionFormula>
+    <errorMessage>You cannot enter time for this date as the time for this month has been reviewed/invoiced.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,29 @@
+<template>
+<div class="cardContainer" onclick={handleEntryClick}>
+        <lightning-card class="cardFix"  onclick={handleSelection} style="cursor:pointer;">
+            <h5 slot="title" class="no-wrap">
+                <span class="slds-p-around_none" style="display:inline-block; cursor:pointer;">
+                    <template if:true={isNew}>
+                        <lightning-icon icon-name="utility:sparkles" size="x-small" class="reviewed" ></lightning-icon>
+                    </template>
+                    <template if:true={isDiff}>
+                        <lightning-icon icon-name="utility:sparkles" size="x-small" class="high-priority" ></lightning-icon>
+                    </template>
+                    {title}</span>
+                
+            </h5>
+            
+            <lightning-layout multiple-rows="true">
+                
+                
+                <lightning-layout-item flexibility="auto" size="12-of-12" class="left-align">
+                    <lightning-formatted-rich-text value={desc} ></lightning-formatted-rich-text>
+                </lightning-layout-item>
+            </lightning-layout>
+                
+        </lightning-card>
+        <!--div style="position:absolute; right:5px;bottom:5px;">
+            <a htarget="_blank"><lightning-icon icon-name="utility:target_mode"  size="small"></lightning-icon></a>
+        </div-->
+    </div>    
+</template>

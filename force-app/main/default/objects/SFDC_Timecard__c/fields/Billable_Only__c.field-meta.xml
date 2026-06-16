@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billable_Only__c</fullName>
+    <formula>IF(ISPICKVAL(Type__c,&quot;Billable&quot;)||ISPICKVAL(Type__c,&quot;Travel Billable&quot;), Hours__c * Rate_Client__c,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Billable Time ONLY. No &quot;No Charge&quot; or &quot;Non-Billable&quot; time. Used to show the invoice amount</inlineHelpText>
+    <label>Billable Amount (for Invoice)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

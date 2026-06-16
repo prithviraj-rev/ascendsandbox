@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Projects_Cleanup</fullName>
+    <columns>NAME</columns>
+    <columns>Invoice_Project_Description__c</columns>
+    <columns>Project_Rate__c</columns>
+    <columns>SOW_Hours__c</columns>
+    <columns>Record_Validation__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFDC_Projects__c.Project</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value>Doextra Internal,1099 Sales Engineering,Doextra - Internal Project,Sales Engineering</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Embedded Experts,Project,Staff Aug,Support Agreement</value>
+    </filters>
+    <label>Active Projects Cleanup</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <group>All_Internal_Users</group>
+    </sharedTo>
+</ListView>

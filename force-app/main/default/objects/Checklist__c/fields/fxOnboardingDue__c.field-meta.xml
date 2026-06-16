@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>fxOnboardingDue__c</fullName>
+    <formula>IF(NOT(ISBLANK(Account__c)),Account__r.OnboardingDue__c,
+IF(NOT(ISBLANK(Contact__c)),Contact__r.OnboardingDue__c,
+IF(NOT(ISBLANK(WorkOrder__c)),WorkOrder__r.OnboardingDue__c,
+NULL)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Onboarding Due</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

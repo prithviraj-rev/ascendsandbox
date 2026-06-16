@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billable__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF ( ISPICKVAL($UserRole.PortalType, &apos;CustomerPortal&apos;),
+
+IF( ISPICKVAL(Type__c, &quot;Billable&quot;)||ISPICKVAL(Type__c, &quot;Travel Billable&quot;) , Image(&quot;https://teamascend.my.site.com/Contractors/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/tick.png&quot;, &quot;Yes&quot;), Image(&quot;https://teamascend.my.site.com/Contractors/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/cross.png&quot;, &quot;No&quot;)),
+
+IF( ISPICKVAL(Type__c, &quot;Billable&quot;)||ISPICKVAL(Type__c, &quot;Travel Billable&quot;) , Image(&quot;https://c.na20.visual.force.com/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/tick.png&quot;, &quot;Yes&quot;), Image(&quot;https://c.na20.visual.force.com/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/cross.png&quot;, &quot;No&quot;))
+
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Billable?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

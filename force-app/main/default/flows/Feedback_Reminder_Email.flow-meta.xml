@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Sends the reminder feedback email to internal recipients (W2 and internal 1099) using the internal list view URL variable in the email body.</description>
+        <name>Send_Feedback_Email_to_Internal</name>
+        <label>Send Feedback Email to Internal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>LOOP_Internal_Recipient_Emails</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recipientAddresses</name>
+            <value>
+                <collectionElements>
+                    <elementReference>LOOP_Internal_Recipient_Emails.Email</elementReference>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>salesforce.support@teamascend.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Friendly Reminder - Submit Your Feedback Soon!</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>&lt;div style=&quot;font-family: Arial, Helvetica, sans-serif; font-size:14px; color:#181818; line-height:1.5;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;
+    &lt;img src=&quot;{!varEmailHeaderImageUrl}&quot; alt=&quot;Email Header&quot; style=&quot;display:block; max-width:100%; height:auto; border:0;&quot;&gt;
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;Hi {!LOOP_Internal_Recipient_Emails.FirstName},&lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;
+    We wanted to send a quick reminder regarding the open feedback you have pending.
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;
+    If you’d like to share input — including recognition for teammates or suggestions for improvement — please use the link below. The feedback window will close in &lt;strong&gt;4 days&lt;/strong&gt;.
+  &lt;/p&gt;
+  &lt;table role=&quot;presentation&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;0&quot; style=&quot;margin:0 0 16px 0;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td bgcolor=&quot;#0176d3&quot; style=&quot;border-radius:4px;&quot;&gt;
+        &lt;a href=&quot;{!varFeedbackListViewLink}&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;
+           style=&quot;display:inline-block; padding:12px 20px; font-family: Arial, Helvetica, sans-serif; font-size:14px; color:#ffffff; text-decoration:none; font-weight:600;&quot;&gt;
+          Submit Feedback
+        &lt;/a&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;
+    Your perspective is appreciated and thank you again for your contributions.
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0;&quot;&gt;
+    Best regards,&lt;br&gt;
+    DTS Project Management Office
+  &lt;/p&gt;
+&lt;/div&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>LOOP_Internal_Recipient_Emails.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>relatedRecordId</name>
+        </inputParameters>
+        <inputParameters>
+            <name>logEmailOnSend</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>2.0.1</versionString>
+    </actionCalls>
+    <actionCalls>
+        <description>Sends the feedback reminder email to the current portal recipient in the loop. The email includes the feedback list view link where the recipient can access and complete any pending feedback records.</description>
+        <name>Send_Feedback_Email_to_Portal</name>
+        <label>Send Feedback Email to Portal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>LOOP_Portal_Recipient_Emails</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recipientAddresses</name>
+            <value>
+                <collectionElements>
+                    <elementReference>LOOP_Portal_Recipient_Emails.Email</elementReference>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>salesforce.support@teamascend.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Friendly Reminder - Submit Your Feedback Soon!</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>&lt;div style=&quot;font-family: Arial, Helvetica, sans-serif; font-size:14px; color:#181818; line-height:1.5;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;
+    &lt;img src=&quot;{!varEmailHeaderImageUrl}&quot; alt=&quot;Email Header&quot; style=&quot;display:block; max-width:100%; height:auto; border:0;&quot;&gt;
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;Hi {!LOOP_Portal_Recipient_Emails.FirstName},&lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;We wanted to send a quick reminder regarding the open feedback you have pending.&lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;If you&apos;d like to share input — including recognition for teammates or suggestions for improvement — please use the link below. The feedback window will close in &lt;strong&gt;4 days&lt;/strong&gt;.&lt;/p&gt;
+  &lt;table role=&quot;presentation&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; border=&quot;0&quot; style=&quot;margin:0 0 16px 0;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td bgcolor=&quot;#0176d3&quot; style=&quot;border-radius:4px;&quot;&gt;
+        &lt;a href=&quot;{!varFeedbackListViewLink}&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; style=&quot;display:inline-block; padding:12px 20px; font-family: Arial, Helvetica, sans-serif; font-size:14px; color:#ffffff; text-decoration:none; font-weight:600;&quot;&gt;
+          Submit Feedback
+        &lt;/a&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;&quot;&gt;Your perspective is appreciated and thank you again for your contributions.&lt;/p&gt;
+  &lt;p style=&quot;margin:0;&quot;&gt;Best regards,&lt;br&gt;DTS Project Management Office&lt;/p&gt;
+&lt;/div&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>LOOP_Portal_Recipient_Emails.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>logEmailOnSend</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>2.0.1</versionString>
+    </actionCalls>
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Adds the current Feedback record to the deletion collection for bulk deletion after the loop.</description>
+        <name>ASSIGN_Feedback_to_Delete_Collection</name>
+        <label>ASSIGN Feedback to Delete Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>colFeedbackToDelete</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>LOOP_through_Qualifying_Feedback</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>DEC_Submitter_is_Internal_or_Portal_Recipient</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Sets the email link variable to the internal feedback list view URL before sending internal emails.</description>
+        <name>Assign_Internal_List_View_Link</name>
+        <label>Assign Internal List View Link</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varFeedbackListViewLink</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>InternalFeedbackListViewURL</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_Internal_Recipient_Emails</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assigns the current Feedback submitter’s First Name and Email from the looped Feedback record to the internal user record variable. This prepares the values used to build the internal recipient collection for reminder emails.</description>
+        <name>Assign_Internal_Submitter_Values</name>
+        <label>Assign Internal Submitter Values</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>recInternalUser.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_through_Qualifying_Feedback.Submitter__r.FirstName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recInternalUser.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_through_Qualifying_Feedback.Submitter__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recInternalUser.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_through_Qualifying_Feedback.Submitter__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>DEC_Already_Exists_in_Internal_Recipient_List</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Sets the email link variable to the portal feedback list view URL before sending portal emails.</description>
+        <name>Assign_Portal_List_View_Link</name>
+        <label>Assign Portal List View Link</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varFeedbackListViewLink</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PortalFeedbackListViewURL</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_Portal_Recipient_Emails</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assigns the current Feedback submitter’s First Name and Email from the looped Feedback record to the portal user record variable. This prepares the values used to build the portal recipient collection for reminder emails.</description>
+        <name>Assign_Portal_User_Values</name>
+        <label>Assign Portal User Values</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>recPortalUser.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_through_Qualifying_Feedback.Submitter__r.FirstName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recPortalUser.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_through_Qualifying_Feedback.Submitter__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recPortalUser.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_through_Qualifying_Feedback.Submitter__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>DEC_Already_Exists_in_Portal_Recipient_List</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Adds the current team member’s email to the Internal recipient collection when Employment Type is W2 or 1099 with internal profile access.</description>
+        <name>Assign_Submitter_to_Internal_List</name>
+        <label>Assign Submitter to Internal List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>colInternalContacts</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>recInternalUser</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>txtInternalEmailList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>recInternalUser.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_through_Qualifying_Feedback</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Adds the current submitter’s email address to the portal recipient collection for later bulk email notification with the contractor portal “My Pending Feedback” list view link.</description>
+        <name>Assign_Submitter_to_Portal_List</name>
+        <label>Assign Submitter to Portal List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>colPortalContacts</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>recPortalUser</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>txtPortalEmailList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>recPortalUser.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_through_Qualifying_Feedback</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Checks whether the current submitter email is already in the internal recipient collection to prevent duplicate recipients when a submitter has multiple qualifying Feedback records.</description>
+        <name>DEC_Already_Exists_in_Internal_Recipient_List</name>
+        <label>DEC Already Exists in Internal Recipient List?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Submitter_to_Internal_List</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Does Not Exist</defaultConnectorLabel>
+        <rules>
+            <name>Exists_Internal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>txtInternalEmailList</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>recInternalUser.Email</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>LOOP_through_Qualifying_Feedback</targetReference>
+            </connector>
+            <label>Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks whether the current submitter email is already in the portal recipient collection to prevent duplicates when a submitter has multiple qualifying Feedback records.</description>
+        <name>DEC_Already_Exists_in_Portal_Recipient_List</name>
+        <label>DEC Already Exists in Portal Recipient List?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Submitter_to_Portal_List</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Does Not Exist</defaultConnectorLabel>
+        <rules>
+            <name>Exists_External</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>txtPortalEmailList</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>recPortalUser.Email</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>LOOP_through_Qualifying_Feedback</targetReference>
+            </connector>
+            <label>Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determines whether the Feedback record has been modified since creation. Only records that have not been edited are processed for reminder emails.</description>
+        <name>DEC_Has_Feedback_been_Edited</name>
+        <label>DEC Has Feedback been Edited?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>DEC_Unedited_for_7_days</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Unedited</defaultConnectorLabel>
+        <rules>
+            <name>Edited</name>
+            <conditionLogic>1 AND 2 AND (3 OR 4 OR 5 OR 6 OR 7)</conditionLogic>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Internal Feedback</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Project Retro</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Verbal_Communication__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Technical_Skills__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Time_Management__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Comments__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Written_Communication__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>LOOP_through_Qualifying_Feedback</targetReference>
+            </connector>
+            <label>Edited</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks whether any records were flagged for deletion.</description>
+        <name>DEC_Is_Delete_Collection_Populated</name>
+        <label>DEC Is Delete Collection Populated?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>DEC_Is_Internal_Recipient_populated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>YesRecordstodelete</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>colFeedbackToDelete</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>DELETE_Unedited_Feedback_7_Days</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks whether the internal recipient email collection contains values before attempting to send the internal notification email.</description>
+        <name>DEC_Is_Internal_Recipient_populated</name>
+        <label>DEC Is Internal Recipient populated?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>DEC_Is_Portal_Recipient_populated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>YesInternalIsPopulated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>colInternalContacts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Internal_List_View_Link</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks whether the portal recipient email collection contains values before attempting to send the portal notification email.</description>
+        <name>DEC_Is_Portal_Recipient_populated</name>
+        <label>DEC Is Portal Recipient populated?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>YesPortalispopulated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>colPortalContacts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Portal_List_View_Link</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Routes the current submitter into the correct email recipient collection. Internal recipients are W2 employees and 1099 contractors with internal org access (Portal Enabled = false). Portal recipients are 1099 contractors with community access (Portal enabled = true).</description>
+        <name>DEC_Submitter_is_Internal_or_Portal_Recipient</name>
+        <label>DEC Submitter is Internal or Portal Recipient?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Portal_User_Values</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Portal</defaultConnectorLabel>
+        <rules>
+            <name>Internal</name>
+            <conditionLogic>1 OR (2 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Submitter__r.Employment_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>W2</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Submitter__r.Employment_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>1099</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Submitter__r.Resource_User_Record__r.IsPortalEnabled</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Internal_Submitter_Values</targetReference>
+            </connector>
+            <label>Internal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determines whether the Feedback record is both unedited and at least 7 days old, meaning it should be deleted.</description>
+        <name>DEC_Unedited_for_7_days</name>
+        <label>DEC Unedited for 7+ days?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>DEC_Submitter_is_Internal_or_Portal_Recipient</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Keep</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Delete</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.CreatedDate</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>CutoffDateTime7Days</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Internal_Feedback</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_through_Qualifying_Feedback.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Project Retro</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ASSIGN_Feedback_to_Delete_Collection</targetReference>
+            </connector>
+            <label>Yes - Delete</label>
+        </rules>
+    </decisions>
+    <description>Runs daily to send a consolidated reminder to submitters who have at least one qualifying open Feedback record. Recipients receive either an internal or portal list view link and are deduped so they only receive one email regardless of number of open Feedback records.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Used to find Feedback records created at least 3 days ago.</description>
+        <name>CutoffDateTime3Days</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW() - 3</expression>
+    </formulas>
+    <formulas>
+        <description>DateTime threshold used to identify records created 7+ days ago.</description>
+        <name>CutoffDateTime7Days</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW() - 7</expression>
+    </formulas>
+    <formulas>
+        <description>Returns the internal Salesforce list view link for “My Pending Feedback” from Custom Label.</description>
+        <name>InternalFeedbackListViewURL</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.Feedback_ListView_Internal_Prod_URL}</expression>
+    </formulas>
+    <formulas>
+        <description>Returns the contractor portal list view link for “My Pending Feedback” from Custom Label.</description>
+        <name>PortalFeedbackListViewURL</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.Feedback_ListView_Community_URL}</expression>
+    </formulas>
+    <interviewLabel>Feedback Reminder {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Feedback: Reminder Email</label>
+    <loops>
+        <description>Iterates through the collection of internal recipients who have at least one qualifying unedited Feedback record. For each recipient, the flow sends a reminder email containing the link to their pending feedback.</description>
+        <name>LOOP_Internal_Recipient_Emails</name>
+        <label>LOOP Internal Recipient Emails</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>colInternalContacts</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Feedback_Email_to_Internal</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>DEC_Is_Portal_Recipient_populated</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Iterates through the collection of portal recipients who have at least one qualifying unedited Feedback record. For each recipient, the flow sends a reminder email containing the link to their pending feedback.</description>
+        <name>LOOP_Portal_Recipient_Emails</name>
+        <label>LOOP Portal Recipient Emails</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>colPortalContacts</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Feedback_Email_to_Portal</targetReference>
+        </nextValueConnector>
+    </loops>
+    <loops>
+        <description>Iterates through qualifying Feedback records to build unique internal and portal email recipient lists without sending one email per Feedback record.</description>
+        <name>LOOP_through_Qualifying_Feedback</name>
+        <label>LOOP through Qualifying Feedback</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>GET_Qualifying_Feedback</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>DEC_Has_Feedback_been_Edited</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>DEC_Is_Delete_Collection_Populated</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <description>Bulk deletes Feedback records that are unedited and 7+ days old.</description>
+        <name>DELETE_Unedited_Feedback_7_Days</name>
+        <label>DELETE Unedited Feedback 7+ Days</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>DEC_Is_Internal_Recipient_populated</targetReference>
+        </connector>
+        <inputReference>colFeedbackToDelete</inputReference>
+    </recordDeletes>
+    <recordLookups>
+        <description>Retrieves Feedback records that are still open, created at least 3 days ago, and unchanged since creation. These records are used to determine which submitters should receive a consolidated reminder email.</description>
+        <name>GET_Qualifying_Feedback</name>
+        <label>GET Qualifying Feedback</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>LOOP_through_Qualifying_Feedback</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>LessThanOrEqualTo</operator>
+            <value>
+                <elementReference>CutoffDateTime3Days</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Submitter__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Feedback__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GET_Qualifying_Feedback</targetReference>
+        </connector>
+        <schedule>
+            <dayOfMonthToRun>0</dayOfMonthToRun>
+            <frequency>Daily</frequency>
+            <frequencyNumber>0</frequencyNumber>
+            <startDate>2026-04-03</startDate>
+            <startTime>18:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <variables>
+        <description>Holds Feedback records that meet the 7-day unedited deletion criteria. Deleted in bulk after the loop.</description>
+        <name>colFeedbackToDelete</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Feedback__c</objectType>
+    </variables>
+    <variables>
+        <description>Collection of internal Contacts who will receive reminder emails.</description>
+        <name>colInternalContacts</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>Collection of portal Contacts who will receive reminder emails.</description>
+        <name>colPortalContacts</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>Stores the internal Contact record used when building the internal email recipient collection.</description>
+        <name>recInternalUser</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>Stores the portal Contact record used when building the portal email recipient collection.</description>
+        <name>recPortalUser</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>Tracks internal email addresses already added to prevent duplicate recipients.</description>
+        <name>txtInternalEmailList</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Tracks portal email addresses already added to prevent duplicate recipients.</description>
+        <name>txtPortalEmailList</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the URL of the email header image used in the feedback notification email so the image reference can be updated in one place without modifying the HTML body.</description>
+        <name>varEmailHeaderImageUrl</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>https://teamascend.my.salesforce.com/servlet/servlet.ImageServer?id=015Uv0000061ARi&amp;oid=00D30000000oWAS&amp;lastMod=1759267215000</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Stores the internal or community list view URL</description>
+        <name>varFeedbackListViewLink</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

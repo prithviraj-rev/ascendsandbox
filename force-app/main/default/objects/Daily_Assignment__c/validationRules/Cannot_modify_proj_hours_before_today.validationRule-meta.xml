@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_modify_proj_hours_before_today</fullName>
+    <active>true</active>
+    <errorConditionFormula>Ischanged( Projected_Hours__c ) &amp;&amp;  Daily_Date__c &lt;= TODAY() &amp;&amp; not( $Permission.Resource_Planning_Manage_All_Resources )</errorConditionFormula>
+    <errorMessage>Projected Hours for Daily Assignment records can only be edited for days in the future.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,24 @@
+<apex:component controller="ctrlTimesheetApproval" access="global">
+    <apex:attribute name="tId" type="Id" description="Id of the timesheet" assignTo="{!tsId}"/>
+    <table border = "1px" cellPadding="4" cellspacing = "1" var="t">
+        <apex:repeat value="{!Tis}" var="t">
+            <tr>
+                <th align="left">  Account</th>
+                <th align="left">  Project</th>
+                <th align="left">  Date</th>   
+                <th align="left">  Hours</th>   
+                <th align="left">  Description of Work</th>   
+            </tr>
+        </apex:repeat> 
+        <apex:repeat value="{!tCards}" var="t">
+            <tr>
+                <td align="left" width="300px">  {!t.Account__c}</td>
+                <td align="left" width="300px">  {!t.Project__c}      </td>
+                <td align="left" width="100px">  {!MONTH(t.Date__c)}-{!DAY(t.Date__c)}-{!YEAR(t.Date__c)}      </td>
+                <td align="left" width="100px">  {!t.Hours__c}      </td>
+                <td align="left" width="400px">  {!t.Description_of_Work__c}</td>       
+            </tr>
+        </apex:repeat>        
+    </table><br/><br/>
+    <span><b><u>Total Hours:</u></b>  </span><apex:outputText value="{!total}" id="totalHours"/>
+</apex:component>

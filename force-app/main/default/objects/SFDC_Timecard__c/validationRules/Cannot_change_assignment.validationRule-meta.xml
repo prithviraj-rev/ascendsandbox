@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_change_assignment</fullName>
+    <active>true</active>
+    <description>The assignment cannot be changed on a timecard once the timecard is created. This is to prevent moving time once billed.</description>
+    <errorConditionFormula>ischanged( Assignment__c )  &amp;&amp;
+NOT( $Permission.Edit_TImecards_Once_Billing_Starts )</errorConditionFormula>
+    <errorMessage>The Assignment cannot be changed on an existing timecard. You must create a new timecard to change the assignment. Contact your project lead if you need a timecard assignment changed.</errorMessage>
+</ValidationRule>

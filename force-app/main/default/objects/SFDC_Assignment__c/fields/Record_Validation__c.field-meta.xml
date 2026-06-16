@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Record_Validation__c</fullName>
+    <externalId>false</externalId>
+    <formula>If(    Client_Rate__c  &lt;&gt;  Projects__r.Project_Rate__c 
+			,  IMAGE(&quot;https://doextra--c.na104.visual.force.com/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/emotion_suprised.png&quot;, &quot;Surprised&quot;)
+    &amp; &quot; The Client Rate is not the same as the Project Rate of $&quot; &amp; TEXT(Projects__r.Project_Rate__c) &amp; BR()
+			, &quot;&quot;)
+&amp;
+If( Resource_Cost__c &lt;&gt; Resource__r.Cost__c 
+			,  IMAGE(&quot;https://doextra--c.na104.visual.force.com/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/update.png&quot;, &quot;Update&quot;)
+    &amp; &quot; The Resource Cost on this assignment is different than the one on the Contact record&quot;  &amp; BR() 
+			, &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Record Validation</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

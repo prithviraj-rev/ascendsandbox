@@ -1,0 +1,75 @@
+<apex:page controller="ctrlGanttChart">
+  <head>
+    <title>Doextra Time Entry Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100,700,100italic,300italic,400italic,700italic' rel='stylesheet' type='text/css' />
+    <style type="text/css">.de-gantt-chart { font-family: "Roboto", "Helvetica", sans-serif; }</style>
+    <link rel="stylesheet" href="{!$Resource.GanttChartCSS}" />
+    <link rel="stylesheet" href="{!$Resource.GanttChartJqueryUICSS}" />
+    <script src="{!$Resource.jQuery}"></script>
+    <script src="{!$Resource.GanttChartJqueryUI}"></script>
+    <script src="{!$Resource.GanttChartJS}"></script>
+    <script>
+  // get the available resources and line items
+  console.log("Attempting to get resources...");
+  Visualforce.remoting.Manager.invokeAction(
+    '{!$RemoteAction.ctrlGanttChart.getResources}',
+    function( res, evt ) {
+      var count = 0,
+          resources = res,
+          assignments = new Array(resources.length);
+      
+      // for each resource, get the available assignments
+      resources.forEach(function( resource, index ) {
+        Visualforce.remoting.Manager.invokeAction(
+          '{!$RemoteAction.ctrlGanttChart.getAssignments}',
+          resource.Id,
+          function( res, evt ) {
+            console.log("Got assignments for " + resource.Name);
+            (assignments[index] = res).sort(function(a, b) {
+              a = a.Projects__r.Name;
+              b = b.Projects__r.Name;
+              
+              if(a > b) {
+                return 1;
+              } else if(a < b) {
+                return -1;
+              } else {
+                return 0;
+              }
+            });
+            
+            assignments[index].forEach(function( a ) {
+              var pre = resource.Name + " - ",
+                  nStr;
+              if( (nStr = a.Projects__r.Name).indexOf(pre) === 0 ) {
+                a.Projects__r.Name = nStr.replace(pre, "");
+              }
+              console.log("Checked if " + nStr + " starts with " + pre);
+            });
+            
+            if(++count === resources.length) {
+              // once all are obtained, initialize the chart
+              // 'initializeGanttChart' is created by the resource 'GanttChartJS'
+              // and is only callable once
+              console.log("Initializing GanttChart...");
+              initializeGanttChart(resources, assignments);
+            }
+          }
+        );
+      });
+    }
+  );
+    </script>
+  </head>
+  <body>
+    <div id="date-range-container">
+      <label for="start-date">Show assignments from</label>
+      <input id="start-date" name="start-date" type="text" />
+      <label for="end-date">to</label>
+      <input id="end-date" name="end-date" type="text" />
+    </div>
+    <div id="chart-container"></div>
+  </body>
+</apex:page>

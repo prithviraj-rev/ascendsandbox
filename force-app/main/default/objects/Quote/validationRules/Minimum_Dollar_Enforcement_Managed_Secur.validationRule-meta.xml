@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Minimum_Dollar_Enforcement_Managed_Secur</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(
+    ISCHANGED(Managed_Security_Awareness_Program_Fee__c), 
+    NOT(ISBLANK(Managed_Security_Awareness_Program_Fee__c)),
+    Managed_Security_Awareness_Program_Fee__c /Contract_Term_Months__c  &lt; 250
+)</errorConditionFormula>
+    <errorMessage>Combined monthly total of Managed Security Lines cannot be less than $250.</errorMessage>
+</ValidationRule>

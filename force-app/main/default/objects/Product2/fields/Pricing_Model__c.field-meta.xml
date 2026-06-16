@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricing_Model__c</fullName>
+    <label>Pricing Model</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Per Device</fullName>
+                <default>false</default>
+                <label>Per Device</label>
+            </value>
+            <value>
+                <fullName>Per User</fullName>
+                <default>false</default>
+                <label>Per User</label>
+            </value>
+            <value>
+                <fullName>Per Seat</fullName>
+                <default>false</default>
+                <label>Per Seat</label>
+            </value>
+            <value>
+                <fullName>Flat Fee</fullName>
+                <default>false</default>
+                <label>Flat Fee</label>
+            </value>
+            <value>
+                <fullName>T&amp;M</fullName>
+                <default>false</default>
+                <label>T&amp;M</label>
+            </value>
+            <value>
+                <fullName>Tiered</fullName>
+                <default>false</default>
+                <label>Tiered</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

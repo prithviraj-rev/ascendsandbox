@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Project_Monthly_Billing_Milestone_Name</fullName>
+        <field>Name</field>
+        <formula>Left(IF (Billing_Method__c = &quot;Fixed&quot;, Project__r.Name &amp; &quot; &quot; &amp; &quot; Payment&quot; &amp; TEXT(Payment_Number__c),Project__r.Name &amp; &quot; &quot; &amp; TEXT( Services_Month__c)), 80)</formula>
+        <name>Project Monthly Billing Milestone Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Set Project Monthly Billing Name</fullName>
+        <actions>
+            <name>Project_Monthly_Billing_Milestone_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>TRUE &amp;&amp; RecordType.Name != &quot;Overage Milestone&quot;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Feedback</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>Feedback_Compact_Layout</compactLayoutAssignment>
+    <description>Feedback provided by the client regarding the resource’s performance and project experience.</description>
+    <label>Client Feedback</label>
+    <picklistValues>
+        <picklist>Escalation_Type__c</picklist>
+        <values>
+            <fullName>Client Communication</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Communication SLAs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deliverables</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>General Feedback</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jira %2F User Stories</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Time Logging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Work Product</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escalated</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Submitted</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Submitter_Role__c</picklist>
+        <values>
+            <fullName>Client</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Client Feedback</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+</RecordType>

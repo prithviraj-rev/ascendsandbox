@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Effective_Rate_with_NB__c</fullName>
+    <formula>Billable_Amount__c / ( Total_Billable_Hours_Worked__c +  Total_Non_Billable_Hours_Worked__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Billable Amount/All hours worked</inlineHelpText>
+    <label>Effective Rate (with NB)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

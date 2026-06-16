@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Escalation_Needed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether leadership follow-up or formal coaching is required.</description>
+    <inlineHelpText>Check this box if you believe this feedback should be reviewed for potential coaching or intervention.</inlineHelpText>
+    <label>Escalation Needed?</label>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

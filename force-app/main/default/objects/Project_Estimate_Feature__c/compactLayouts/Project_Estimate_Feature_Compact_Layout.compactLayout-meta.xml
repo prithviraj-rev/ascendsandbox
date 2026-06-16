@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Estimate_Feature_Compact_Layout</fullName>
+    <fields>Name</fields>
+    <fields>Feature_Group__c</fields>
+    <fields>Estimate__c</fields>
+    <fields>Feature_Hours_Subtotal__c</fields>
+    <label>Project Estimate Feature Compact Layout</label>
+</CompactLayout>

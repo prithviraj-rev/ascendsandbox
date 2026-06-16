@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Fulltime_Resources__c</fullName>
+    <externalId>false</externalId>
+    <formula>Case((Week_Number__c +1)
+, 1, 9
+, 2, 9
+, 3, 9
+, 4, 9
+, 5, 10
+, 6, 10
+, 7, 10
+, 8, 10
+, 9, 10
+, 10, 10
+, 11, 10
+, 12, 10
+, 13, 9
+, 14, 9
+, 15, 9
+, 16, 9
+, 17, 9
+, 18, 8
+, 19, 8
+, 20, 8
+, 21, 8
+, 22, 8
+, 23, 8
+, 24, 8
+, 25, 8
+, 26, 8
+, 27, 8
+, 28, 8
+, 29, 8
+, 30, 8
+, 31, 8
+, 32, 8
+, 33, 8
+, 34, 8
+, 35, 8
+, 36, 8
+, 37, 8
+, 38, 8
+, 39, 8
+, 40, 7
+, 41, 7
+, 42, 7
+, 43, 7
+, 44, 7
+, 45, 7
+, 46, 7
+, 47, 7
+, 48, 7
+, 49, 7
+, 50, 7
+, 51, 7
+, 52, 7
+,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Current Fulltime Resources</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

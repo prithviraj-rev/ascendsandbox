@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Description__c</fullName>
+    <description>Free-text narrative that captures the context and details of the internal feedback.</description>
+    <inlineHelpText>Use this field to clearly describe the situation, observations, or feedback being shared. Include relevant background, examples, and any important details that help others understand the context of the feedback.</inlineHelpText>
+    <label>Description</label>
+    <length>131072</length>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

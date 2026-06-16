@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Equals Count and count the records in your filtered collection. Store this number in CurrentCount</description>
+        <name>Set_Count</name>
+        <label>Set Count</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>CurrentCount</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Count_Value</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Evaluate_the_Mode</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Set the Loop String</description>
+        <name>Set_Loop_String</name>
+        <label>Set Loop String</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_String</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_thru_Participant_List.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Count_Value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>If the outcome is Is New Mode, use an Assignment element to update the mode trackers</description>
+        <name>Update_the_mode_trackers</name>
+        <label>Update the mode trackers</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>MaxCount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>CurrentCount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ModeString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>CurrentEmailDomain</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_thru_Participant_List</targetReference>
+        </connector>
+    </assignments>
+    <collectionProcessors>
+        <description>count how many times the current item appears</description>
+        <name>Count_Value</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>Count Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNextValueToReference>currentItem_Count_Value</assignNextValueToReference>
+        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>ParticipantList</collectionReference>
+        <conditionLogic>and</conditionLogic>
+        <conditions>
+            <leftValueReference>currentItem_Count_Value.Email</leftValueReference>
+            <operator>Contains</operator>
+            <rightValue>
+                <elementReference>CurrentEmailDomain</elementReference>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>Set_Count</targetReference>
+        </connector>
+    </collectionProcessors>
+    <decisions>
+        <description>After counting, determine if this string is the new mode</description>
+        <name>Evaluate_the_Mode</name>
+        <label>Evaluate the Mode</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Loop_thru_Participant_List</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_New_Mode</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>CurrentCount</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>MaxCount</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_the_mode_trackers</targetReference>
+            </connector>
+            <label>Is New Mode</label>
+        </rules>
+    </decisions>
+    <description>Flow used to return the most common email domain from a list of email addresses provided.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Company domain from email</description>
+        <name>CurrentEmailDomain</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE({!Loop_String}, LEFT({!Loop_String}, FIND(&quot;@&quot;, {!Loop_String})), NULL)</expression>
+    </formulas>
+    <interviewLabel>Get Most Common Email Domain {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Get Most Common Email Domain</label>
+    <loops>
+        <description>Loop thru participants Email Address List</description>
+        <name>Loop_thru_Participant_List</name>
+        <label>Loop thru Participant List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>ParticipantList</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_Loop_String</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Loop_thru_Participant_List</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Counts how many times Loop_String appears in the list.</description>
+        <name>CurrentCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>currentItem_Count_Value</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>VideoCallParticipant</objectType>
+    </variables>
+    <variables>
+        <description>The current string being evaluated</description>
+        <name>Loop_String</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the highest frequency found so far.</description>
+        <name>MaxCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Stores the string with the highest frequency.</description>
+        <name>ModeString</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Collection of participants</description>
+        <name>ParticipantList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>VideoCallParticipant</objectType>
+    </variables>
+</Flow>

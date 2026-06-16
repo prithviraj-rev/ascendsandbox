@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Users and Administrators Access Files Connect Data Sources</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Connect to internal/external files</label>
+    <license>Salesforce</license>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ContentHubUser</name>
+    </userPermissions>
+</PermissionSet>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <inlineHelpText>Non-Billable - Your time will not show up on the invoice.
+
+No Charge - Your time will show up on the invoice.
+
+Travel Billable - Your time will be charged at the rate on the travel assignment</inlineHelpText>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Billable</fullName>
+                <default>false</default>
+                <label>Billable</label>
+            </value>
+            <value>
+                <fullName>Non-Billable</fullName>
+                <default>false</default>
+                <label>Non-Billable</label>
+            </value>
+            <value>
+                <fullName>No Charge</fullName>
+                <default>false</default>
+                <label>No Charge</label>
+            </value>
+            <value>
+                <fullName>Travel Billable</fullName>
+                <default>false</default>
+                <label>Travel Billable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

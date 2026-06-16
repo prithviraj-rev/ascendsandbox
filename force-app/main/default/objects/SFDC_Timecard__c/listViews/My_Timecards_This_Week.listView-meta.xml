@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Timecards_This_Week</fullName>
+    <columns>NAME</columns>
+    <columns>Project__c</columns>
+    <columns>Project_Line_Item__c</columns>
+    <columns>Date__c</columns>
+    <columns>Hours__c</columns>
+    <columns>Description_of_Work__c</columns>
+    <columns>Timesheet_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_WEEK</value>
+    </filters>
+    <filters>
+        <field>Running_User_is_Resource__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>My Timecards This Week</label>
+</ListView>

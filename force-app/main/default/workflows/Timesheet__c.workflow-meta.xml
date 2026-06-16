@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Timesheet_Approval_Submitted</fullName>
+        <ccEmails>Time@doextra.com</ccEmails>
+        <description>Timesheet Approval Submitted</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>contractors@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Doextra_Project_Management/Timesheet_Approval_Submitted</template>
+    </alerts>
+    <alerts>
+        <fullName>Timesheet_Approved</fullName>
+        <description>Timesheet Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Resource__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Approval_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>contractors@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Doextra_Project_Management/Timesheet_Approved_Ascend</template>
+    </alerts>
+    <alerts>
+        <fullName>Timesheet_Overdue_Notification</fullName>
+        <description>Timesheet Overdue Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>contractors@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Doextra_Project_Management/Timesheet_Not_Submitted</template>
+    </alerts>
+    <alerts>
+        <fullName>Timesheet_Reminder</fullName>
+        <description>Timesheet Reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>contractors@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Doextra_Project_Management/Timesheet_Reminder</template>
+    </alerts>
+    <alerts>
+        <fullName>Timesheet_Status_Change</fullName>
+        <description>Timesheet Status Change</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>contractors@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Doextra_Project_Management/Timesheet_Approved_Ascend</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Timesheet_Approved</fullName>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Timesheet Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Timesheet_Pending</fullName>
+        <field>Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Timesheet Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Timesheet_Rejected</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Timesheet Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Timesheet Not Submitted</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Timesheet__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Not Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Timesheet__c.Resource_Type__c</field>
+            <operation>equals</operation>
+            <value>1099</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Timesheet__c.Do_Not_Send_Reminder_Emails__c</field>
+            <operation>notEqual</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Timesheet_Overdue_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Timesheet__c.Overdue_Notification_Date__c</offsetFromField>
+            <timeLength>3</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Timesheet_Reminder</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Timesheet__c.End_Date__c</offsetFromField>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+</Workflow>

@@ -1,0 +1,353 @@
+<template>
+    <div style="display: none;">{renderTrigger}</div>
+
+    <template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" class="rp-spinner"></lightning-spinner>
+    </template>
+
+    <div class="rp-body slds-p-top_xx-small">
+        <div class="slds-page-header rp-header slds-m-around_medium">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title page-header-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <lightning-icon
+                                icon-name="standard:contact"
+                                alternative-text="Resource Planning"
+                                title="Resource Planning"
+                                size="large"
+                            ></lightning-icon>
+                        </div>
+                        <div class="slds-media__body slds-m-top_xxx-small">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title slds-truncate" title="Resource Planning">Resource Planning</span>
+                                    </h1>
+                                </div>
+                            </div>
+                            <p class="slds-page-header__name-meta">{reviewCompleteDates}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-page-header__col-actions page-header-actions-middle">
+                    <div class="slds-page-header__controls slds-m-top_x-small">
+                        <div class="slds-page-header__control">
+                            <lightning-button-icon
+                                variant="border-filled"
+                                alternative-text="Previous"
+                                title="Previous Week"
+                                icon-name="utility:left"
+                                class="slds-is-relative previous-week-btn slds-m-right_xx-small"
+                                onclick={handlePreviousWeek}
+                            ></lightning-button-icon>
+                        </div>
+                        <div class="slds-page-header__control">
+                            <div class="slds-is-relative">
+                                <div class="slds-is-absolute date-picker-container">
+                                    <lightning-input
+                                        class="date-picker"
+                                        type="date"
+                                        label=""
+                                        variant="label-hidden"
+                                        value={selectedDate}
+                                        onchange={handleSelectedDateChanged}
+                                    ></lightning-input>
+                                </div>
+                                <div class="slds-is-absolute hide-date-picker-help"></div>
+                            </div>
+                        </div>
+                        <div class="slds-page-header__control">
+                            <lightning-button-icon
+                                variant="border-filled"
+                                alternative-text="Next"
+                                title="Next Week"
+                                icon-name="utility:right"
+                                class="slds-m-left_xx-small"
+                                onclick={handleNextWeek}
+                            ></lightning-button-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-page-header__col-actions slds-grid slds-wrap slds-grid_align-spread legend-container">
+                    <div class="legend-item">
+                        <div class="legend-item-value">
+                            <div class="legend-item-color rp-weekend-day"></div>
+                            <div class="slds-popover slds-popover_tooltip slds-nubbin_top-left slds-hide legend-item-help-left">
+                                <div class="slds-popover__body">Unavailable date. The weekend or the day, which is out of the Assignment date range.</div>
+                            </div>
+                        </div>
+                        <div class="legend-item-label">Unavailable</div>
+                    </div>
+
+                    <div class="legend-item">
+                        <div class="legend-item-value">
+                            <div class="legend-item-color rp-pto"></div>
+                            <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide legend-item-help-right">
+                                <div class="slds-popover__body">PTO/FTO date.</div>
+                            </div>
+                        </div>
+                        <div class="legend-item-label">PTO</div>
+                    </div>
+
+                    <div class="legend-item">
+                        <div class="legend-item-value">
+                            <div class="legend-item-color rp-day-total-green"></div>
+                            <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide legend-item-help-right">
+                                <div class="slds-popover__body">Positive trend. Indicates that the number of Actual hours is greater than or equal to the number of Projected hours.</div>
+                            </div>
+                        </div>
+                        <div class="legend-item-label">Positive</div>
+                    </div>
+
+                    <div class="legend-item">
+                        <div class="legend-item-value">
+                            <div class="legend-item-color rp-day-locked"></div>
+                            <div class="slds-popover slds-popover_tooltip slds-nubbin_top-left slds-hide legend-item-help-left">
+                                <div class="slds-popover__body">Locked date. Indicates that the date is locked for editing due to some reason.</div>
+                            </div>
+                        </div>
+                        <div class="legend-item-label">Locked</div>
+                    </div>
+
+                    <div class="legend-item">
+                        <div class="legend-item-value">
+                            <div class="legend-item-color rp-holidays"></div>
+                            <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide legend-item-help-right">
+                                <div class="slds-popover__body">Holiday date.</div>
+                            </div>
+                        </div>
+                        <div class="legend-item-label">Holiday</div>
+                    </div>
+
+                    <div class="legend-item">
+                        <div class="legend-item-value">
+                            <div class="legend-item-color rp-day-total-red"></div>
+                            <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide legend-item-help-right">
+                                <div class="slds-popover__body">Negative trend. Indicates that the number of Actual hours is less than the number of Projected hours.</div>
+                            </div>
+                        </div>
+                        <div class="legend-item-label">Negative</div>
+                    </div>
+                </div>
+
+                <div class="slds-page-header__col-actions">
+                    <div class="slds-page-header__controls slds-m-top_x-small">
+                        <template if:true={canSubmitForecast}>
+                            <div class="slds-page-header__control">
+                                <lightning-button
+                                    label={submitForecastButtonLabel}
+                                    onclick={handleSubmitForecast}
+                                ></lightning-button>
+                            </div>
+                        </template>
+
+                        <div class="slds-page-header__control">
+                            <lightning-button-icon
+                                variant="border-filled"
+                                alternative-text="Refresh"
+                                title="Refresh"
+                                icon-name="utility:refresh"
+                                onclick={handleRefresh}
+                            ></lightning-button-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-m-top_small">
+            <div class="slds-is-relative slds-m-around_medium">
+                <div class="slds-grid slds-is-absolute resource-project-container">
+                    <template if:true={configuration.canManageResources}>
+                        <c-abstract-lookup
+                            label="Resource"
+                            object-name="Contact"
+                            conditions="Status__c = 'Active' and Resource_User_Record__r.IsActive = true"
+                            value-icon-name="standard:contact"
+                            onselectvalue={handleResourceChanged}
+                            placeholder="Select a Resource"
+                            class="slds-m-right_medium resource-abstract-lookup"
+                        ></c-abstract-lookup>
+                    </template>
+
+                    <c-abstract-lookup
+                        label="Project"
+                        object-name="SFDC_Projects__c"
+                        conditions="Project_Stage__c = 'Active' and Unforcasted_Project__c = false"
+                        value-icon-name="standard:account_score"
+                        onselectvalue={handleProjectChanged}
+                        placeholder="Select a Project"
+                        class="project-abstract-lookup"
+                    ></c-abstract-lookup>
+                </div>
+            </div>
+            <div class="slds-scrollable_x slds-m-around_medium slds-p-bottom_small">
+                <div>
+                    <table class="slds-table slds-table_bordered slds-table_col-bordered slds-max-medium-table_stacked-horizontal daily-assignments-table-head">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <template for:each={columns} for:item="column" for:index="columnIndex">
+                                    <template if:true={column.isFirstRow}>
+                                        <th class={column.className} scope="col" key={column.index} rowspan={column.rowspan}>
+                                            <div class="rotate-container">
+                                                <div class="slds-truncate rotated" title={column.label}>{column.label}</div>
+                                            </div>
+                                        </th>
+                                    </template>
+                                    <template if:false={column.isFirstRow}>
+                                        <th class="empty-header-cells" scope="col" key={column.index}>&nbsp;</th>
+                                    </template>
+                                </template>
+                            </tr>
+                            <tr class="slds-line-height_reset">
+                                <template for:each={secondRowHeaderColumns} for:item="column" for:index="columnIndex">
+                                    <template if:false={column.isFirstRow}>
+                                        <th class="empty-header-cells" scope="col" key={column.index}>&nbsp;</th>
+                                    </template>
+                                </template>
+                            </tr>
+                            <tr class="slds-line-height_reset">
+                                <template for:each={thirdRowHeaderColumns} for:item="column" for:index="columnIndex">
+                                    <template if:false={column.isFirstRow}>
+                                        <th class="empty-header-cells" scope="col" key={column.index}>&nbsp;</th>
+                                    </template>
+                                </template>
+                            </tr>
+                            <tr class="slds-line-height_reset">
+                                <template for:each={fourthRowHeaderColumns} for:item="column" for:index="columnIndex">
+                                    <template if:false={column.isFirstRow}>
+                                        <th class={column.className} scope="col" key={column.index} rowspan={column.rowspan}>
+                                            <div class="slds-truncate" title={column.label}>{column.label}</div>
+                                        </th>
+                                    </template>
+                                </template>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <template if:false={isEmptyAssignments}>
+                    <div class="slds-scrollable_y" style="height:400px;">
+                        <table class="slds-table slds-no-row-hover slds-table_bordered slds-table_col-bordered slds-max-medium-table_stacked-horizontal daily-assignments-table-body">
+                            <tbody>
+                                <template for:each={assignments} for:item="assignment" for:index="assignmentIndex">
+                                    <tr class="slds-hint-parent" key={assignment.id}>
+                                        <td data-label={assignment.assignmentName} scope="row" class="assignment-name" title={assignment.assignmentName}>
+                                            <div class="assignment-name slds-truncate">
+                                                <template if:false={isConsoleNavigation}>
+                                                    <a href={assignment.assignmentIdLink} tabindex="-1" target="_blank">{assignment.assignmentName}</a>
+                                                </template>
+                                                <template if:true={isConsoleNavigation}>
+                                                    <a href="#" tabindex="-1" onclick={handleAssignmentClick} data-idx={assignment.assignmentId}>{assignment.assignmentName}</a>
+                                                </template>
+                                            </div>
+                                        </td>
+                                        <td data-label={assignment.projectName} class="project-name" title={assignment.projectName}>
+                                            <div class="project-name slds-truncate">
+                                                <template if:false={isConsoleNavigation}>
+                                                    <a href={assignment.projectIdLink} tabindex="-1" target="_blank">{assignment.projectName}</a>
+                                                </template>
+                                                <template if:true={isConsoleNavigation}>
+                                                    <a href="#" tabindex="-1" onclick={handleProjectClick} data-idx={assignment.projectId}>{assignment.projectName}</a>
+                                                </template>
+                                                
+                                            </div>
+                                        </td>
+                                        <td data-label={assignment.assignmentStartDateLocale} class="assignment-start-date" title={assignment.assignmentStartDateLocale}>
+                                            <div class="assignment-start-date slds-truncate">{assignment.assignmentStartDateLocale}</div>
+                                        </td>
+                                        <td data-label={assignment.assignmentEndDateLocale} class="assignment-end-date" title={assignment.assignmentEndDateLocale}>
+                                            <div class="assignment-end-date slds-truncate">{assignment.assignmentEndDateLocale}</div>
+                                        </td>
+                                        <td data-label={assignment.assignmentEstHours} class="assignment-est-hours" title={assignment.assignmentEstHours}>
+                                            <div class="assignment-est-hours slds-truncate">{assignment.assignmentEstHours}</div>
+                                        </td>
+                                        <td data-label={assignment.remainingAssignmentHours} class="remaining-assignment-hours" title={assignment.remainingAssignmentHours}>
+                                            <div class="remaining-assignment-hours slds-truncate">{assignment.remainingAssignmentHours}</div>
+                                        </td>
+                                        <td data-label={assignment.assignmentMaxDailyHours} class="assignment-max-daily-hours" title={assignment.assignmentMaxDailyHours}>
+                                            <div class="assignment-max-daily-hours slds-truncate">{assignment.assignmentMaxDailyHours}</div>
+                                        </td>
+                                        <template for:each={assignment.dataByDays} for:item="dataByDay" for:index="dataByDayIndex">
+                                            <td key={dataByDay.index} class={dataByDay.className} onclick={dataByDay.onClick} title={dataByDay.helpText}>
+                                                <div class="slds-truncate">{dataByDay.hours}</div>
+                                            </td>
+                                        </template>
+                                        <td data-label={assignment.totalHours} class={assignment.totalHoursClassName} title={assignment.totalHours}>
+                                            <div class="slds-truncate">{assignment.totalHours}</div>
+                                        </td>
+                                        <td data-label={assignment.messageOnAssignment} class="message-on-assignment" title={assignment.messageOnAssignment}>
+                                            <div class="slds-truncate">{assignment.messageOnAssignment}</div>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </template>
+
+                <template if:true={isEmptyAssignments}>
+                    <div class="slds-m-top_small slds-m-bottom_medium slds-m-left_x-small">No records to display</div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <template lwc:if={showEditProjectedHoursModal}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Edit Daily Assignment</h2>
+                </header>
+
+                <div class="slds-modal__content slds-is-relative modal-body slds-p-bottom_x-small">
+                    <template lwc:if={showModalSpinner}>
+                        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+                    </template>
+                    <div class="slds-m-around_medium">
+                        <lightning-input
+                            type="number"
+                            label="Projected Hours"
+                            value={editedProjectedHours.projectedHours}
+                            step=".01"
+                            onchange={handleEditProjectedHoursChanged}
+                            class="projected-hours-input"
+                            required
+                        ></lightning-input>
+                        <lightning-input
+                            type="number"
+                            label="Actual Hours"
+                            value={editedProjectedHours.actualHours}
+                            step=".01"
+                            class="actual-hours-input"
+                            disabled
+                        ></lightning-input>
+                    </div>
+                </div>
+
+                <template lwc:if={editedProjectedHours.id}>
+                    <footer class="slds-modal__footer slds-modal__footer_directional">
+                        <lightning-button name="viewRecord" label="View Record" onclick={handleViewRecord} disabled={showModalSpinner} disable-animation></lightning-button>
+                        <div class="slds-button action-buttons">
+                            <lightning-button name="cancel" label="Cancel" onclick={handleEditProjectedHoursModalClose} disabled={showModalSpinner} disable-animation></lightning-button>
+                            <template lwc:if={editedProjectedHours.canSave}>
+                                <lightning-button class="slds-m-left_x-small" variant="brand" name="save" label="Save" onclick={handleSaveProjectedHours} disabled={saveProjectedHoursDisabled} disable-animation></lightning-button>
+                            </template>
+                        </div>
+                    </footer>
+                </template>
+                <template lwc:else>
+                    <footer class="slds-modal__footer">
+                        <lightning-button name="cancel" label="Cancel" onclick={handleEditProjectedHoursModalClose} disabled={showModalSpinner} disable-animation></lightning-button>
+                        <template lwc:if={editedProjectedHours.canSave}>
+                            <lightning-button class="slds-m-left_x-small" variant="brand" name="save" label="Save" onclick={handleSaveProjectedHours} disabled={saveProjectedHoursDisabled} disable-animation></lightning-button>
+                        </template>
+                    </footer>
+                </template>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

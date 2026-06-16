@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Project Time Entry">
+        <div class="slds-p-horizontal_x-small slds-p-vertical_xx-small">
+
+            <lightning-layout multiple-rows class="slds-gutters_xx-small">
+                <!-- Line Item -->
+                <lightning-layout-item size="12" class="slds-m-bottom_xx-small">
+                    <lightning-card onclick={openFormPanel}>
+                        {entrySummary} 
+                    </lightning-card>
+                </lightning-layout-item>
+                
+            </lightning-layout>
+        </div>
+    </lightning-card>
+
+</template>

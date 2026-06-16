@@ -1,0 +1,35 @@
+<aura:component >
+    <aura:attribute name="day" type="DCSTimeCardController.TimeForDay"/>
+    <aura:attribute name="showDelegated" type="boolean" default="false"/>
+    <aura:registerEvent name="setData" type="c:DCSSetData"/>
+    
+    
+    <div class="slds-p-horizontal_xx-small slds-size_1-of-1 slds-medium-size_1-of-7">
+        <aura:if isTrue="{!!v.showDelegated}">
+            <div class="{!v.day.status + ' slds-truncate point slds-m-top_x-small'}"  onclick="{!c.sendDate}">
+                <ui:outputDate value="{!v.day.dt}" format="EEEE, MMM d"/>
+                <ui:outputText class="rightFloat slds-p-right_x-small" value="{!v.day.total}"/>
+            </div>
+            <ul class="slds-has-dividers_top"> 
+                <aura:iteration items="{!v.day.entries}" var="entry">
+                    <li class="slds-item">
+                        <c:DCSTimeCardEntry2 entry="{!entry}"/>
+                    </li>
+                </aura:iteration>
+            </ul>
+            <aura:set attribute="else">
+                <ul class="slds-has-dividers_top"> 
+                <aura:iteration items="{!v.day.delegatedEntries}" var="entry">
+                    <li class="slds-item">
+                        <c:DCSTimeCardEntry2 entry="{!entry}"/>
+                    </li>
+                </aura:iteration>
+                
+            </ul>
+                
+            </aura:set>
+        </aura:if>
+        
+    </div>
+    
+</aura:component>

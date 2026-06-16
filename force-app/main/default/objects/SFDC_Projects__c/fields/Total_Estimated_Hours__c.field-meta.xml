@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Estimated_Hours__c</fullName>
+    <inlineHelpText>Excludes any Project Line Item that includes the word &quot;Travel&quot; in the name.</inlineHelpText>
+    <label>Estimated Hours</label>
+    <summarizedField>Project_Line_Item__c.Est_Hours__c</summarizedField>
+    <summaryFilterItems>
+        <field>Project_Line_Item__c.Name</field>
+        <operation>notContain</operation>
+        <value>Travel</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Project_Line_Item__c.Project__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

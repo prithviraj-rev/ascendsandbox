@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rachael_and_Carli_Project_Tracker</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Go_Live_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>End_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>9/1/2023</value>
+    </filters>
+    <label>Rachael and Carli Project Tracker</label>
+    <sharedTo>
+        <group>SF_Ops_Team</group>
+    </sharedTo>
+</ListView>

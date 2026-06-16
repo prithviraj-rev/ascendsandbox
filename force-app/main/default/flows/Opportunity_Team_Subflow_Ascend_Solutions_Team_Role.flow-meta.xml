@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>ASSIGN_Opportunity_Id</name>
+        <label>ASSIGN Opportunity Id</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Opportunity_Record_var.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OpportunityTeamMember.OpportunityId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>UPDATE_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>ASSIGN_Opportunity_Value</name>
+        <label>ASSIGN Opportunity Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Opportunity_Record_var.Ascend_Solution_Team__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Need_To_Update_Opportunity</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Ascend_Solutions_Team_Role</name>
+        <label>&quot;Ascend Solutions Team&quot; Role</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Need_To_Update_Opportunity</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_ASTR</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>OpportunityTeamMember.User.UserRole.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Ascend_Solutions_Team</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>OpportunityTeamMember.User.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>OpportunityTeamMember.Opportunity.Ascend_Solution_Team__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ASSIGN_Opportunity_Value</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Need_To_Update_Opportunity</name>
+        <label>Need To Update Opportunity?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_NTUO</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Opportunity_Record_var</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ASSIGN_Opportunity_Id</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Auto-Launched Flow:
+- Update Opportunity &quot;Ascend Solutions Team&quot; field when Opportunity Team Member is assigned the &quot;Ascend Solutions Team&quot; role
+
+Case/Ticket:
+#00016257</description>
+    <environments>Default</environments>
+    <interviewLabel>Opportunity Team Subflow: &quot;Ascend Solutions Team&quot; Role {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Team Subflow: &quot;Ascend Solutions Team&quot; Role</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>UPDATE_Opportunity</name>
+        <label>UPDATE Opportunity</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputReference>Opportunity_Record_var</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Ascend_Solutions_Team_Role</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>Opportunity_Record_var</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>OpportunityTeamMember</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OpportunityTeamMember</objectType>
+    </variables>
+</Flow>

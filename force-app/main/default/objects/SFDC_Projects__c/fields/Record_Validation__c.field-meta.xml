@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Record_Validation__c</fullName>
+    <description>Created 1/21 to help ensure the project Details are correct</description>
+    <externalId>false</externalId>
+    <formula>If( SOW_Hours__c &lt;&gt;  Total_Estimated_Hours__c &amp;&amp;  TEXT(Billing__c) = &quot;T&amp;M&quot;
+			,  IMAGE(&quot;https://doextra--c.na104.visual.force.com/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/cancel.png&quot;, &quot;Stop&quot;) 
+			&amp; &quot; Total Project Line Item hours(&quot; &amp; TEXT(Total_Estimated_Hours__c ) &amp; &quot;) do not match SOW Hours(&quot; &amp; TEXT(SOW_Hours__c) &amp; &quot;)&quot; &amp; BR()
+			, &quot;&quot;) 
+			 &amp; 
+If( Total_Assignment_Hours__c &lt; SOW_Hours__c 
+			,  /*IMAGE(&quot;https://doextra--c.na104.visual.force.com/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/error.png&quot;, &quot;Caution&quot;) 
+			&amp;  */IMAGE(&quot;https://doextra--c.na104.visual.force.com/resource/1411571084000/GraphicsPack/32/tangodesktopproject/theme/go-down.png&quot;, &quot;ArrowDown&quot;)
+  &amp; &quot; Total Assignment Hours(&quot; &amp; TEXT(Total_Assignment_Hours__c) &amp; &quot;) are LOWER than SOW Hours(&quot; &amp; TEXT(SOW_Hours__c) &amp; &quot;)&quot; &amp; BR()
+			, &quot;&quot;)
+			 &amp; 
+If( Total_Assignment_Hours__c &gt; SOW_Hours__c 
+			,  /*IMAGE(&quot;https://doextra--c.na104.visual.force.com/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/error.png&quot;, &quot;Caution&quot;) 
+			&amp; */IMAGE(&quot;https://doextra--c.na104.visual.force.com/resource/1411571084000/GraphicsPack/32/tangodesktopproject/theme/go-up.png&quot;, &quot;ArrowUp&quot;)
+    &amp; &quot; Total Assignment Hours(&quot; &amp; TEXT(Total_Assignment_Hours__c) &amp; &quot;) are HIGHER than SOW Hours(&quot; &amp; TEXT(SOW_Hours__c) &amp; &quot;)&quot; &amp; BR()
+			, &quot;&quot;)
+			 &amp; 
+If( Project_Rate__c &lt;&gt;  Average_Assignment_Rate__c &amp;&amp;  More_than_one_Rate__c &lt;&gt; TRUE
+			,  /*IMAGE(&quot;https://doextra--c.na104.visual.force.com/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/error.png&quot;, &quot;Caution&quot;) 
+			&amp; */IMAGE(&quot;https://doextra--c.na104.visual.force.com/resource/1411571084000/GraphicsPack/32/fatcow/farmfresh/emotion_suprised.png&quot;, &quot;Surprised&quot;)
+    &amp; &quot; At least one assignment has a rate that is different than the Project Rate field&quot;
+			, &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Record Validation</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

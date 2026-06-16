@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Follow_Up_Actions__c</fullName>
+    <description>Documents the specific actions planned to resolve or monitor the escalation.</description>
+    <inlineHelpText>Describe planned follow up actions, including timing, such as scheduling a 1:1 or revisiting the issue in a specified timeframe.</inlineHelpText>
+    <label>Follow Up Actions</label>
+    <length>32768</length>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

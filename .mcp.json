@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "salesforce": {
+      "command": "npx",
+      "args": ["-y","@salesforce/mcp",
+        "--orgs", "ascendsandbox", "--toolsets","all"]
+    } } }

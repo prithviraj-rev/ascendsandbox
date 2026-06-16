@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Sends the retro feedback email to internal recipients (W2 and internal 1099) using the internal list view URL variable in the email body.</description>
+        <name>Send_Feedback_Email_to_Internal</name>
+        <label>Send Feedback Email to Internal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>LOOP_Internal_Recipient_Emails</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recipientAddresses</name>
+            <value>
+                <collectionElements>
+                    <elementReference>LOOP_Internal_Recipient_Emails.Email</elementReference>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>salesforce.support@teamascend.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Project Feedback Request – {!NewFeedback.Project__r.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>&lt;p&gt;&lt;img src=&quot;{!varEmailHeaderImageUrl}&quot; alt=&quot;Email Header&quot; style=&quot;max-width:600px;width:100%;display:block;&quot;&gt;&lt;/p&gt;&lt;p&gt;Hi {!LOOP_Internal_Recipient_Emails.FirstName},&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(24, 24, 24);&quot;&gt; As we wrap up the &lt;/span&gt;&lt;strong style=&quot;color: rgb(24, 24, 24);&quot;&gt;{!NewFeedback.Project__r.Name}&lt;/strong&gt;&lt;span style=&quot;color: rgb(24, 24, 24);&quot;&gt;, we want to thank you for your contributions to the project.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;As part of our project closeout process, we invite you to share feedback on the experience. This may include recognizing teammates for great work or sharing ideas on how we can improve future engagements. Participation is completely optional, but your perspective is genuinely valued.&lt;/p&gt;&lt;p&gt;Please use the button below to submit your feedback within the &lt;strong&gt;next 7 days&lt;/strong&gt;:&lt;/p&gt;&lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;margin:16px 0;&quot;&gt;
+  &lt;tr&gt;
+    &lt;td bgcolor=&quot;#0176d3&quot; style=&quot;border-radius:4px;&quot;&gt;
+      &lt;a href=&quot;{!varFeedbackListViewLink}&quot;
+         target=&quot;_blank&quot;
+         rel=&quot;noopener noreferrer&quot;
+         style=&quot;display:inline-block;padding:10px 18px;font-family:sans-serif;font-size:14px;color:#ffffff;text-decoration:none;font-weight:600;&quot;&gt;
+        Submit Project Feedback
+      &lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;&lt;p&gt;Thank you again for the time and effort you contributed to this project.&lt;/p&gt;&lt;p&gt;Best regards,&lt;/p&gt;&lt;p&gt;DTS Project Management Office&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>LOOP_Internal_Recipient_Emails.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>2.0.1</versionString>
+    </actionCalls>
+    <actionCalls>
+        <description>Sends a branded feedback request email to a portal (contractor) team member using the portal list view link and the org-wide email address.</description>
+        <name>Send_Feedback_Email_to_Portal</name>
+        <label>Send Feedback Email to Portal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>LOOP_Portal_Recipient_Emails</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recipientAddresses</name>
+            <value>
+                <collectionElements>
+                    <elementReference>colPortalEmailRecipientCollection</elementReference>
+                </collectionElements>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>salesforce.support@teamascend.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Project Feedback Request – {!NewFeedback.Project__r.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
+                <stringValue>&lt;p&gt;&lt;img src=&quot;{!varEmailHeaderImageUrl}&quot; alt=&quot;Ascend Technologies&quot; style=&quot;max-width:600px;width:100%;display:block;&quot;&gt;&lt;/p&gt;&lt;p&gt;Hi {!LOOP_Portal_Recipient_Emails.FirstName},&lt;/p&gt;&lt;p&gt;    As we wrap up the &lt;strong&gt;{!NewFeedback.Project__r.Name}&lt;/strong&gt;, we want to thank you for your contributions to the project.&lt;/p&gt;&lt;p&gt;    As part of our project closeout process, we invite you to share feedback on the experience. This may include recognizing teammates for great work or sharing ideas on how we can improve future engagements. Participation is completely optional, but your perspective is genuinely valued.&lt;/p&gt;&lt;p&gt;    Please use the button below to submit your feedback within the &lt;strong&gt;next 7 days&lt;/strong&gt;:&lt;/p&gt;&lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;margin:16px 0;&quot;&gt;
+  &lt;tr&gt;
+    &lt;td bgcolor=&quot;#0176d3&quot; style=&quot;border-radius:4px;&quot;&gt;
+      &lt;a href=&quot;{!varFeedbackListViewLink}&quot;
+         target=&quot;_blank&quot;
+         rel=&quot;noopener noreferrer&quot;
+         style=&quot;display:inline-block;padding:10px 18px;font-family:sans-serif;font-size:14px;color:#ffffff;text-decoration:none;font-weight:600;&quot;&gt;
+        Submit Project Feedback
+      &lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;&lt;p&gt;    Thank you again for the time and effort you contributed to this project.&lt;/p&gt;&lt;p&gt;    Best regards,&lt;/p&gt;&lt;p&gt;    DTS Project Management Office&lt;/p&gt;&lt;p&gt;  &lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>LOOP_Portal_Recipient_Emails.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>logEmailOnSend</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>2.0.1</versionString>
+    </actionCalls>
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Queues this feedback for bulk insert and immediately updates the key set so we don’t create duplicates within the same run</description>
+        <name>ASG_Add_Feedback_And_Key</name>
+        <label>Add Feedback To Create Collection + Add Key</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>FeedbackToCreate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>NewFeedback</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ExistingKeySet</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>CurrentKey</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varNewRecordCount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FrmNewRecordCountPlusOne</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_Other_Assignments</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Creates a key from Project + Submitter + Reviewed + Type, then adds it to ExistingKeySet.
+
+CurrentKey = {!varProjectId} &amp; &apos;|&apos; &amp; {!LOOP_Existing_Feedback.Submitter__c} &amp; &apos;|&apos; &amp; {!LOOP_Existing_Feedback.Resource_Reviewed__c} &amp; &apos;|Project Retro&apos;</description>
+        <name>ASG_Build_Existing_Key</name>
+        <label>Build Existing Key &amp; Add to List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>CurrentKey</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FormulaExistingKey</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ExistingKeySet</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>CurrentKey</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_Existing_Feedback</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Populates a new Feedback record with all defaults.</description>
+        <name>ASG_Build_Feedback_Record</name>
+        <label>Build Feedback Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>NewFeedback.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>GET_Internal_Feedback_Record_Type.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewFeedback.Project__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varProjectId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewFeedback.Submitter__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewFeedback.Resource_Reviewed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Other_Assignments.Resource__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewFeedback.Project_Role__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Other_Assignments.Role__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewFeedback.Submitter_Role__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Peer</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewFeedback.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewFeedback.Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Project Retro</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewFeedback.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__r.Resource_User_Record__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>ASG_Add_Feedback_And_Key</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Builds a key for the submitter-reviewed pair for this run.
+
+CurrentKey = {!varProjectId} &amp; &apos;|&apos; &amp; {!LOOP_Active_Assignments_Submitter.Resource__c}  &amp; &apos;|&apos; &amp; {!LOOP_Other_Assignments.Resource__c} &amp; &apos;|Project Retro&apos;</description>
+        <name>ASG_Build_New_Key</name>
+        <label>Build New Key</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>CurrentKey</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FormulaCurrentKey</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>DEC_Is_Key_in_Key_List</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Adds 1 per assignment so we can enforce minimum roster size.</description>
+        <name>ASG_Increment_AssignmentCounter</name>
+        <label>Increment AssignmentCounter</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>AssignmentCounter</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>AssignmentCounterPlusOne</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_Active_Assignments_Count</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Clears variables for a fresh start</description>
+        <name>ASG_Reset_Variables</name>
+        <label>Reset Variables</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>AssignmentCounter</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ExistingKeySet</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>FeedbackToCreate</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>CurrentKey</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewFeedback</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varFeedbackListViewLink</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>colInternalEmailRecipientCollection</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>colPortalEmailRecipientCollection</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varNewRecordCount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>GET_Internal_Feedback_Record_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Adds the current team member’s email to the Internal recipient collection when Employment Type is W2 or 1099 with internal profile access.</description>
+        <name>Assign_Internal_Email_Recipient_List</name>
+        <label>Assign Internal Email Recipient List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>RecInternalUser.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__r.FirstName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RecInternalUser.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>colInternalEmailRecipientCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RecInternalUser.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>colInternalContacts</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>RecInternalUser</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>FILTER_Assignments_Other_Assignments</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Sets the email link variable to the internal feedback list view URL before sending internal emails.</description>
+        <name>Assign_Internal_List_View_Link</name>
+        <label>Assign_Internal_List_View_Link</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varFeedbackListViewLink</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>InternalFeedbackListViewURL</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_Internal_Recipient_Emails</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Adds the current submitter’s email address to the portal recipient collection for later bulk email notification with the contractor portal “My Pending Feedback” list view link.</description>
+        <name>Assign_Portal_Email_Recipient_List</name>
+        <label>Assign Portal Email Recipient List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>recPortalUser.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__r.FirstName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recPortalUser.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>colPortalEmailRecipientCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recPortalUser.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>colPortalContacts</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>recPortalUser</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>FILTER_Assignments_Other_Assignments</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Sets the email link variable to the portal feedback list view URL before sending portal emails.</description>
+        <name>Assign_Portal_List_View_Link</name>
+        <label>Assign Portal List View Link</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varFeedbackListViewLink</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PortalFeedbackListViewURL</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_Portal_Recipient_Emails</targetReference>
+        </connector>
+    </assignments>
+    <collectionProcessors>
+        <description>Filters the roster to everyone except the current submitter assignment.</description>
+        <name>FILTER_Assignments_Other_Assignments</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>FILTER Assignments (Other Assignments)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNextValueToReference>currentItem_FILTER_Assignments_Other_Assignments</assignNextValueToReference>
+        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>GET_Active_Assignments_Roster</collectionReference>
+        <conditionLogic>and</conditionLogic>
+        <conditions>
+            <leftValueReference>currentItem_FILTER_Assignments_Other_Assignments.Resource__c</leftValueReference>
+            <operator>NotEqualTo</operator>
+            <rightValue>
+                <elementReference>LOOP_Active_Assignments_Submitter.Resource__c</elementReference>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>LOOP_Other_Assignments</targetReference>
+        </connector>
+    </collectionProcessors>
+    <decisions>
+        <description>Skips the Project if there aren’t at least 2 active team members.</description>
+        <name>DEC_Enough_Team_Members</name>
+        <label>DEC Enough Team Members?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>AssignmentCounter</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>2.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>GET_Existing_Feedback_For_Project</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks whether the internal recipient email collection contains values before attempting to send the internal notification email.</description>
+        <name>DEC_Is_Internal_Recipient_populated</name>
+        <label>DEC Is Internal Recipient populated?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>DEC_Is_Portal_Recipient_populated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>YesInternalIsPopulated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>colInternalContacts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Internal_List_View_Link</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks whether CurrentKey is already in ExistingKeySet.</description>
+        <name>DEC_Is_Key_in_Key_List</name>
+        <label>DEC Is Key in Key List?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>ASG_Build_Feedback_Record</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>YesKeyinList</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ExistingKeySet</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>CurrentKey</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>LOOP_Other_Assignments</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks whether the portal recipient email collection contains values before attempting to send the portal notification email.</description>
+        <name>DEC_Is_Portal_Recipient_populated</name>
+        <label>DEC Is Portal Recipient populated?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>YesPortalispopulated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>colPortalContacts</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Portal_List_View_Link</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Routes the current submitter into the correct email recipient collection. Internal recipients are W2 employees and 1099 contractors with internal org access (Profile = Ascend Contractor). Portal recipients are 1099 contractors with community access (Profile contains Ascend Contractor Community).</description>
+        <name>DEC_Resource_is_Internal_or_Portal_Recipient</name>
+        <label>Resource is Internal or Portal Recipient?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Portal_Email_Recipient_List</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Portal</defaultConnectorLabel>
+        <rules>
+            <name>Internal</name>
+            <conditionLogic>1 OR (2 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>LOOP_Active_Assignments_Submitter.Resource__r.Employment_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>W2</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_Active_Assignments_Submitter.Resource__r.Employment_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>1099</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>LOOP_Active_Assignments_Submitter.Resource__r.Resource_User_Record__r.IsPortalEnabled</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Internal_Email_Recipient_List</targetReference>
+            </connector>
+            <label>Internal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks whether any new Feedback records were added to the FeedbackToCreate collection during this run. If yes, proceeds to send notification emails. If no, the flow ends without sending emails.</description>
+        <name>DEC_Were_New_Feedback_Records_Created</name>
+        <label>DEC Were New Feedback Records Created?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>YesRecordsWereCreated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varNewRecordCount</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>DEC_Is_Internal_Recipient_populated</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Generates Project Retro Internal Feedback records 7 days before the Project End Date.
+This subflow builds the peer feedback matrix from the current active Project roster, prevents duplicates, and bulk-creates Feedback records for all non-self combinations.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula that returns AssignmentCounter + 1. Used to increment the assignment counter during the count loop.</description>
+        <name>AssignmentCounterPlusOne</name>
+        <dataType>Number</dataType>
+        <expression>{!AssignmentCounter} + 1</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <description>Evaluates the unique deduplication key for the current submitter/resource-reviewed pair by concatenating the Project ID, Submitter Contact ID, Resource Reviewed Contact ID, and feedback type with | delimiters.</description>
+        <name>FormulaCurrentKey</name>
+        <dataType>String</dataType>
+        <expression>{!varProjectId} &amp; &quot;|&quot; &amp; {!LOOP_Active_Assignments_Submitter.Resource__c} &amp; &quot;|&quot; &amp; {!LOOP_Other_Assignments.Resource__c} &amp; &quot;|Project Retro&quot;</expression>
+    </formulas>
+    <formulas>
+        <description>Concatenates the unique deduplication key from an existing Feedback record by combining the Project ID, Submitter Contact ID, Resource Reviewed Contact ID, and feedback type with | delimiters.</description>
+        <name>FormulaExistingKey</name>
+        <dataType>String</dataType>
+        <expression>{!varProjectId} &amp; &quot;|&quot; &amp; {!LOOP_Existing_Feedback.Submitter__c} &amp; &quot;|&quot; &amp; {!LOOP_Existing_Feedback.Resource_Reviewed__c} &amp; &quot;|Project Retro&quot;</expression>
+    </formulas>
+    <formulas>
+        <description>Returns varNewRecordCount incremented by 1. Used to track the number of new Feedback records created in this flow run.</description>
+        <name>FrmNewRecordCountPlusOne</name>
+        <dataType>Number</dataType>
+        <expression>{!varNewRecordCount} + 1</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <description>Returns the internal Salesforce list view link for “My Pending Feedback” from Custom Label.</description>
+        <name>InternalFeedbackListViewURL</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.Feedback_ListView_Internal_Prod_URL}</expression>
+    </formulas>
+    <formulas>
+        <description>Returns the contractor portal list view link for “My Pending Feedback” from Custom Label.</description>
+        <name>PortalFeedbackListViewURL</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.Feedback_ListView_Community_URL}</expression>
+    </formulas>
+    <interviewLabel>Project Id {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Project: Subflow - Create Retro Feedback</label>
+    <loops>
+        <description>Loops through roster to count how many team members exist.</description>
+        <name>LOOP_Active_Assignments_Count</name>
+        <label>LOOP Active Assignments (Count)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>GET_Active_Assignments_Roster</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>ASG_Increment_AssignmentCounter</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>DEC_Enough_Team_Members</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Collects all roster Contact Ids so we can do one Contact query.</description>
+        <name>LOOP_Active_Assignments_Submitter</name>
+        <label>LOOP Active Assignments (Submitter)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>GET_Active_Assignments_Roster</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>DEC_Resource_is_Internal_or_Portal_Recipient</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>CREATE_Feedback_Records_Bulk</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Builds ExistingKeySet from each existing feedback record.</description>
+        <name>LOOP_Existing_Feedback</name>
+        <label>LOOP Existing Feedback</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>GET_Existing_Feedback_For_Project</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>ASG_Build_Existing_Key</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>LOOP_Active_Assignments_Submitter</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Iterates through the internal contacts collection and sends a feedback request email to each internal team member.</description>
+        <name>LOOP_Internal_Recipient_Emails</name>
+        <label>LOOP Internal Recipient Emails</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>colInternalContacts</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Feedback_Email_to_Internal</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>DEC_Is_Portal_Recipient_populated</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>For the current submitter, loops through each other assignment as the reviewed person.</description>
+        <name>LOOP_Other_Assignments</name>
+        <label>LOOP Other Assignments</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>FILTER_Assignments_Other_Assignments</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>ASG_Build_New_Key</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>LOOP_Active_Assignments_Submitter</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Iterates through the portal contacts collection and sends a feedback request email to each portal (contractor) team member.</description>
+        <name>LOOP_Portal_Recipient_Emails</name>
+        <label>LOOP Portal Recipient Emails</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>colPortalContacts</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Send_Feedback_Email_to_Portal</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Creates all feedback records in a single bulk insert</description>
+        <name>CREATE_Feedback_Records_Bulk</name>
+        <label>CREATE Feedback Records (Bulk)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>DEC_Were_New_Feedback_Records_Created</targetReference>
+        </connector>
+        <inputReference>FeedbackToCreate</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <description>Pulls the current Project team roster from Assignments.</description>
+        <name>GET_Active_Assignments_Roster</name>
+        <label>GET Active Assignments (Roster)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>LOOP_Active_Assignments_Count</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Projects__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varProjectId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Inactive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>SFDC_Assignment__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Pulls any existing project retro feedback so we don’t create duplicates.</description>
+        <name>GET_Existing_Feedback_For_Project</name>
+        <label>GET Existing Feedback For Project</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>LOOP_Existing_Feedback</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Project__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varProjectId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Project Retro</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>GET_Internal_Feedback_Record_Type.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Feedback__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Looks up the Internal Feedback record type</description>
+        <name>GET_Internal_Feedback_Record_Type</name>
+        <label>GET Internal Feedback Record Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>GET_Active_Assignments_Roster</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Feedback__c</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Internal_Feedback</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>ASG_Reset_Variables</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Counts team members so we can skip one person teams</description>
+        <name>AssignmentCounter</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <description>Collection of Contact records for internal (W2) team members on the project. Used to drive the internal email sending loop.</description>
+        <name>colInternalContacts</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>Stores email addresses for all W2 and internal contractor users who should receive the internal Salesforce list view link.</description>
+        <name>colInternalEmailRecipientCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Collection of Contact records for portal (contractor) team members on the project. Used to drive the portal email sending loop.</description>
+        <name>colPortalContacts</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>Stores email addresses for all 1099 contractors with community access who should receive the Experience Cloud list view link.</description>
+        <name>colPortalEmailRecipientCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Auto-generated loop variable representing the current assignment record being evaluated during the Other Assignments collection filter.</description>
+        <name>currentItem_FILTER_Assignments_Other_Assignments</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SFDC_Assignment__c</objectType>
+    </variables>
+    <variables>
+        <description>A unique key used to prevent duplicates (Project|Submitter|Reviewed|Type).</description>
+        <name>CurrentKey</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Text collection of keys representing feedback that already exists, plus keys we add while building new ones.</description>
+        <name>ExistingKeySet</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Record collection of Feedback records we will insert in one bulk create at the end.</description>
+        <name>FeedbackToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Feedback__c</objectType>
+    </variables>
+    <variables>
+        <description>One Feedback record we build and then add to the bulk create collection</description>
+        <name>NewFeedback</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Feedback__c</objectType>
+    </variables>
+    <variables>
+        <description>Temporary Contact record variable used to stage internal (W2) team member data before adding them to the internal recipient collection.</description>
+        <name>RecInternalUser</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>Temporary Contact record variable used to stage portal (1099/contractor) team member data before adding them to the portal recipient collection.</description>
+        <name>recPortalUser</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
+    <variables>
+        <description>Stores the URL of the email header image used in the feedback notification email so the image reference can be updated in one place without modifying the HTML body.</description>
+        <name>varEmailHeaderImageUrl</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>https://teamascend.my.salesforce.com/servlet/servlet.ImageServer?id=015Uv0000061ARi&amp;oid=00D30000000oWAS&amp;lastMod=1759267215000</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Stores the internal or community list view URL</description>
+        <name>varFeedbackListViewLink</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Tracks the number of new Feedback records added to the FeedbackToCreate collection during this flow run. Used to determine whether emails should be sent.</description>
+        <name>varNewRecordCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Captures project Id</description>
+        <name>varProjectId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Time_Resource_is_Running_User__c</fullName>
+    <formula>Resource__r.LastName &amp; Resource__r.FirstName = $User.LastName &amp; $User.FirstName</formula>
+    <label>Case Time Resource is Running User</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

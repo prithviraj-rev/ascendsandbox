@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_Date_greaterthan_Project_End_Date</fullName>
+    <active>true</active>
+    <description>G</description>
+    <errorConditionFormula>End_Date__c  &gt;  Projects__r.End_Date__c</errorConditionFormula>
+    <errorDisplayField>End_Date__c</errorDisplayField>
+    <errorMessage>The End date of the Assignment must not be after the End Date of the Project. Update the project end date before you update the Assignment.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BusinessUnit__c</fullName>
+    <inlineHelpText>Business Unit of a User</inlineHelpText>
+    <label>Business Unit</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>BusinessUnit</valueSetName>
+    </valueSet>
+</CustomField>

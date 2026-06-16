@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TimeReportedUnits__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Time Reported Units</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Decimal Minutes</fullName>
+                <default>true</default>
+                <label>Decimal Minutes</label>
+            </value>
+            <value>
+                <fullName>Decimal Hours</fullName>
+                <default>false</default>
+                <label>Decimal Hours</label>
+            </value>
+            <value>
+                <fullName>Decimal Days</fullName>
+                <default>false</default>
+                <label>Decimal Days</label>
+            </value>
+            <value>
+                <fullName>Integer Minutes</fullName>
+                <default>false</default>
+                <label>Integer Minutes</label>
+            </value>
+            <value>
+                <fullName>Integer Hours</fullName>
+                <default>false</default>
+                <label>Integer Hours</label>
+            </value>
+            <value>
+                <fullName>Integer Days</fullName>
+                <default>false</default>
+                <label>Integer Days</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

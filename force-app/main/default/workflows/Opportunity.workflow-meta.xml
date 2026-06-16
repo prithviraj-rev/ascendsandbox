@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>OpportunityApproved</fullName>
+        <description>Opportunity Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/OpportunityApproved</template>
+    </alerts>
+    <alerts>
+        <fullName>OpportunityRejected</fullName>
+        <description>Opportunity Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/OpportunityRejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Has_Been_Reviewed</fullName>
+        <description>Opportunity Has Been Reviewed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_Review_Completed</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Needs_Review</fullName>
+        <description>Opportunity Needs Review</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>bnogar@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>christina.roder@doextra.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>dbailey@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>hlantz@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jdavis@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jmaynard@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jspiller@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sdickenson@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_Needs_Review</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_SOW_Approvals</fullName>
+        <description>Opportunity: SOW Approvals</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>SOW_Approvals</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_in_Contracting</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Salesforce_SOW_Approvals</fullName>
+        <description>Opportunity: Salesforce SOW Approvals</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Salesforce_SOW_Approvals</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>david.moore@doextra.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_in_Contracting</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_is_under_review</fullName>
+        <description>Opportunity is under review</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_is_in_Review</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Approved</fullName>
+        <field>StageApproval__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ClosedWon</fullName>
+        <field>StageName</field>
+        <literalValue>Closed Won</literalValue>
+        <name>Closed Won</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>NotApproved</fullName>
+        <field>StageApproval__c</field>
+        <literalValue>Not Approved</literalValue>
+        <name>Not Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Pending</fullName>
+        <field>StageApproval__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Recalled</fullName>
+        <field>StageApproval__c</field>
+        <literalValue>Recalled</literalValue>
+        <name>Recalled</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>StageAbove</fullName>
+        <field>StageName</field>
+        <name>Stage Above</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>PreviousValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Probability_65</fullName>
+        <description>Sets Opp Probability to 65</description>
+        <field>Probability</field>
+        <formula>0.65</formula>
+        <name>Update Probability: 65</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Probability_80</fullName>
+        <description>Sets the Probability to 70</description>
+        <field>Probability</field>
+        <formula>0.80</formula>
+        <name>Update Probability: 80</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Probability_90</fullName>
+        <field>Probability</field>
+        <formula>0.90</formula>
+        <name>Update Probability: 90</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Probability_95</fullName>
+        <field>Probability</field>
+        <formula>0.95</formula>
+        <name>Update Probability: 95</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

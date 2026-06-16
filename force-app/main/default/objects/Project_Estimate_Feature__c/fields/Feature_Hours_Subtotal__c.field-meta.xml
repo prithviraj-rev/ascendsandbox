@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feature_Hours_Subtotal__c</fullName>
+    <label>Feature Hours Subtotal</label>
+    <summarizedField>Project_Estimate_Feature_Line_Item__c.Estimate_Hrs__c</summarizedField>
+    <summaryFilterItems>
+        <field>Project_Estimate_Feature_Line_Item__c.Include_in_Estimate__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Project_Estimate_Feature_Line_Item__c.Feature__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

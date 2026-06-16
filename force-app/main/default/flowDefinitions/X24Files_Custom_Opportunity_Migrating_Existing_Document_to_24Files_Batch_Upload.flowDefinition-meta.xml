@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionNumber>9</activeVersionNumber>
+    <description>Copied the 24 files template to be used for Opportunities.</description>
+    <masterLabel>24Files Custom - Opportunity Migrating Existing Document to 24Files Batch Upload</masterLabel>
+</FlowDefinition>

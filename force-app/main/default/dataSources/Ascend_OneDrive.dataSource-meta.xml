@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalDataSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authProvider>Ascend_OneDrive</authProvider>
+    <customConfiguration>{&quot;sharepointConnectorUrl&quot;:&quot;https://teamascend-my.sharepoint.com&quot;}</customConfiguration>
+    <isWritable>false</isWritable>
+    <label>Ascend OneDrive</label>
+    <principalType>PerUser</principalType>
+    <protocol>Oauth</protocol>
+    <type>ContentHubSharepointOneDrive</type>
+</ExternalDataSource>

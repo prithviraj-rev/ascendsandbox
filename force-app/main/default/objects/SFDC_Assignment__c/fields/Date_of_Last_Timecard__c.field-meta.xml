@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_of_Last_Timecard__c</fullName>
+    <label>Date of Last Timecard</label>
+    <summarizedField>SFDC_Timecard__c.Date__c</summarizedField>
+    <summaryForeignKey>SFDC_Timecard__c.Assignment__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

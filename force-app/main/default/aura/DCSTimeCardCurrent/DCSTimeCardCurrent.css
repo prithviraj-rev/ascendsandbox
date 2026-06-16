@@ -1,0 +1,17 @@
+.THIS .point{
+    cursor:pointer;
+}
+.THIS.tcbg{
+    opacity: 0.85;
+    background: white;
+}
+
+.THIS .Complete{
+    background: #C6FFC6;
+}
+.THIS .Partial{
+    background: #FFFFC6;
+}
+.THIS .Empty{
+    background: #FFC6C6;
+}

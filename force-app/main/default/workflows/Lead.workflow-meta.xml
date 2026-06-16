@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Lead_Filled_Out_Contact_Us_Form</fullName>
+        <description>Lead Filled Out Contact Us Form</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Website</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Client_Email_Templates/Lead_Contact_Us_Form_Completed</template>
+    </alerts>
+</Workflow>

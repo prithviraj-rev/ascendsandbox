@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Sales Cloud</fullName>
+        <default>false</default>
+        <label>Sales Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>Service Cloud</fullName>
+        <default>false</default>
+        <label>Service Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>Financial Services Cloud</fullName>
+        <default>false</default>
+        <label>Financial Services Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>Customer Experience Cloud</fullName>
+        <default>false</default>
+        <label>Customer Experience Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>Partner Experience Cloud</fullName>
+        <default>false</default>
+        <label>Partner Experience Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>Manufacturing Cloud</fullName>
+        <default>false</default>
+        <label>Manufacturing Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>Marketing Cloud</fullName>
+        <default>false</default>
+        <label>Marketing Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>MCAE</fullName>
+        <default>false</default>
+        <label>MCAE</label>
+    </customValue>
+    <customValue>
+        <fullName>B2B Marketing Analytics</fullName>
+        <default>false</default>
+        <label>B2B Marketing Analytics</label>
+    </customValue>
+    <customValue>
+        <fullName>Field Service</fullName>
+        <default>false</default>
+        <label>Field Service</label>
+    </customValue>
+    <customValue>
+        <fullName>Commerce Cloud</fullName>
+        <default>false</default>
+        <label>Commerce Cloud</label>
+    </customValue>
+    <customValue>
+        <fullName>CPQ</fullName>
+        <default>false</default>
+        <label>CPQ</label>
+    </customValue>
+    <customValue>
+        <fullName>Einstein for Sales</fullName>
+        <default>false</default>
+        <label>Einstein for Sales</label>
+    </customValue>
+    <customValue>
+        <fullName>Einstein for Service</fullName>
+        <default>false</default>
+        <label>Einstein for Service</label>
+    </customValue>
+    <customValue>
+        <fullName>Einstein Conversation Insights</fullName>
+        <default>false</default>
+        <label>Einstein Conversation Insights</label>
+    </customValue>
+    <customValue>
+        <fullName>Einstein Relationship Insights</fullName>
+        <default>false</default>
+        <label>Einstein Relationship Insights</label>
+    </customValue>
+    <customValue>
+        <fullName>Einstein Bots</fullName>
+        <default>false</default>
+        <label>Einstein Bots</label>
+    </customValue>
+    <customValue>
+        <fullName>Einstein Predictions</fullName>
+        <default>false</default>
+        <label>Einstein Predictions</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce Shield</fullName>
+        <default>false</default>
+        <label>Salesforce Shield</label>
+    </customValue>
+    <customValue>
+        <fullName>Quip</fullName>
+        <default>false</default>
+        <label>Quip</label>
+    </customValue>
+    <customValue>
+        <fullName>Slack</fullName>
+        <default>false</default>
+        <label>Slack</label>
+    </customValue>
+    <customValue>
+        <fullName>CRM Analytics</fullName>
+        <default>false</default>
+        <label>CRM Analytics</label>
+    </customValue>
+    <customValue>
+        <fullName>Tableau</fullName>
+        <default>false</default>
+        <label>Tableau</label>
+    </customValue>
+    <customValue>
+        <fullName>MuleSoft Composer</fullName>
+        <default>false</default>
+        <label>MuleSoft Composer</label>
+    </customValue>
+    <customValue>
+        <fullName>MuleSoft</fullName>
+        <default>false</default>
+        <label>MuleSoft</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce Connect</fullName>
+        <default>false</default>
+        <label>Salesforce Connect</label>
+    </customValue>
+    <customValue>
+        <fullName>Service Cloud Voice</fullName>
+        <default>false</default>
+        <label>Service Cloud Voice</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Engagement</fullName>
+        <default>false</default>
+        <label>Sales Engagement</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Programs</fullName>
+        <default>false</default>
+        <label>Sales Programs</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce Maps</fullName>
+        <default>false</default>
+        <label>Salesforce Maps</label>
+    </customValue>
+    <customValue>
+        <fullName>Salesforce Scheduler</fullName>
+        <default>false</default>
+        <label>Salesforce Scheduler</label>
+    </customValue>
+    <customValue>
+        <fullName>Digital Engagement</fullName>
+        <default>false</default>
+        <label>Digital Engagement</label>
+    </customValue>
+    <customValue>
+        <fullName>Revenue Intelligence</fullName>
+        <default>false</default>
+        <label>Revenue Intelligence</label>
+    </customValue>
+    <customValue>
+        <fullName>Full Copy Sandbox</fullName>
+        <default>false</default>
+        <label>Full Copy Sandbox</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Other</label>
+    </customValue>
+    <customValue>
+        <fullName>Einstein</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Einstein</label>
+    </customValue>
+    <customValue>
+        <fullName>NonProfit Success Pack</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>NonProfit Success Pack</label>
+    </customValue>
+    <customValue>
+        <fullName>Field Service Lightning</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Field Service Lightning</label>
+    </customValue>
+    <customValue>
+        <fullName>Pardot</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Pardot</label>
+    </customValue>
+    <customValue>
+        <fullName>Experience Cloud</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Experience Cloud</label>
+    </customValue>
+    <masterLabel>Product Line</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

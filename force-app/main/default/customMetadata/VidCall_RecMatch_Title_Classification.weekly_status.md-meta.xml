@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>weekly status</label>
+    <protected>false</protected>
+    <values>
+        <field>Call_Type__c</field>
+        <value xsi:type="xsd:string">Weekly Status</value>
+    </values>
+    <values>
+        <field>Meeting_Title_Keyword__c</field>
+        <value xsi:type="xsd:string">weekly status</value>
+    </values>
+    <values>
+        <field>Object_Classification__c</field>
+        <value xsi:type="xsd:string">Project</value>
+    </values>
+    <values>
+        <field>Stage__c</field>
+        <value xsi:nil="true"/>
+    </values>
+</CustomMetadata>

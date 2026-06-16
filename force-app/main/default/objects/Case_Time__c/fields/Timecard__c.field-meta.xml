@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Timecard__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <inlineHelpText>You cannot change the timecard value manually. you must change the Date or Billable checkbox to have the record assigned to a different timecard.</inlineHelpText>
+    <label>Timecard</label>
+    <referenceTo>SFDC_Timecard__c</referenceTo>
+    <relationshipLabel>Case Time</relationshipLabel>
+    <relationshipName>Case_Time</relationshipName>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

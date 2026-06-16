@@ -1,0 +1,13 @@
+<aura:component implements="force:hasRecordId,flexipage:availableForRecordHome" access="global" description="Wrapper for 'softValidationMessageEditor' LWC">
+    <lightning:unsavedChanges
+            aura:id="unsavedChanges"
+            onsave="{!c.handleSave}"
+            ondiscard="{!c.handleDiscard}"/>
+
+    <c:softValidationMessageEditor
+            aura:id="soft-validation-msg-editor-lwc"
+            recordId="{!v.recordId}"
+            onmakeunsavedchanges="{!c.makeUnsavedChanges}"
+            onclearunsavedchanges="{!c.clearUnsavedChanges}">
+    </c:softValidationMessageEditor>
+</aura:component>

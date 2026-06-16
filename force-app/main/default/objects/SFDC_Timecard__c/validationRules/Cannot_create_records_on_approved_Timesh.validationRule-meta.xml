@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_create_records_on_approved_Timesh</fullName>
+    <active>true</active>
+    <description>prevents creating timecards on approved timesheets</description>
+    <errorConditionFormula>(ISPICKVAL(  Timesheet__r.Status__c , &quot;Pending&quot;) ||   PRIORVALUE(Timesheet_Status__c) = &quot;Pending&quot; || ISPICKVAL(  Timesheet__r.Status__c , &quot;Approved&quot;) ||   PRIORVALUE(Timesheet_Status__c) = &quot;Approved&quot;) &amp;&amp;
+isnew() &amp;&amp;
+	NOT( $Permission.Edit_TImecards_Once_Approved )</errorConditionFormula>
+    <errorMessage>You cannot create this timecard once this weeks timesheet has been approved. Contact the delivery manager if you need to make edits.</errorMessage>
+</ValidationRule>

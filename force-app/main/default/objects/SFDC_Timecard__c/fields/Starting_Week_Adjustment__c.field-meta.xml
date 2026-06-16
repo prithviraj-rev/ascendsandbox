@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Starting_Week_Adjustment__c</fullName>
+    <description>When new employees are hired this number allows the Billabble percent to calculate based on their starting week.</description>
+    <externalId>false</externalId>
+    <formula>Case( Assignment__r.Resource__r.LastName &amp;  Assignment__r.Resource__r.FirstName 
+, &quot;WilliamsJustin&quot;, 0
+, &quot;RyderMartin&quot;, 0
+, &quot;JensenJames&quot;, 0
+, &quot;MorrisonBob&quot;, 0
+, &quot;ScottDennis&quot;, 0
+, &quot;MooreJeremy&quot;, 0
+, &quot;HopkinsSharon&quot;, 0
+, &quot;SoyerAdam&quot;, 0
+, &quot;BrandtJulie&quot;, 0
+, &quot;VanSantAnn&quot;, 0
+, &quot;CurryJason&quot;, 0
+, &quot;SoyerAdam&quot;, 0
+, &quot;MooreDavid&quot;, 0
+, &quot;HearnDarrin&quot;, 0
+, &quot;NelsonCurtis&quot;, 0 
+, &quot;JonesHanna&quot;, 0
+, &quot;ZieglerDale&quot;, 0
+, &quot;MurrayDillon&quot;, 0
+, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Starting Week Adjustment</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,29 @@
+.color-bg{--slds-c-icon-color-background: white;}
+
+.color-0 {--slds-c-icon-color-foreground-default: #13862A;}
+.color-1 {--slds-c-icon-color-foreground-default: #1A329A;}
+.color-2 {--slds-c-icon-color-foreground-default: #901716;}
+.color-3 {--slds-c-icon-color-foreground-default: #51A41E;}
+.color-4 {--slds-c-icon-color-foreground-default: #AD2273;}
+.color-5 {--slds-c-icon-color-foreground-default: #BABF2B;}
+.color-6 {--slds-c-icon-color-foreground-default: #3ACC98;}
+.color-7 {--slds-c-icon-color-foreground-default: #CD8347;}
+.color-8 {--slds-c-icon-color-foreground-default: #AF30C8;}
+
+.high-priority {--slds-c-icon-color-foreground-default: red;}
+.reviewed {--slds-c-icon-color-foreground-default: rgb(188, 138, 0);}
+
+.left-align { text-align: left;}
+.right-align { text-align: right;}
+
+p.bold, span.bold{ font-weight:bold; }
+
+
+.no-wrap{
+    white-space:normal;
+}
+
+
+lightning-base-combobox-item[data-value="New"] {
+    display:none!important;
+}

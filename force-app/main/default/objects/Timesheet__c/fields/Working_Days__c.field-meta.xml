@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Working_Days__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE( MOD(Start_Date__c - DATE( 1900, 1, 7 ), 7 ),
+  0, CASE( MOD(End_Date__c - DATE( 1900, 1, 7 ), 7 ),
+     0, End_Date__c - Start_Date__c + 1 - 1, /* Sun */
+     6, End_Date__c - Start_Date__c + 1 - 1, /* Sat */
+     End_Date__c - Start_Date__c + 1 /* Mon/Tue/Wed/Thurs/Fri MOD=1,2,3,4,5 */) - 1, /* Sun */
+  6, CASE( MOD(End_Date__c - DATE( 1900, 1, 7 ), 7 ),
+     0, End_Date__c - Start_Date__c + 1 - 1, /* Sun */
+     6, End_Date__c - Start_Date__c + 1 - 1, /* Sat */
+     End_Date__c - Start_Date__c + 1 /* Mon/Tue/Wed/Thurs/Fri MOD=1,2,3,4,5 */) - 1, /* Sat */
+  CASE( MOD(End_Date__c - DATE( 1900, 1, 7 ), 7 ),
+  0, End_Date__c - Start_Date__c + 1 - 1, /* Sun */
+  6, End_Date__c - Start_Date__c + 1 - 1, /* Sat */
+  End_Date__c - Start_Date__c + 1 /* Mon/Tue/Wed/Thurs/Fri MOD=1,2,3,4,5 */)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Working Days</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

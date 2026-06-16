@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>ASSIGN_Output_XBR_Value</name>
+        <label>ASSIGN Output XBR Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>XBR_Events_OUTPUT_var</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>XBR_Counter_var</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>ASSIGN_XBR_Value</name>
+        <label>ASSIGN XBR Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>XBR_Counter_var</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>LOOP_Events</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Activity_In_Last_12_Months</name>
+        <label>Activity In Last 12 Months?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>LOOP_Events</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_AIL12M</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Event_Created_Last_12_Months_Fx</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ASSIGN_XBR_Value</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Auto-Launched Flow:
+- Flow updates XBR Activities field for Events
+	
+Case/Ticket:
+#00015747</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Event_Created_Last_12_Months_Fx</name>
+        <dataType>Boolean</dataType>
+        <expression>DATEVALUE({!LOOP_Events.CreatedDate}) &gt;= ADDMONTHS(TODAY(), -12)</expression>
+    </formulas>
+    <interviewLabel>Account: Subflow - Update XBR Events {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account: Subflow - Update XBR Events</label>
+    <loops>
+        <name>LOOP_Events</name>
+        <label>LOOP Events</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>GET_Events</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Activity_In_Last_12_Months</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>ASSIGN_Output_XBR_Value</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>GET_Events</name>
+        <label>GET Events</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>LOOP_Events</targetReference>
+        </connector>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filters>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Account_Record_INPUT_var.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Account_Record_INPUT_var.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Purpose__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Account Review</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Event</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GET_Events</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>Account_Record_INPUT_var</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>XBR_Counter_var</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>XBR_Events_OUTPUT_var</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+    </variables>
+</Flow>

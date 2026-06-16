@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>ProjectSalesRepNotification</fullName>
+        <description>Project Sales Rep Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Sales_Rep__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/ProjectSalesRepNotification</template>
+    </alerts>
+    <alerts>
+        <fullName>Project_Budget_Alert</fullName>
+        <description>Project Budget Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Project_Lead__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Sales_Rep__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Doextra_Project_Management/Project_Budget_Alert</template>
+    </alerts>
+    <alerts>
+        <fullName>Project_Budget_Warning</fullName>
+        <description>Project Budget Warning</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>Project_Lead__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/Project_Budget_Warning</template>
+    </alerts>
+    <alerts>
+        <fullName>Project_Complete_Send_Survey</fullName>
+        <ccEmails>jbrandt@doextra.com</ccEmails>
+        <description>Project Complete - Send Survey</description>
+        <protected>false</protected>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Doextra_Project_Management/Project_Complete_Send_Survey</template>
+    </alerts>
+    <alerts>
+        <fullName>Project_Summary_Reminder</fullName>
+        <description>Project Summary Reminder</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Project_Lead__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <recipients>
+            <field>Sales_Rep__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/Project_Summary_Reminder</template>
+    </alerts>
+    <alerts>
+        <fullName>Project_Timeline_Warning</fullName>
+        <description>Project Timeline Warning</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>Project_Lead__c</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/Project_Timeline_Warning</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_about_Project_Creation</fullName>
+        <description>Send Email about Project Creation</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>jeremy.moore@light.doextra.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>robyn.collins@light.doextra.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Doextra_Project_Management/Project_Created</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Map_Opportunity_Description</fullName>
+        <field>Description__c</field>
+        <formula>RelatedOpportunity__r.Description</formula>
+        <name>Map Opportunity Description</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Map Opportunity Description</fullName>
+        <actions>
+            <name>Map_Opportunity_Description</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>SFDC_Projects__c.Opportunity_Number__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Project Budget Alert</fullName>
+        <actions>
+            <name>Project_Budget_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Send email alert when budget is within 80% of the estimate</description>
+        <formula>IF( AND(Total_Estimated_Hours__c &gt; 0,(Total_Billable_Hours_Worked__c / Total_Estimated_Hours__c ) &gt;  0.8,  RecordType.Name = &apos;Project&apos;), true, false)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Project Complete Email</fullName>
+        <actions>
+            <name>Project_Complete_Send_Survey</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>SFDC_Projects__c.Project_Stage__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

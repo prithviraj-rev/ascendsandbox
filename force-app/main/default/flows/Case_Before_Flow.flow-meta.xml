@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>assign_AppValues</name>
+        <label>Assign values for App</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>0123b000000Utg0AAC</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Case_Record_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>assign_Escalated</name>
+        <label>Assign Escalated</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.CaseStage__c</assignToReference>
+            <operator>AddItem</operator>
+            <value>
+                <stringValue>Escalated</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Assign On Hold variables for the Case record when Status = &quot;On Hold&quot;</description>
+        <name>Assign_On_Hold_Values</name>
+        <label>Assign On Hold Values</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.On_Hold_Reminder__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.On_Hold_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Case_Stage_Contain_On_Hold</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>assign_OnHold</name>
+        <label>Assign On Hold</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.CaseStage__c</assignToReference>
+            <operator>AddItem</operator>
+            <value>
+                <stringValue>On Hold</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_SalesforceValues</name>
+        <label>Assign values for Salesforce</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>0123b000000UtfvAAC</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Case_Record_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assign On Hold variables for the Case record when Status is no longer = &quot;On Hold&quot;</description>
+        <name>Remove_On_Hold_Reminder_Values</name>
+        <label>Remove On Hold Reminder Values</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.On_Hold_Reminder__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.On_Hold_Counter__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.On_Hold_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>forD_OnHoldDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.On_Hold_Reminder_Sent__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Default_Owner_and_Project</name>
+        <label>Set Default Owner and Project</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Project__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Project.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>forT_DefaultOwner</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Case_Record_Type</name>
+        <label>Case Record Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Salesforce Case</defaultConnectorLabel>
+        <rules>
+            <name>App_Case</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>App_Cases</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>dec_Status</targetReference>
+            </connector>
+            <label>App Case</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Case_Stage_Contain_On_Hold</name>
+        <label>Case Stage Contain On Hold</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Stage_On_Hold</name>
+            <conditionLogic>NOT(1)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CaseStage__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>On Hold</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assign_OnHold</targetReference>
+            </connector>
+            <label>Stage On Hold</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Case_Stage_Not_Contains_Escalated</name>
+        <label>Case Stage Not Contains Escalated</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>No_Stage_Escalated</name>
+            <conditionLogic>NOT(1)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CaseStage__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Escalated</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assign_Escalated</targetReference>
+            </connector>
+            <label>No Stage Escalated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>dec_CreatedOrUpdated</name>
+        <label>Created or Updated</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>dec_ProjectService</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Updated</defaultConnectorLabel>
+        <rules>
+            <name>Created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Salesforce_or_App_Case</targetReference>
+            </connector>
+            <label>Created</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>dec_ProjectService</name>
+        <label>Project Service?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_SalesforceValues</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Salesforce</defaultConnectorLabel>
+        <rules>
+            <name>App</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Project__r.Service__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>App</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assign_AppValues</targetReference>
+            </connector>
+            <label>App</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>dec_Status</name>
+        <label>Status Changed?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Skip</defaultConnectorLabel>
+        <rules>
+            <name>OnHold</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>On Hold</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_On_Hold_Values</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>On Hold</label>
+        </rules>
+        <rules>
+            <name>Escalated</name>
+            <conditionLogic>1</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Escalated</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Case_Stage_Not_Contains_Escalated</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Escalated</label>
+        </rules>
+        <rules>
+            <name>From_On_Hold</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>On Hold</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>On Hold</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Remove_On_Hold_Reminder_Values</targetReference>
+            </connector>
+            <label>From On Hold</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Contact_Populated</name>
+        <label>Is Contact Populated</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Contact_Is_Populated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ContactId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Project</targetReference>
+            </connector>
+            <label>Contact Is Populated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Salesforce_or_App_Case</name>
+        <label>Salesforce or App Case</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Salesforce_Cases</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Salesforce_Cases</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_Contact_Populated</targetReference>
+            </connector>
+            <label>Salesforce Cases</label>
+        </rules>
+        <rules>
+            <name>App_Cases</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>App_Cases</stringValue>
+                </rightValue>
+            </conditions>
+            <label>App Cases</label>
+        </rules>
+    </decisions>
+    <description>12/6: update to include logic for &quot;On Hold&quot; or &quot;Escalated&quot; App Cases
+10/8/25 - W-002565 - Removed On Hold Logic from after flow because it was updating triggering Record and added that functionality here.
+12/8/25 - W-002565 - added population of On Hold Reminder Sent field.
+3/9/26 - W-002575 - added auto population of owner, project, and status on create.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>If Case is moved to Closed from On Hold then do not update On Hold Date.</description>
+        <name>forD_OnHoldDate</name>
+        <dataType>Date</dataType>
+        <expression>IF(ISPICKVAL({!$Record.Status}, &apos;Closed&apos;), {!$Record.On_Hold_Date__c}, null)</expression>
+    </formulas>
+    <formulas>
+        <name>forT_DefaultOwner</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!Get_Project.Default_Case_Owner__c}, &apos;Tech Lead&apos;), {!Get_Project.TechLead__r.Resource_User_Record__c},
+IF(ISPICKVAL({!Get_Project.Default_Case_Owner__c}, &apos;Project Manager&apos;), {!Get_Project.Project_Lead__r.Resource_User_Record__c}, {!$Record.OwnerId}))</expression>
+    </formulas>
+    <formulas>
+        <name>IsNew</name>
+        <dataType>Boolean</dataType>
+        <expression>IsNew()</expression>
+    </formulas>
+    <interviewLabel>Case: Before Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Case: Before Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Project</name>
+        <label>Get Project</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Default_Owner_and_Project</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Contact.AccountId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Project_Stage__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Service__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Salesforce</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Project_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Managed Services</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SFDC_Projects__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>dec_CreatedOrUpdated</targetReference>
+        </connector>
+        <object>Case</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

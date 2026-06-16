@@ -1,0 +1,176 @@
+<template>
+    <lightning-card>
+        <lightning-button-icon  icon-name="utility:left" variant="border-filled" alternative-text="Last week" slot="actions" onclick={handleLastWeek}></lightning-button-icon>
+        <lightning-button-icon  icon-name="utility:right" variant="border-filled" alternative-text="Next week" slot="actions" onclick={handleNextWeek}></lightning-button-icon>
+        <lightning-button-icon  class="slds-p-left_xx-small" icon-name="utility:home" variant="none" alternative-text="Go to this week" slot="actions" onclick={handleHome}></lightning-button-icon>
+            
+        <h3 slot="title" class={hStyle}>
+            <lightning-icon icon-name="utility:clock" size="small"></lightning-icon>
+            Week of {weekStart} - {gtot}hrs
+        </h3>
+        <div class="slds-tabs_default slds-p-around_x-small" data-id="dayTabs">
+            <ul class="slds-tabs_default__nav" role="tablist">
+                <li class="slds-tabs_default__item day-tab slds-is-active" title="Su" role="presentation">
+                    <a class="slds-tabs_default__link" href="#" role="tab" tabindex="0" onclick={handleTabActive} aria-selected="true" aria-controls="tab-default-1" id="tab-0">{tabSu}<template lwc:if={isFirstSu}> <lightning-icon icon-name="utility:dayview" size="xx-small"></lightning-icon></template></lightning-formatted-rich-text></a>
+                </li>
+                <li class="slds-tabs_default__item day-tab" title="Mo" role="presentation">
+                    <a class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" onclick={handleTabActive} aria-selected="false" aria-controls="tab-default-2" id="tab-1">{tabMo}<template lwc:if={isFirstMo}> <lightning-icon icon-name="utility:dayview" size="xx-small"></lightning-icon></template></a>
+                </li>
+                <li class="slds-tabs_default__item day-tab" title="Tu" role="presentation">
+                    <a class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" onclick={handleTabActive} aria-selected="false" aria-controls="tab-default-3" id="tab-2">{tabTu}<template lwc:if={isFirstTu}> <lightning-icon icon-name="utility:dayview" size="xx-small"></lightning-icon></template></lightning-formatted-rich-text></a>
+                </li>
+                <li class="slds-tabs_default__item day-tab" title="We" role="presentation">
+                    <a class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" onclick={handleTabActive} aria-selected="false" aria-controls="tab-default-4" id="tab-3">{tabWe}<template lwc:if={isFirstWe}> <lightning-icon icon-name="utility:dayview" size="xx-small"></lightning-icon></template></lightning-formatted-rich-text></a>
+                </li>
+                <li class="slds-tabs_default__item day-tab" title="Th" role="presentation">
+                    <a class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" onclick={handleTabActive} aria-selected="false" aria-controls="tab-default-5" id="tab-4">{tabTh}<template lwc:if={isFirstTh}> <lightning-icon icon-name="utility:dayview" size="xx-small"></lightning-icon></template></lightning-formatted-rich-text></a>
+                </li>
+                <li class="slds-tabs_default__item day-tab" title="Fr" role="presentation">
+                    <a class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" onclick={handleTabActive} aria-selected="false" aria-controls="tab-default-6" id="tab-5">{tabFr}<template lwc:if={isFirstFr}> <lightning-icon icon-name="utility:dayview" size="xx-small"></lightning-icon></template></lightning-formatted-rich-text></a>
+                </li>
+                <li class="slds-tabs_default__item day-tab " title="Sa" role="presentation">
+                    <a class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" onclick={handleTabActive} aria-selected="false" aria-controls="tab-default-7" id="tab-6">{tabSa}<template lwc:if={isFirstSa}> <lightning-icon icon-name="utility:dayview" size="xx-small"></lightning-icon></template></lightning-formatted-rich-text></a>
+                </li>
+            </ul>
+        <div id="tab-default-content" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-content__item">
+            <div class="slds-clearfix" style="font-weight:bold">
+                <lightning-formatted-rich-text value={selectedDayName} disable-linkify style="pointer-events: none;"></lightning-formatted-rich-text>
+                <div class="slds-float_right">
+                    <lightning-button-icon icon-name="utility:add" size="x-small" onclick={handleAddTime} alternative-text="Add time entry" visible={showAddTime}></lightning-button-icon> 
+                </div>
+            </div>
+            
+
+                <lightning-layout vertical-align="start" class="slds-grid slds-wrap">
+                    <template for:each={todaysEntries} for:item="tid">
+                        <lightning-layout-item key={tid.tcid} size="12" class="slds-col slds-p-around_xx-small">
+                            <c-timecard-item  onentryclick={handleEntryClick} tc={tid}></c-timecard-item>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+
+
+            </div>
+        </div>
+    </lightning-card>
+
+
+    <!-- Backdrop -->
+    <template if:true={showPanel}>
+        <div class="backdrop" onclick={closePanel}></div>
+    </template>
+
+    <!-- Custom Drawer -->
+    <div class={drawerClass}>
+        <template lwc:if={showPanelSpinner}>
+            <lightning-spinner ></lightning-spinner>
+        </template>
+        <div class="drawer-header">
+            <lightning-button-icon class="slds-m-right_xx-small" icon-name="utility:close" onclick={closePanel}></lightning-button-icon>
+            <span>{panelTitle}</span>
+        </div>
+
+        <div class="drawer-body">
+            <lightning-tabset data-section="project" variant="scoped" active-tab-value ="">
+                <lightning-tab label="Recent" value="recent">
+                    <div class={recentClass}>
+                    <!-- Recent Projects -->
+                        <lightning-datatable
+                            key-field="lineItemId"
+                            data={recentData}
+                            columns={recentColumns}
+                            hide-checkbox-column
+                            onrowaction={handleRecentRowSelect}>
+                        </lightning-datatable>
+                    </div>
+                </lightning-tab>
+                <lightning-tab label="Search" value="search">
+                    <lightning-layout multiple-rows class="slds-gutters_xx-small">
+                        <!-- Project -->
+                        <template lwc:if={searchAvailable}>
+
+                            <lightning-layout-item size="12" class="slds-m-bottom_xx-small">
+                                <lightning-record-picker
+                                    label="Assignment"
+                                    placeholder="Search Assignment..."
+                                    object-api-name="SFDC_Assignment__c"
+                                    data-field="assignmentId"
+                                    filter={assignmentFilter}
+                                    display-info={assignmentDisplay}
+                                    value={timeEntry.assignmentId}
+                                    onchange={handleChange}
+                                    required="true"
+                                    lwc:ref="assignmentPicker">
+                                </lightning-record-picker>
+                            </lightning-layout-item>
+                            <template lwc:if={hasLineItems}>
+                                <lightning-layout-item size="12" class="slds-m-bottom_xx-small">
+                                    <lightning-select
+                                        name="lineItemId"
+                                        label="Line Item"
+                                        options={pliSelection}
+                                        onchange={handleChange}
+                                        data-field="lineItemId"
+                                        value={timeEntry.lineItemId}
+                                        required="true"
+                                        class="timeform">
+                                    </lightning-select>
+                                </lightning-layout-item>
+                            </template>
+                        </template>
+                        <template lwc:else>
+                            <div>Gathering Resource Information</div>
+                        </template>
+                    </lightning-layout>
+                </lightning-tab>
+            </lightning-tabset>
+            
+                
+            <lightning-layout multiple-rows class="slds-gutters_xx-small">
+                <!-- Date -->
+                <lightning-layout-item size="12" medium-device-size="6" class="slds-m-bottom_xx-small">
+                    <lightning-input type="date" label="Date"
+                        value={timeEntry.workDate}
+                        onchange={handleChange}
+                        data-field="workDate"
+                        class="slds-m-right_xx-small timeform"
+                        required="true">
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <!-- Hours -->
+                <lightning-layout-item size="12" medium-device-size="6" class="slds-m-bottom_xx-small">
+                    <lightning-input type="number" label="Hours"
+                        value={timeEntry.hours}
+                        onchange={handleChange}
+                        data-field="hours"
+                        step="0.05"
+                        required="true"
+                        class="timeform">
+                    </lightning-input>
+                </lightning-layout-item>
+
+                <!-- Description -->
+                <lightning-layout-item size="12" class="slds-m-bottom_xx-small">
+                    <lightning-textarea label="Description"
+                        value={timeEntry.description}
+                        onchange={handleChange}
+                        data-field="description"
+                        required="true"
+                        class="timeform">
+                    </lightning-textarea>
+                </lightning-layout-item>
+
+                <!-- Submit -->
+                <lightning-layout-item size="6">
+                    <lightning-button variant="brand" label="Submit" onclick={handleSubmitTimeForm}></lightning-button>
+                </lightning-layout-item>
+                <template lwc:if={isNotNew}>
+                    <lightning-layout-item size="6">
+                        <lightning-button variant="brand" label="Save As New Entry" onclick={handleSaveAsNewEntry} ></lightning-button>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </div>
+    </div>
+</template>

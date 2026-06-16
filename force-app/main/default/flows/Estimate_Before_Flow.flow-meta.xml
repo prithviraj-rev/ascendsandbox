@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>assign_Deliverables</name>
+        <label>Assign Deliverables</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Deliverables__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>temp_DeliverablesDefault</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>dec_CreatedUpdated</name>
+        <label>Created/Updated</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Updated</defaultConnectorLabel>
+        <rules>
+            <name>Created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fxIsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assign_Deliverables</targetReference>
+            </connector>
+            <label>Created</label>
+        </rules>
+    </decisions>
+    <description>05/30/25 - W-002547 Remove Sawyer as default Estimate Owner</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>fxIsNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <interviewLabel>E {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Estimate: Before Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>dec_CreatedUpdated</targetReference>
+        </connector>
+        <object>Project_Estimate__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>temp_DeliverablesDefault</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Statement of Work&lt;/strong&gt; – A formal proposal for signature, outlining the project&apos;s scope, investment, timeline, and agreement terms.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Project Status Update&lt;/strong&gt; – A summary of the project&apos;s status and overall health, including milestones achieved, planned milestones, and identified risks or dependencies.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Functional Design Document&lt;/strong&gt; – A finalized document detailing the functional design based on requirements gathered during the solution planning phase.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;ERD (Data Model)&lt;/strong&gt; – A finalized Entity Relationship Diagram (ERD) representing the project&apos;s data model and configurations.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Process Flow&lt;/strong&gt; – A visual representation of the process flow, designed based on project requirements and configurations.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Configuration Workbook&lt;/strong&gt; – A completed workbook outlining all Salesforce configurations implemented in the project.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Test Scenarios&lt;/strong&gt; – A compiled list of relevant test scenarios, aligning with the project&apos;s requirements and configurations.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Test Scripts&lt;/strong&gt; – A compiled list of relevant test scripts, aligning with the project&apos;s requirements and configurations.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;End User Documentation &lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;– &lt;/span&gt;A structured training guide outlining key business processes, user responsibilities, and step-by-step instructions, supported by screenshots, to enable effective adoption and consistent use of the configured Salesforce solution.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Administrative Documentation&lt;/strong&gt; – A comprehensive admin training document covering platform configuration, best practices, and administrative guidelines based on functionality implemented during the project.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Fully Configured Application&lt;/strong&gt; – A Salesforce environment configured in a production organization, incorporating all features specified in the Statement of Work.&amp;nbsp;&lt;/li&gt;&lt;/ul&gt;</text>
+    </textTemplates>
+</Flow>

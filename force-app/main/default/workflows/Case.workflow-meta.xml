@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Case_Checkpoint_Email</fullName>
+        <description>Case Checkpoint Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>salesforce.support@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_Checkpoint_V2</template>
+    </alerts>
+    <alerts>
+        <fullName>Case_Checkpoint_Email_app</fullName>
+        <description>Case Checkpoint Email (App)</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>app.support@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_Checkpoint_V2</template>
+    </alerts>
+    <alerts>
+        <fullName>Case_Closed_Email</fullName>
+        <description>Case Closed Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>salesforce.support@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_Closed</template>
+    </alerts>
+    <alerts>
+        <fullName>Case_Closed_Email_App</fullName>
+        <description>Case Closed Email (app)</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderAddress>app.support@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_Closed_App</template>
+    </alerts>
+    <alerts>
+        <fullName>Case_Deployment_Approval_Recalled</fullName>
+        <description>Case: Deployment Approval Recalled</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Change_Management_Approvers</recipient>
+            <type>group</type>
+        </recipients>
+        <senderAddress>salesforce.support@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_Deployment_Recalled</template>
+    </alerts>
+    <alerts>
+        <fullName>Case_Deployment_approved_or_Rejected</fullName>
+        <description>Case: Deployment approved or Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>salesforce.support@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_Deployment_Approved_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Daily_SLA_Report_Email_Alert</fullName>
+        <description>Daily SLA Report Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>rbrunjes@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>salesforce.support@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Case_West_Monroe_Exelon_Case_Notification_Email</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Case_Deployment_Approved</fullName>
+        <field>Change_Management_Status__c</field>
+        <literalValue>Deployment Approved</literalValue>
+        <name>Case: Deployment Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Case_Development_in_Progress</fullName>
+        <field>Change_Management_Status__c</field>
+        <literalValue>Development In Progress</literalValue>
+        <name>Case: Development in Progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Case_Request_Submitted</fullName>
+        <description>Used in change management approval process</description>
+        <field>Change_Management_Status__c</field>
+        <literalValue>Request Submitted</literalValue>
+        <name>Case: Request Submitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Case_Seats_Default</fullName>
+        <field>Seats__c</field>
+        <formula>Account.Licenses__c</formula>
+        <name>Case # Seats Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Case Creation Defaults</fullName>
+        <actions>
+            <name>Case_Seats_Default</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

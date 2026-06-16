@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Assignment_Created_from_Case_Time</fullName>
+        <description>Assignment Created from Case Time</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>dakina@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>ljohnston@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>shobbs@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Doextra_Project_Management/Assignment_Created</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Pam_about_new_Assignments</fullName>
+        <ccEmails>Pam.Messina@doextra.com</ccEmails>
+        <description>Email Pam about new Assignments</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>jbrandt@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jeremy.moore@light.doextra.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>sara.zito@doextra.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Doextra_Project_Management/New_Assignment_Created</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Set_Assignment_Name</fullName>
+        <field>Name</field>
+        <formula>Left(CASE (TEXT(Role__c),
+&quot;Travel&quot;,Resource__r.FirstName &amp; &apos; &apos; &amp;  Resource__r.LastName &amp; &apos; -Travel- &apos; &amp; Projects__r.Name,
+&quot;Sales Engineer&quot;,
+Resource__r.FirstName &amp; &apos; &apos; &amp;  Resource__r.LastName &amp; &apos; - &apos; &amp;  Opportunity__r.Name,
+Resource__r.FirstName &amp; &apos; &apos; &amp;  Resource__r.LastName &amp;&apos; - &apos; &amp; BlankValue(Projects__r.Name, &quot;Opp: &quot; &amp; Opportunity__r.Name)), 80)</formula>
+        <name>Set Assignment Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Assignment Defaults</fullName>
+        <actions>
+            <name>Set_Assignment_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Billable_Hours_Worked__c</fullName>
+    <label>Billable Hours Worked</label>
+    <summarizedField>Project_Line_Item__c.Billable_Hours_Worked__c</summarizedField>
+    <summaryForeignKey>Project_Line_Item__c.Project__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

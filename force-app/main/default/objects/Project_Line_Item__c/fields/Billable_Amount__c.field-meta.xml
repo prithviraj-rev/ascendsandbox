@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billable_Amount__c</fullName>
+    <inlineHelpText>Rollup from Timecards</inlineHelpText>
+    <label>Billable Amount</label>
+    <summarizedField>SFDC_Timecard__c.Billable_Amount_for_Rollup__c</summarizedField>
+    <summaryForeignKey>SFDC_Timecard__c.Project_Line_Item__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

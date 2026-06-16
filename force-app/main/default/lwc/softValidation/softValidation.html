@@ -1,0 +1,26 @@
+<template>
+    <template if:true={isIniting}>
+        <article class="slds-card">
+            <div class="slds-card__body slds-card__body_inner" style="height:30px;">
+                <lightning-spinner size="small"></lightning-spinner>
+            </div>
+        </article>
+    </template>
+
+    <template if:true={showMessages}>
+        <div class="messages-container" style={componentContainerStyles}>
+            <template for:each={messages} for:item="msgItem">
+                <div class={msgItem.cssClasses} style={msgItem.cssStyles} role="alert" key={msgItem.index}>
+                    <template if:true={msgItem.iconName}>
+                        <div class="left-icon-container">
+                            <lightning-icon icon-name={msgItem.iconName} alternative-text={msgItem.iconAlternativeText} title={msgItem.iconTitle} size="x-small" variant={msgItem.iconVariant}></lightning-icon>
+                        </div>
+                    </template>
+                    <div class="body-container" style={msgItem.msgBodyCssStyles}>
+                        <lightning-formatted-rich-text value={msgItem.msgRichText}></lightning-formatted-rich-text>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </template>
+</template>

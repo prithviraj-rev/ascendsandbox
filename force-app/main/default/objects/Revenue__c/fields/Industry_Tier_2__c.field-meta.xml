@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Industry_Tier_2__c</fullName>
+    <label>Industry Tier 2</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+                <label>Advertising</label>
+            </value>
+            <value>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+                <label>Agriculture</label>
+            </value>
+            <value>
+                <fullName>Arts</fullName>
+                <default>false</default>
+                <label>Arts</label>
+            </value>
+            <value>
+                <fullName>Automotive</fullName>
+                <default>false</default>
+                <label>Automotive</label>
+            </value>
+            <value>
+                <fullName>Clothing</fullName>
+                <default>false</default>
+                <label>Clothing</label>
+            </value>
+            <value>
+                <fullName>Credit Union</fullName>
+                <default>false</default>
+                <label>Credit Union</label>
+            </value>
+            <value>
+                <fullName>Disaster Recovery</fullName>
+                <default>false</default>
+                <label>Disaster Recovery</label>
+            </value>
+            <value>
+                <fullName>Economic Development</fullName>
+                <default>false</default>
+                <label>Economic Development</label>
+            </value>
+            <value>
+                <fullName>Education</fullName>
+                <default>false</default>
+                <label>Education</label>
+            </value>
+            <value>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+                <label>Engineering</label>
+            </value>
+            <value>
+                <fullName>Financial Services</fullName>
+                <default>false</default>
+                <label>Financial Services</label>
+            </value>
+            <value>
+                <fullName>Food Science</fullName>
+                <default>false</default>
+                <label>Food Science</label>
+            </value>
+            <value>
+                <fullName>Healthcare</fullName>
+                <default>false</default>
+                <label>Healthcare</label>
+            </value>
+            <value>
+                <fullName>High Tech</fullName>
+                <default>false</default>
+                <label>High Tech</label>
+            </value>
+            <value>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+                <label>Insurance</label>
+            </value>
+            <value>
+                <fullName>Investment Management</fullName>
+                <default>false</default>
+                <label>Investment Management</label>
+            </value>
+            <value>
+                <fullName>Leasing</fullName>
+                <default>false</default>
+                <label>Leasing</label>
+            </value>
+            <value>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+                <label>Manufacturing</label>
+            </value>
+            <value>
+                <fullName>Medical Equipment</fullName>
+                <default>false</default>
+                <label>Medical Equipment</label>
+            </value>
+            <value>
+                <fullName>Military</fullName>
+                <default>false</default>
+                <label>Military</label>
+            </value>
+            <value>
+                <fullName>Military and Aircraft</fullName>
+                <default>false</default>
+                <label>Military and Aircraft</label>
+            </value>
+            <value>
+                <fullName>Mobile Sanitation</fullName>
+                <default>false</default>
+                <label>Mobile Sanitation</label>
+            </value>
+            <value>
+                <fullName>Musical Equipment</fullName>
+                <default>false</default>
+                <label>Musical Equipment</label>
+            </value>
+            <value>
+                <fullName>Plastics</fullName>
+                <default>false</default>
+                <label>Plastics</label>
+            </value>
+            <value>
+                <fullName>Professional Development</fullName>
+                <default>false</default>
+                <label>Professional Development</label>
+            </value>
+            <value>
+                <fullName>Publisher</fullName>
+                <default>false</default>
+                <label>Publisher</label>
+            </value>
+            <value>
+                <fullName>Recreational Vehicles</fullName>
+                <default>false</default>
+                <label>Recreational Vehicles</label>
+            </value>
+            <value>
+                <fullName>Software</fullName>
+                <default>false</default>
+                <label>Software</label>
+            </value>
+            <value>
+                <fullName>Storage Products</fullName>
+                <default>false</default>
+                <label>Storage Products</label>
+            </value>
+            <value>
+                <fullName>Tires</fullName>
+                <default>false</default>
+                <label>Tires</label>
+            </value>
+            <value>
+                <fullName>Uncategorized</fullName>
+                <default>false</default>
+                <label>Uncategorized</label>
+            </value>
+            <value>
+                <fullName>Recruiting</fullName>
+                <default>false</default>
+                <label>Recruiting</label>
+            </value>
+            <value>
+                <fullName>Energy</fullName>
+                <default>false</default>
+                <label>Energy</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

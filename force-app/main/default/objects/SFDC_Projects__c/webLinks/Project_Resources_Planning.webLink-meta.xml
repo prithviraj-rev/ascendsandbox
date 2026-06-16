@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Resources_Planning</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Resource Planning</masterLabel>
+    <openType>noSidebar</openType>
+    <protected>false</protected>
+    <url>/lightning/n/Resource_Planning?c__projectId={!SFDC_Projects__c.Id}</url>
+</WebLink>

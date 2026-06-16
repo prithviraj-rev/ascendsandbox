@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rev_Rec_Method__c</fullName>
+    <label>Rev Rec Method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Immediate</fullName>
+                <default>false</default>
+                <label>Immediate</label>
+            </value>
+            <value>
+                <fullName>Straight-Line</fullName>
+                <default>false</default>
+                <label>Straight-Line</label>
+            </value>
+            <value>
+                <fullName>Milestone</fullName>
+                <default>false</default>
+                <label>Milestone</label>
+            </value>
+            <value>
+                <fullName>Percentage Complete</fullName>
+                <default>false</default>
+                <label>Percentage Complete</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Force_User_to_Enter_Negative_Value</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+    Custom_Uplift_Price_Percentage__c &gt; 0,
+    Custom_Uplift_Price_Amount__c &gt; 0
+)</errorConditionFormula>
+    <errorMessage>Positive values are not allowed in the Markup field. Please enter a negative value.</errorMessage>
+</ValidationRule>

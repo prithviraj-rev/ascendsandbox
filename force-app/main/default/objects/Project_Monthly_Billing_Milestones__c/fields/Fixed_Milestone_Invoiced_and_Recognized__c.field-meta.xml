@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fixed_Milestone_Invoiced_and_Recognized__c</fullName>
+    <formula>NOT(AND( TEXT(Invoice_Status__c) = &quot;Invoice Sent to Client&quot;, TEXT(Revenue_Recognition_Status__c) = &quot;Fully Recognized&quot;, Billing_Method__c = &quot;Fixed&quot;))</formula>
+    <label>Fixed Milestone Invoiced and Recognized</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Cost__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Check this box is cost should not be calculated. Usually used for 1099 resources not charging Doextra.</inlineHelpText>
+    <label>No Cost</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

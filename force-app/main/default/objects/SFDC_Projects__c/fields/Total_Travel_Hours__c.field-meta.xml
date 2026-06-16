@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Travel_Hours__c</fullName>
+    <inlineHelpText>From all time cards on this project with a type or Travel Billable or Travel Non-billable. These hours are not included in the Billable, Non-Billable, Hours Remaining totals.</inlineHelpText>
+    <label>Total Travel Hours</label>
+    <summarizedField>Project_Line_Item__c.Travel_Hours__c</summarizedField>
+    <summaryForeignKey>Project_Line_Item__c.Project__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

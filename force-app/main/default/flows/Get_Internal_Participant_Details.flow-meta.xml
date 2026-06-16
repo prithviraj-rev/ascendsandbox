@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Adds count to a variable</description>
+        <name>Add_count</name>
+        <label>Add count</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>InternalRoleParticipated</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>filter_for_participant</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>InternalRoleAttended</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Thru_Role_List.Role__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Thru_Role_List</targetReference>
+        </connector>
+    </assignments>
+    <collectionProcessors>
+        <description>count an idividual participant</description>
+        <name>filter_for_participant</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>filter for participant</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNextValueToReference>currentItem_filter_for_participant</assignNextValueToReference>
+        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>Get_Participants</collectionReference>
+        <conditionLogic>and</conditionLogic>
+        <conditions>
+            <leftValueReference>currentItem_filter_for_participant.Email</leftValueReference>
+            <operator>EqualTo</operator>
+            <rightValue>
+                <elementReference>Loop_Thru_Role_List.Email_Address__c</elementReference>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>Add_count</targetReference>
+        </connector>
+    </collectionProcessors>
+    <description>Returns the internal video call participant count and role</description>
+    <environments>Default</environments>
+    <interviewLabel>Get Internal Participant Details {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Get Internal Participant Details</label>
+    <loops>
+        <description>Looop through CMDT to count internal roles participating</description>
+        <name>Loop_Thru_Role_List</name>
+        <label>Loop Thru Role List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Internal_Role_Users</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>filter_for_participant</targetReference>
+        </nextValueConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Internal_Role_Users</name>
+        <label>Get Internal Role Users</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Thru_Role_List</targetReference>
+        </connector>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>VidCall_RecMatch_Int_Part_Classify__mdt</object>
+        <sortField>Priority_Order__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Gets participants</description>
+        <name>Get_Participants</name>
+        <label>Get Participants</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Internal_Role_Users</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>VideoCallId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>VideoCallId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>VideoCallParticipant</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Participants</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>currentItem_filter_for_participant</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>VideoCallParticipant</objectType>
+    </variables>
+    <variables>
+        <name>currentItemFromSourceCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>VideoCallParticipant</objectType>
+    </variables>
+    <variables>
+        <description>A text string returned that spedifies the role</description>
+        <name>InternalRoleAttended</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <stringValue>None</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Count of how many with classification role attended</description>
+        <name>InternalRoleParticipated</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Id of the VideoCall used to lookup internal participants</description>
+        <name>VideoCallId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

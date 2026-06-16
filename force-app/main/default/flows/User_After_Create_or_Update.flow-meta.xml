@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>W-002560 - Verifies ATM records were found to avoid flow errors when going to Delete action.</description>
+        <name>Found_ATM_Records</name>
+        <label>Found ATM Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_Accounts_to_Remove_CSM_Value</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>ATM_Records_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Account_Team_Member_Records_for_User</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_ATM_Records</targetReference>
+            </connector>
+            <label>ATM Records Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>W-002560 - Checks to see if triggering is a Standard UserType.</description>
+        <name>Is_User_Standard_User</name>
+        <label>Is User Standard User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>UserType_is_Standard</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.UserType</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Standard</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Account_Team_Member_Records_for_User</targetReference>
+            </connector>
+            <label>UserType is Standard</label>
+        </rules>
+    </decisions>
+    <description>W-002560 - initial Creation</description>
+    <environments>Default</environments>
+    <interviewLabel>User After Create or Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>User After Create or Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <description>W-002560 - Deletes ATM Records found.</description>
+        <name>Delete_ATM_Records</name>
+        <label>Delete ATM Records</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Accounts_to_Remove_CSM_Value</targetReference>
+        </connector>
+        <inputReference>Get_Account_Team_Member_Records_for_User</inputReference>
+    </recordDeletes>
+    <recordLookups>
+        <description>W-002560 - Gets the ATM records for the triggering user to delete them.</description>
+        <name>Get_Account_Team_Member_Records_for_User</name>
+        <label>Get Account Team Member Records for User</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Found_ATM_Records</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>UserId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>AccountTeamMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>W-002560 - for any Account where the triggering user is the CSM we are updating that account to remove the value.</description>
+        <name>Update_Accounts_to_Remove_CSM_Value</name>
+        <label>Update Accounts to Remove CSM Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ClientSuccessManager__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>ClientSuccessManager__c</field>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <object>User</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>X1_Minute_After_Deactivate_Date</name>
+            <connector>
+                <targetReference>Is_User_Standard_User</targetReference>
+            </connector>
+            <label>1 Minute After Deactivate Date</label>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>Deactivation_Date__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Managed_Services</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>Managed_Services</compactLayoutAssignment>
+    <label>Managed Services</label>
+    <picklistValues>
+        <picklist>Bill_Travel_Time__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Billing__c</picklist>
+        <values>
+            <fullName>Fixed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MRR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prepaid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>T%26M</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Checklist_Process__c</picklist>
+        <values>
+            <fullName>PS Close Out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PS Kickoff</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Default_Case_Owner__c</picklist>
+        <values>
+            <fullName>No Auto Assign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tech Lead</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Invoice_Schedule__c</picklist>
+        <values>
+            <fullName>Annually</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quarterly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Semi-Annually</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Payment_Terms__c</picklist>
+        <values>
+            <fullName>Due Upon Receipt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Net 30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Net 45</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Net 60</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Net 90</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other %28See Project%2FInvoice Notes%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ProductLine__c</picklist>
+        <values>
+            <fullName>B2B Marketing Analytics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CPQ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CRM Analytics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commerce Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Experience Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Digital Engagement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Einstein Bots</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Einstein Conversation Insights</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Einstein Predictions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Einstein Relationship Insights</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Einstein for Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Einstein for Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Field Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Financial Services Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Full Copy Sandbox</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MCAE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufacturing Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MuleSoft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MuleSoft Composer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner Experience Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quip</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revenue Intelligence</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Engagement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Programs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Salesforce Connect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Salesforce Maps</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Salesforce Scheduler</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Salesforce Shield</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Cloud Voice</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Slack</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tableau</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ProjectService__c</picklist>
+        <values>
+            <fullName>Advisory</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enhancement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Implementation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ongoing Maintenance</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Project_Stage__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Planned</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Project_Status__c</picklist>
+        <values>
+            <fullName>Blue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Green</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Red</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yellow</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Project_Type__c</picklist>
+        <values>
+            <fullName>Managed Services</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Service__c</picklist>
+        <values>
+            <fullName>App</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HubSpot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Salesforce</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zingly</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

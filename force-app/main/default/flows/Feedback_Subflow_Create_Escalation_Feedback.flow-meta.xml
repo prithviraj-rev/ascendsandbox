@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Copies the escalation description formula into a plain text variable so it is evaluated during the run and can be used consistently when populating Description__c.</description>
+        <name>ASSIGN_Escalation_Description_Text</name>
+        <label>ASSIGN Escalation Description Text</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varEscalationDescriptionText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varEscalationDescription</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Escalation_Feedback</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Prevents duplicate escalation records. If the parent Feedback record already has an Escalation__c value, that means an escalation record has already been created and linked. In that case, the subflow stops and does nothing.</description>
+        <name>DEC_Already_Linked_to_Escalation</name>
+        <label>DEC Already Linked to Escalation?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>GET_Resource_Reviewed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Not Linked Yet</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Already_linked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Triggering_Feedback.Escalation__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Yes - Already linked</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Safety check to ensure we only proceed when Escalation_Needed__c is True on the triggering feedback record. Prevents accidental escalation creation if the subflow is called incorrectly.</description>
+        <name>Escalation_Needed</name>
+        <label>Escalation Needed?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Escalation Not Needed</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Escalation_Needed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Triggering_Feedback.Escalation_Needed__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>DEC_Already_Linked_to_Escalation</targetReference>
+            </connector>
+            <label>Yes Escalation Needed</label>
+        </rules>
+    </decisions>
+    <description>Creates an Escalation feedback record when Escalation_Needed__c is turned on for a feedback record. Updates the original feedback record to Status = Escalated, creates one related escalation record, copies key fields, formats the escalation name, and assigns ownership to the Feedback Queue. Includes duplicate prevention so only one escalation is created per parent feedback.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Creates the escalation record Description from Internal_Comments__c on the parent feedback. If there are no internal comments, the description stays blank. If comments exist, it formats them as TODAY’S DATE - comments.</description>
+        <name>varEscalationDescription</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  ISBLANK({!Get_Triggering_Feedback.Internal_Comments__c}),
+  &quot;&quot;,
+  &quot;Original Feedback Comments - &quot; &amp;
+  TRIM(
+    SUBSTITUTE(
+      SUBSTITUTE(
+        SUBSTITUTE(
+          SUBSTITUTE(
+            SUBSTITUTE(
+              SUBSTITUTE(
+                {!Get_Triggering_Feedback.Internal_Comments__c},
+                &quot;&lt;/p&gt;&lt;p&gt;&quot;, &quot; &quot;
+              ),
+              &quot;&lt;p&gt;&quot;, &quot;&quot;
+            ),
+            &quot;&lt;/p&gt;&quot;, &quot;&quot;
+          ),
+          &quot;\r\n&quot;, &quot; &quot;
+        ),
+        &quot;\r&quot;, &quot; &quot;
+      ),
+      &quot;\n&quot;, &quot; &quot;
+    )
+  )
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Builds the escalation record Name using a short format to stay under the 80 character limit: Escalation - Resource Reviewed - Month YYYY.</description>
+        <name>varEscalationName</name>
+        <dataType>String</dataType>
+        <expression>LEFT(
+    &quot;Escalation - &quot; &amp;
+    {!GET_Resource_Reviewed.Name} &amp;
+    &quot; - &quot; &amp;
+    {!varMonthYYYY},
+    80
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Returns the current month and year in text format (for example, “February 2026”) based on TODAY().</description>
+        <name>varMonthYYYY</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+  MONTH(TODAY()),
+  1, &quot;January&quot;,
+  2, &quot;February&quot;,
+  3, &quot;March&quot;,
+  4, &quot;April&quot;,
+  5, &quot;May&quot;,
+  6, &quot;June&quot;,
+  7, &quot;July&quot;,
+  8, &quot;August&quot;,
+  9, &quot;September&quot;,
+  10, &quot;October&quot;,
+  11, &quot;November&quot;,
+  &quot;December&quot;
+) &amp; &quot; &quot; &amp; TEXT(YEAR(TODAY()))</expression>
+    </formulas>
+    <interviewLabel>Feedback: Subflow - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Feedback: Subflow - Create Escalation Feedback</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Creates a new Feedback record using the Escalation record type. Copies key context fields from the parent feedback, links the escalation back to the parent via Feedback__c, sets Status to Need Attention, assigns to the Feedback Queue, and sets Name and Description using the escalation formulas.</description>
+        <name>Create_Escalation_Feedback</name>
+        <label>Create Escalation Feedback</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignRecordIdToReference>varCreatedEscalationId</assignRecordIdToReference>
+        <connector>
+            <targetReference>UPDATE_Parent_Feedback</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Assignee__c</field>
+            <value>
+                <elementReference>Get_Triggering_Feedback.Assignee__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Assignment__c</field>
+            <value>
+                <elementReference>Get_Triggering_Feedback.Assignment__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description__c</field>
+            <value>
+                <elementReference>varEscalationDescriptionText</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Escalation_Type__c</field>
+            <value>
+                <elementReference>Get_Triggering_Feedback.Escalation_Type__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Feedback__c</field>
+            <value>
+                <elementReference>Get_Triggering_Feedback.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>varEscalationName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>GET_Feedback_Queue.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Project_Role__c</field>
+            <value>
+                <elementReference>Get_Triggering_Feedback.Project_Role__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Project__c</field>
+            <value>
+                <elementReference>Get_Triggering_Feedback.Project__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>GET_Escalation_Record_Type.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Resource_Reviewed__c</field>
+            <value>
+                <elementReference>Get_Triggering_Feedback.Resource_Reviewed__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Needs Attention</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Feedback__c</object>
+    </recordCreates>
+    <recordLookups>
+        <description>Finds the RecordTypeId for the Escalation record type on Feedback__c. Flow needs the RecordTypeId to create the escalation record with the correct record type.</description>
+        <name>GET_Escalation_Record_Type</name>
+        <label>GET Escalation Record Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>GET_Feedback_Queue</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Feedback__c</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Escalation</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Finds the queue Id for the Feedback Queue so the escalation record can be assigned to the correct leadership queue for review and follow-up.</description>
+        <name>GET_Feedback_Queue</name>
+        <label>GET Feedback Queue</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>ASSIGN_Escalation_Description_Text</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Queue</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Feedback_Queue</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Fetches the Resource Reviewed record so we can use the person’s full name in the escalation record Name. This keeps escalation names consistent and readable for leadership.</description>
+        <name>GET_Resource_Reviewed</name>
+        <label>GET Resource Reviewed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>GET_Escalation_Record_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Triggering_Feedback.Resource_Reviewed__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Pulls the full triggering Feedback record using the Id passed in from the master flow. This gives the subflow access to Resource Reviewed, Project, Assignment, Project Role, Type, and Internal Comments.</description>
+        <name>Get_Triggering_Feedback</name>
+        <label>Get Triggering Feedback</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Escalation_Needed</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTriggerFeedbackId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Feedback__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Updates the original Feedback record that triggered escalation. Sets Status to Escalated and populates Escalation__c with the Id of the newly created escalation record. This prevents duplicate escalations and creates a clear parent-child relationship between the two records.</description>
+        <name>UPDATE_Parent_Feedback</name>
+        <label>UPDATE Parent Feedback</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Triggering_Feedback.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Escalation__c</field>
+            <value>
+                <elementReference>varCreatedEscalationId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Escalated</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Feedback__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Triggering_Feedback</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Stores the Id of the newly created escalation record so we can link it back to the parent feedback record (Escalation__c).</description>
+        <name>varCreatedEscalationId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the evaluated escalation description text (TODAY - internal comments). Used to confirm the formula output during debug and to populate Description__c on the escalation record.</description>
+        <name>varEscalationDescriptionText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>The Id of the triggering Feedback record passed in from the master flow.</description>
+        <name>varTriggerFeedbackId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

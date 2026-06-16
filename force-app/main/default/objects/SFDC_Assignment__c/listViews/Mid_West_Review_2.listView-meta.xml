@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mid_West_Review_2</fullName>
+    <booleanFilter>((1 AND 7) OR 2 OR 3) AND 4 AND 5 AND 6</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Assignment_Hours_Remaining__c</columns>
+    <columns>Avg_Hours_per_Week__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Number_Of_Hours__c</columns>
+    <columns>Hours_Worked_On_Assignment__c</columns>
+    <columns>Projects__c</columns>
+    <columns>Project_Hours_Remanining__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Project_End_Date__c</columns>
+    <columns>Project_Lead__c</columns>
+    <columns>Billing_Lead__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>End_Date__c</field>
+        <operation>equals</operation>
+        <value>LAST_N_DAYS:30</value>
+    </filters>
+    <filters>
+        <field>End_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>Start_Date__c</field>
+        <operation>equals</operation>
+        <value>NEXT_N_DAYS:30</value>
+    </filters>
+    <filters>
+        <field>Projects__c</field>
+        <operation>notEqual</operation>
+        <value>Doextra Internal</value>
+    </filters>
+    <filters>
+        <field>Resource__c</field>
+        <operation>notEqual</operation>
+        <value>Bob Morrison,David Moore,James Jensen,Martin Ryder,Dennis Scott,Jeremy Moore,Sharon Hopkins</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>Assignment_Hours_Remaining__c</field>
+        <operation>notEqual</operation>
+        <value>0</value>
+    </filters>
+    <label>Mid West Review</label>
+</ListView>

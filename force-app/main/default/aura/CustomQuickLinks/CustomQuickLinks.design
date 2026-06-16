@@ -1,0 +1,18 @@
+<design:component label="Quick Links">
+	<design:attribute
+		name="settings"
+		label="Define Links"
+		default='[{"class":"","label":"Google","value": "http://www.google.com", "target":"_blank", "tooltip":"Search"}]'/>
+	<design:attribute
+		name="group"
+		label="Group Name"
+		default=""
+		description="If populated, displays a Group Header before the links"/>
+	<design:attribute
+		name="columns"
+		label="Columns"
+		min="1"
+		max="8"
+		default="1"
+		description="The number of links to display on a row"/>
+</design:component>

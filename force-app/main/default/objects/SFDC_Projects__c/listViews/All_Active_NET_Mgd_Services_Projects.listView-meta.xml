@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Active_NET_Mgd_Services_Projects</fullName>
+    <columns>NAME</columns>
+    <columns>TechLead__c</columns>
+    <columns>Project_Type__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Monthly_Recurring_Hours__c</columns>
+    <columns>Project_Rate__c</columns>
+    <columns>MRR__c</columns>
+    <columns>Account__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>Service__c</field>
+        <operation>equals</operation>
+        <value>App</value>
+    </filters>
+    <label>All Active .NET Engagements</label>
+    <sharedTo>
+        <group>SF_Ops_Team</group>
+        <group>Salesforce_Delivery_Team</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Sort_Order__c</columns>
+    <columns>Feature_Name__c</columns>
+    <columns>Feature_Group__c</columns>
+    <columns>Feature_Line_Item_Name__c</columns>
+    <columns>Description__c</columns>
+    <columns>Assumption__c</columns>
+    <columns>Include_in_Estimate__c</columns>
+    <columns>Project_Type__c</columns>
+    <columns>Resource_Role__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

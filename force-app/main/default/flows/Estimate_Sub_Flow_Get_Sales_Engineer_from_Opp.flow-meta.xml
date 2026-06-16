@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>As no Team Member was found we pass the original Estimate Owner as the owner</description>
+        <name>Assign_Original_Owner_as_Owner</name>
+        <label>Assign Original Owner as Owner</label>
+        <locationX>314</locationX>
+        <locationY>518</locationY>
+        <assignmentItems>
+            <assignToReference>EstimateRecord.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>EstimateRecord.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Assign the found team member ID as the Owner of the Estimate record</description>
+        <name>Assign_Team_Member_as_new_Estimate_Owner_0</name>
+        <label>Assign Team Member as new Estimate Owner</label>
+        <locationX>50</locationX>
+        <locationY>518</locationY>
+        <assignmentItems>
+            <assignToReference>EstimateRecord.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SalesEngineerRecord.UserId</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>Is this Estimate created from an opportunity?</description>
+        <name>Created_from_Opp</name>
+        <label>Created from Opp</label>
+        <locationX>380</locationX>
+        <locationY>158</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Created_from_opportunity</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>EstimateRecord.Opportunity__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Sales_Engineer</targetReference>
+            </connector>
+            <label>Created from opportunity</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check to make sure we found a Team who was a Sales Engineer</description>
+        <name>UserID_Null_Check</name>
+        <label>UserID Null Check</label>
+        <locationX>182</locationX>
+        <locationY>398</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Original_Owner_as_Owner</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Sales_Engineer_found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SalesEngineerRecord.UserId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Team_Member_as_new_Estimate_Owner_0</targetReference>
+            </connector>
+            <label>Sales Engineer found</label>
+        </rules>
+    </decisions>
+    <description>Selects the Owner of the Estimate based on the Opportunity Team Sales Engineer.</description>
+    <interviewLabel>Estimate: Sub Flow Get Sales Engineer from Opp {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Estimate: Sub Flow Get Sales Engineer from Opp</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Select Sales Engineer from Opp Team records</description>
+        <name>Get_Sales_Engineer</name>
+        <label>Get Sales Engineer</label>
+        <locationX>182</locationX>
+        <locationY>278</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>UserID_Null_Check</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OpportunityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>EstimateRecord.Opportunity__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>TeamMemberRole</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Sales Engineer</stringValue>
+            </value>
+        </filters>
+        <object>OpportunityTeamMember</object>
+        <outputReference>SalesEngineerRecord</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>UserId</queriedFields>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <runInMode>DefaultMode</runInMode>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Created_from_Opp</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Variable to store the Estimate Record fields</description>
+        <name>EstimateRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Project_Estimate__c</objectType>
+    </variables>
+    <variables>
+        <description>Store the found Sales Engineer User ID</description>
+        <name>SalesEngineerRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>OpportunityTeamMember</objectType>
+    </variables>
+</Flow>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Timecards_Locked__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Used in a flow and validation rule to prevent editing timecards</inlineHelpText>
+    <label>Timecards Locked</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

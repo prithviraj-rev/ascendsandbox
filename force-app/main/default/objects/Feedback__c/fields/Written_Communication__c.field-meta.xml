@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Written_Communication__c</fullName>
+    <description>Rating of the resource’s written communication effectiveness.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Consider clarity, conciseness, quality of deliverables, and communication with the team and client (Especially for Tech Lead). (Scale is 1 to 5, where 1 needs improvement and 5 is excellent.)</inlineHelpText>
+    <label>Written Communication</label>
+    <precision>1</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

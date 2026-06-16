@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Name_Update</name>
+        <label>Name Update</label>
+        <locationX>182</locationX>
+        <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>Status_after_Billing_Approved</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Overage Milestone</defaultConnectorLabel>
+        <rules>
+            <name>Non_Overage</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Overage Milestone</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Project_Monthly_Billing_Milestone_Name</targetReference>
+            </connector>
+            <label>Non Overage</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Evaluate if status is after Hours approved by Billing Approver</description>
+        <name>Status_after_Billing_Approved</name>
+        <label>Status after Billing Approved</label>
+        <locationX>182</locationX>
+        <locationY>647</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>After_Hours_Approved</name>
+            <conditionLogic>1 OR 2 OR 3 OR 4 OR 5</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Invoice_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved by Billing Approver</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Invoice_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Ready for GP Invoice</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Invoice_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Invoice Sent to Approver</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Invoice_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Invoice Approved by Approver</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Invoice_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Invoice Sent to Client</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Timecards_Locked</targetReference>
+            </connector>
+            <label>After Hours Approved</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>fx_BillingMilestoneName</name>
+        <dataType>String</dataType>
+        <expression>Left(IF (TEXT({!$Record.Project__r.Billing__c}) = &quot;Fixed&quot;, {!$Record.Project__r.Name} &amp; &quot; &quot; &amp; &quot; Payment&quot; &amp; TEXT({!$Record.Payment_Number__c}), {!$Record.Project__r.Name} &amp; &quot; &quot; &amp; TEXT( {!$Record.Services_Month__c})), 80)</expression>
+    </formulas>
+    <interviewLabel>Billing Milestone: Before Create/Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Billing Milestone: Before Create/Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Project_Monthly_Billing_Milestone_Name</name>
+        <label>Project Monthly Billing Milestone Name</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Status_after_Billing_Approved</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>fx_BillingMilestoneName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update BM field called Timecards Locked which is used in a Validation Rule</description>
+        <name>Timecards_Locked</name>
+        <label>Timecards Locked</label>
+        <locationX>50</locationX>
+        <locationY>767</locationY>
+        <inputAssignments>
+            <field>Timecards_Locked__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Name_Update</targetReference>
+        </connector>
+        <object>Project_Monthly_Billing_Milestones__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

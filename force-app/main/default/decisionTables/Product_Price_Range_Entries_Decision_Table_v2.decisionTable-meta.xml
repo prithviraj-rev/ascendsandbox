@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DecisionTable xmlns="http://soap.sforce.com/2006/04/metadata">
+    <collectOperator>None</collectOperator>
+    <conditionCriteria>1 AND 2 AND 3</conditionCriteria>
+    <conditionType>All</conditionType>
+    <dataSourceType>SingleSobject</dataSourceType>
+    <decisionTableParameters>
+        <dataType>String</dataType>
+        <fieldName>MaxRecordedPrice</fieldName>
+        <isGroupByField>false</isGroupByField>
+        <isRequired>false</isRequired>
+        <usage>OUTPUT</usage>
+    </decisionTableParameters>
+    <decisionTableParameters>
+        <dataType>String</dataType>
+        <fieldName>RecordedPrice</fieldName>
+        <isGroupByField>false</isGroupByField>
+        <isRequired>false</isRequired>
+        <usage>OUTPUT</usage>
+    </decisionTableParameters>
+    <decisionTableParameters>
+        <dataType>String</dataType>
+        <fieldName>ProductSellingModelId</fieldName>
+        <isGroupByField>false</isGroupByField>
+        <isRequired>true</isRequired>
+        <operator>Equals</operator>
+        <sequence>3</sequence>
+        <usage>INPUT</usage>
+    </decisionTableParameters>
+    <decisionTableParameters>
+        <dataType>String</dataType>
+        <fieldName>ProductId</fieldName>
+        <isGroupByField>false</isGroupByField>
+        <isRequired>true</isRequired>
+        <operator>Equals</operator>
+        <sequence>2</sequence>
+        <usage>INPUT</usage>
+    </decisionTableParameters>
+    <decisionTableParameters>
+        <dataType>String</dataType>
+        <fieldName>Id</fieldName>
+        <isGroupByField>false</isGroupByField>
+        <isRequired>false</isRequired>
+        <usage>OUTPUT</usage>
+    </decisionTableParameters>
+    <decisionTableParameters>
+        <dataType>String</dataType>
+        <fieldName>PricebookId</fieldName>
+        <isGroupByField>true</isGroupByField>
+        <isRequired>true</isRequired>
+        <operator>Equals</operator>
+        <sequence>1</sequence>
+        <usage>INPUT</usage>
+    </decisionTableParameters>
+    <description>Product Price Range Entries Decision Table V2</description>
+    <doesConsiderNullValue>true</doesConsiderNullValue>
+    <dtRowLevelOverrideType>None</dtRowLevelOverrideType>
+    <executionType>HBASE</executionType>
+    <filterResultBy>OutputOrder</filterResultBy>
+    <hasIncrementalSyncFailed>false</hasIncrementalSyncFailed>
+    <isIncrementalSyncEnabled>false</isIncrementalSyncEnabled>
+    <setupName>Product Price Range Entries V2</setupName>
+    <sourceObject>ProductPriceRange</sourceObject>
+    <status>Active</status>
+    <type>MediumVolume</type>
+    <usageType>DefaultPricing</usageType>
+</DecisionTable>

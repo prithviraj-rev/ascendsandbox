@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_if_the_Code_is_Monitoring_SKU</name>
+        <label>Check if the Code is Monitoring SKU</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Its_monitoring_SKU</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Product2.StockKeepingUnit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>001-INFR-SVC-MONI-DEVC-001</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Product2.StockKeepingUnit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>001-INFR-LIC-MONI-LOMO-001</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Nullify_Monitoring_security_Fee</targetReference>
+            </connector>
+            <label>Its monitoring SKU</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Line_item_Code</name>
+        <label>Check Line item Code</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Check_if_the_Code_is_Monitoring_SKU</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Its_Managed_security</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Product2.StockKeepingUnit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>001-CYBR-SVC-SAPX-USER-002</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Product2.StockKeepingUnit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>001-CYBR-LIC-SAPX-KNB4-001</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Nullify_Managed_security_Fee</targetReference>
+            </connector>
+            <label>Its Managed security SKU</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Nullify Quote values {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Nullify Quote Managed security and monitoring values</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Nullify_Managed_security_Fee</name>
+        <label>Nullify Managed security Fee</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_if_the_Code_is_Monitoring_SKU</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Managed_Security_Licensing_Total__c</field>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Managed_Security_Service_Total__c</field>
+        </inputAssignments>
+        <inputReference>$Record.Quote</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Nullify_Monitoring_security_Fee</name>
+        <label>Nullify Monitoring security Fee</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Monitoring_Licensing_Total__c</field>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Monitoring_Service_Total__c</field>
+        </inputAssignments>
+        <inputReference>$Record.Quote</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Line_item_Code</targetReference>
+        </connector>
+        <object>QuoteLineItem</object>
+        <recordTriggerType>Delete</recordTriggerType>
+        <triggerType>RecordBeforeDelete</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

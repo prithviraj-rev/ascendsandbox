@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Should only be given those approved to have it by SVP Operations</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Billing Coordinator</label>
+    <permissionSets>Approve_Timecards</permissionSets>
+    <permissionSets>Edit_Timecard_Once_Billing_Starts</permissionSets>
+    <permissionSets>Edit_Timecards_Once_Approved2</permissionSets>
+    <permissionSets>Resource_Cost_Field</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

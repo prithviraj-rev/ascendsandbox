@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExpressionSetDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contextDefinitions>Ascend_SalesTransactionContext</contextDefinitions>
+    <executionMode>Cloud</executionMode>
+    <executionScale>Low</executionScale>
+    <interfaceSourceType>Constraint</interfaceSourceType>
+    <label>Constraint Rules V3</label>
+    <processType>Constraint</processType>
+    <resourceInitializationType>Off</resourceInitializationType>
+    <template>false</template>
+    <versions>
+        <fullName>Constraint_Rules_V3_V1</fullName>
+        <decimalScale>2</decimalScale>
+        <expressionSetDefinition>Constraint_Rules_V3</expressionSetDefinition>
+        <interfaceSourceType>Constraint</interfaceSourceType>
+        <label>Constraint Rules V3 V1</label>
+        <processType>Constraint</processType>
+        <shouldShowExplExternally>false</shouldShowExplExternally>
+        <startDate>2026-04-22T16:54:09.000Z</startDate>
+        <status>Inactive</status>
+        <versionNumber>1</versionNumber>
+    </versions>
+</ExpressionSetDefinition>

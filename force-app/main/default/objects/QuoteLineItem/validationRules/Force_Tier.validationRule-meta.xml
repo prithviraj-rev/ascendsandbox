@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Force_Tier</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISBLANK(TEXT(Tier__c)) &amp;&amp; (Product2.Name = &quot;MRR-EMAIL&quot; || Product2.Name = &quot;MRR-FW&quot; || Product2.Name = &quot;MRR-FW-HA&quot;)</errorConditionFormula>
+    <errorMessage>Tier is required for MRR-EMAIL, MRR-FW and MRR-FW-HA</errorMessage>
+</ValidationRule>

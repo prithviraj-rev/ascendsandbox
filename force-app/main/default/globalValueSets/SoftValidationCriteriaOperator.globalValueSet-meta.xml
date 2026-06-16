@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Equals</fullName>
+        <default>false</default>
+        <label>Equals</label>
+    </customValue>
+    <customValue>
+        <fullName>Not Equal To</fullName>
+        <default>false</default>
+        <label>Not Equal To</label>
+    </customValue>
+    <customValue>
+        <fullName>Less Than</fullName>
+        <default>false</default>
+        <label>Less Than</label>
+    </customValue>
+    <customValue>
+        <fullName>Greater Than</fullName>
+        <default>false</default>
+        <label>Greater Than</label>
+    </customValue>
+    <customValue>
+        <fullName>Less Or Equal</fullName>
+        <default>false</default>
+        <label>Less Or Equal</label>
+    </customValue>
+    <customValue>
+        <fullName>Greater Or Equal</fullName>
+        <default>false</default>
+        <label>Greater Or Equal</label>
+    </customValue>
+    <customValue>
+        <fullName>Contains</fullName>
+        <default>false</default>
+        <label>Contains</label>
+    </customValue>
+    <customValue>
+        <fullName>Does Not Contain</fullName>
+        <default>false</default>
+        <label>Does Not Contain</label>
+    </customValue>
+    <customValue>
+        <fullName>Starts With</fullName>
+        <default>false</default>
+        <label>Starts With</label>
+    </customValue>
+    <customValue>
+        <fullName>Ends With</fullName>
+        <default>false</default>
+        <label>Ends With</label>
+    </customValue>
+    <customValue>
+        <fullName>Includes</fullName>
+        <default>false</default>
+        <label>Includes</label>
+    </customValue>
+    <customValue>
+        <fullName>Does Not Include</fullName>
+        <default>false</default>
+        <label>Does Not Include</label>
+    </customValue>
+    <masterLabel>Soft Validation Criteria Operator</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

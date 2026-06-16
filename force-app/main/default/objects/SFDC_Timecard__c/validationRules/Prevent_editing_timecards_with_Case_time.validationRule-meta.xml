@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_editing_timecards_with_Case_time</fullName>
+    <active>true</active>
+    <errorConditionFormula>HasCaseTime__c &amp;&amp;
+OR(( Hours__c &lt;&gt;  Case_Time_Rollup_Hours__c ) 
+, ISchanged( Assignment__c )
+, ischanged( Project_Line_Item__c )
+, ischanged( Date__c ))
+&amp;&amp;
+NOT($Permission.Operations_Access)</errorConditionFormula>
+    <errorMessage>You cannot manually edit a timecard if it was created by case time. You must edit the case time records directly.</errorMessage>
+</ValidationRule>

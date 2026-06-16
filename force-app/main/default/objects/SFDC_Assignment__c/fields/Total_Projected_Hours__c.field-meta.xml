@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Projected_Hours__c</fullName>
+    <inlineHelpText>Roll-up of Daily Assignment records</inlineHelpText>
+    <label>Total Projected Hours</label>
+    <summarizedField>Daily_Assignment__c.Projected_Hours__c</summarizedField>
+    <summaryFilterItems>
+        <field>Daily_Assignment__c.Actual_Hours__c</field>
+        <operation>equals</operation>
+        <value></value>
+    </summaryFilterItems>
+    <summaryForeignKey>Daily_Assignment__c.Assignment__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

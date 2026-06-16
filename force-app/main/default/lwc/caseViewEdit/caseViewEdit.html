@@ -1,0 +1,49 @@
+<template>
+    <template if:true={hasCaseRecord}>
+        <lightning-card>
+            <h5 slot="title" class="slds-p-around_small no-wrap">
+                <span class="slds-p-horizontal_xx-small" style="display:inline-block; cursor:pointer;">
+                    <template if:true={isReviewed}>
+                        <lightning-icon icon-name="utility:sparkles" size="x-small" class="reviewed" ></lightning-icon>
+                    </template>
+                    <template if:true={highPriority}>
+                        <lightning-icon icon-name={priorityIcon} size="x-small" class="high-priority"></lightning-icon>
+                    </template>
+                {cardTitle}</span>
+                
+            </h5>
+            <div  slot="actions" class="slds-p-around_small">
+                <lightning-icon icon-name="utility:user" size="x-small" class={ownerColorStyle}></lightning-icon>
+                {ownerInitials}
+            </div>
+
+
+                <lightning-record-edit-form record-id={caseRecord.caseId} object-api-name="Case" onsubmit={sendsubmit}>
+                    <lightning-messages></lightning-messages>
+                    <lightning-layout multiple-rows="true">
+
+                    <lightning-layout-item  size="6-of-12" padding="around-small">
+                        <lightning-select name="status" label="Change Status To" value={caseRecord.Status} options={statusOptions} data-name="changeStatus"></lightning-select>
+                    </lightning-layout-item>
+                    <template for:each={editFields} for:item="field">
+                        <lightning-layout-item  key={field.fieldName} size={field.width} padding="around-small">
+                            <lightning-input-field field-name={field.fieldName} data-name={field.fieldName} class="slds-p-horizontal_small" required={field.required}> </lightning-input-field>
+                        </lightning-layout-item>
+                    </template>
+                    <lightning-layout-item size="12-of-12" padding="around-small">
+                        <div style="display:none">
+                            <lightning-input-field class="slds-p-horizontal_small" field-name="Queue_Review_Notes__c" data-name="Queue_Review_Notes__c"> </lightning-input-field>
+                        </div>
+                        <lightning-output-field class="slds-p-horizontal_small" field-name="Queue_Review_Notes__c"> </lightning-output-field>
+                    </lightning-layout-item>
+                    </lightning-layout>
+                    <lightning-input-field class="slds-hide" field-name="Status"> </lightning-input-field>
+                </lightning-record-edit-form>
+            <div slot="footer">
+                <lightning-button onclick={handleSubmit} type="submit" name="submit" variant="brand" label="Update" class="slds-p-around_xx-small" > </lightning-button>
+                <lightning-button onclick={handleCancel} name="cancel" label="Cancel"  > </lightning-button>
+            
+            </div>
+        </lightning-card>
+    </template>
+</template>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Satisfaction__c</fullName>
+    <description>Overall client perception of the resource’s performance.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Client&apos;s overall satisfaction with this resource’s performance on the project. (Scale is 1 to 5, where 1 needs improvement and 5 is excellent.)</inlineHelpText>
+    <label>Client Satisfaction</label>
+    <precision>1</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

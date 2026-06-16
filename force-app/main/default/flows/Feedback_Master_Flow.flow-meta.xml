@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Sets the Feedback record Name using the FeedbackName formula, which combines the Resource Reviewed name, optional Project name, and the current Month/Year.</description>
+        <name>ASSIGN_Feedback_Name</name>
+        <label>ASSIGN Feedback Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Name_var</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Name_var</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>frmFeedbackName</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>UPDATE_Feedback_Fields</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Clears Assignment and Project Role if no Project is selected or no matching Assignment exists, to prevent stale values.</description>
+        <name>Clear_Assignment_and_Project_Role</name>
+        <label>Clear Assignment and Project Role</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Assignment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Project_Role__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>ASSIGN_Feedback_Name</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Populates Assignment__c and Project_Role__c on Feedback based on the matched Assignment.</description>
+        <name>Set_Assignment_and_Project_Role</name>
+        <label>Set Assignment and Project Role</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Assignment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Matching_Assignment.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Project_Role__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Matching_Assignment.Role__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>ASSIGN_Feedback_Name</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Checks whether a matching Assignment was found for the selected Project and Resource Reviewed.</description>
+        <name>Assignment_Found</name>
+        <label>DEC Assignment Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Clear_Assignment_and_Project_Role</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Found</defaultConnectorLabel>
+        <rules>
+            <name>Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Matching_Assignment.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Assignment_and_Project_Role</targetReference>
+            </connector>
+            <label>Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks whether Escalation Needed? = TRUE</description>
+        <name>DEC_Should_an_Escalation_be_created</name>
+        <label>DEC Should an Escalation be created?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>DEC_Status_Submitted</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Don&apos;t Create Escalation</defaultConnectorLabel>
+        <rules>
+            <name>Create_Escalation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Escalation_Needed__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Escalation_Needed__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Escalation_Feedback</targetReference>
+            </connector>
+            <label>Create Escalation</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determines whether a non-Escalation Feedback record was just moved to Submitted and should be reassigned to the Feedback Queue.</description>
+        <name>DEC_Status_Submitted</name>
+        <label>DEC Status = Submitted?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Need_To_Create_Update_Records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Assign_to_Feedback_Queue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Escalation</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Submitted</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>GET_Feedback_Queue</targetReference>
+            </connector>
+            <label>Assign to Feedback Queue</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determines whether the Feedback record has an associated Project to control naming and assignment logic.</description>
+        <name>Has_Project</name>
+        <label>DEC Has Project?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Clear_Assignment_and_Project_Role</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Project</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Project</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Project__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Project</targetReference>
+            </connector>
+            <label>Yes Project</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determines whether the flow should create a new Feedback record name or update the existing name based on record changes and record type.</description>
+        <name>Need_To_Create_Update_Records</name>
+        <label>DEC Need To Create/Update Records?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_NTURN</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Resource_Reviewed</targetReference>
+            </connector>
+            <label>Create New Feedback</label>
+        </rules>
+        <rules>
+            <name>Key_Fields_Changed</name>
+            <conditionLogic>1 OR 2 OR 3 OR 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Resource_Reviewed__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Project__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assignment__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Submitter__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <isGoTo>true</isGoTo>
+                <targetReference>Get_Resource_Reviewed</targetReference>
+            </connector>
+            <label>Update (Key Fields Changed)</label>
+        </rules>
+        <rules>
+            <name>Escalation_Complete</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Escalation</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Complete</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Feedback__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Related_Feedback_to_Closed</targetReference>
+            </connector>
+            <label>Escalation Complete</label>
+        </rules>
+    </decisions>
+    <description>After-save Flow for Feedback management. Updates Feedback Name, Assignment, and Project Role. If a Feedback record is escalated, launches the Escalation Feedback subflow to create the related Escalation record. If Status = Submitted, assigns the record to the Feedback Queue. When an Escalation is marked Complete, updates the original Feedback record from Escalated to Complete. Also launches a subflow to create and maintain Feedback Share records for the submitter. If the submitter changes, the existing share is deleted and recreated to maintain access.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Returns the User Id stored on the current Submitter Contact’s Resource User field. Used as the Internal Feedback sharing recipient.</description>
+        <name>frmCurrentSubmitterResourceUserId</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Submitter__r.Resource_User_Record__c}</expression>
+    </formulas>
+    <formulas>
+        <description>Determines whether the user derived from the current Submitter Contact is different from the user derived from the prior Submitter Contact.</description>
+        <name>frmDidSubmitterResourceUserChange</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISBLANK({!$Record__Prior.Id})) &amp;&amp;
+{!frmCurrentSubmitterResourceUserId} &lt;&gt; {!frmPriorSubmitterResourceUserId}</expression>
+    </formulas>
+    <formulas>
+        <description>Builds the Feedback record name using the Resource Reviewed and optional Project values. If a Project is present, the format is Resource Reviewed - Project Name - Month YYYY. If no Project is provided, the format is Resource Reviewed - Month YYYY.</description>
+        <name>frmFeedbackName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    $Record.RecordType.DeveloperName = &quot;Escalation&quot;,
+
+    /* ESCALATION FORMAT */
+    LEFT(
+        &quot;Escalation - &quot; &amp;
+        {!Get_Resource_Reviewed.Name} &amp;
+        &quot; - &quot; &amp;
+        {!MonthYYYY},
+        80
+    ),
+
+    /* STANDARD FORMAT */
+    IF(
+        ISBLANK($Record.Project__c),
+
+        /* No Project */
+        LEFT(
+            {!Get_Resource_Reviewed.Name} &amp;
+            &quot; - &quot; &amp;
+            {!MonthYYYY},
+            80
+        ),
+
+        /* With Project (truncate project name dynamically) */
+        LEFT(
+            {!Get_Resource_Reviewed.Name} &amp;
+            &quot; - &quot; &amp;
+            LEFT(
+                {!Get_Project.Name},
+                80 -
+                LEN({!Get_Resource_Reviewed.Name}) -
+                LEN(&quot; - &quot;) -
+                LEN({!MonthYYYY})
+            ) &amp;
+            &quot; - &quot; &amp;
+            {!MonthYYYY},
+            80
+        )
+    )
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Determines whether the current Feedback record is being created for the first time by checking whether there is a prior version of the record in the flow context.</description>
+        <name>frmIsNewFeedbackRecord</name>
+        <dataType>Boolean</dataType>
+        <expression>ISBLANK({!$Record__Prior.Id})</expression>
+    </formulas>
+    <formulas>
+        <description>Returns the User Id stored on the prior Submitter Contact’s Resource User field. Used to find and remove the old Internal Feedback share when the submitter changes.</description>
+        <name>frmPriorSubmitterResourceUserId</name>
+        <dataType>String</dataType>
+        <expression>{!$Record__Prior.Submitter__r.Resource_User_Record__c}</expression>
+    </formulas>
+    <formulas>
+        <description>Returns the current month and year in text format (for example, “February 2026”) based on TODAY().</description>
+        <name>MonthYYYY</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+  MONTH(TODAY()),
+  1, &quot;January&quot;,
+  2, &quot;February&quot;,
+  3, &quot;March&quot;,
+  4, &quot;April&quot;,
+  5, &quot;May&quot;,
+  6, &quot;June&quot;,
+  7, &quot;July&quot;,
+  8, &quot;August&quot;,
+  9, &quot;September&quot;,
+  10, &quot;October&quot;,
+  11, &quot;November&quot;,
+  &quot;December&quot;
+) &amp; &quot; &quot; &amp; TEXT(YEAR(TODAY()))</expression>
+    </formulas>
+    <interviewLabel>Feedback: Master Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Feedback: Master Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Finds the queue Id for the Feedback Queue so the feedback record can be assigned to the correct leadership queue for review and follow-up when Status = Submitted</description>
+        <name>GET_Feedback_Queue</name>
+        <label>GET Feedback Queue</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>UPDATE_Owner_to_Feedback_Queue</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Type</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Queue</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Feedback_Queue</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Finds the Assignment record for the selected Project and Resource Reviewed.</description>
+        <name>Get_Matching_Assignment</name>
+        <label>GET Matching Assignment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assignment_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Projects__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Project__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Resource__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Resource_Reviewed__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SFDC_Assignment__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Retrieves the Project related to the Feedback record for use in naming and assignment updates.</description>
+        <name>Get_Project</name>
+        <label>GET Project</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Matching_Assignment</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Project__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SFDC_Projects__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Retrieves the Contact record for the Resource Reviewed to use their name when generating the Feedback record name.</description>
+        <name>Get_Resource_Reviewed</name>
+        <label>GET Resource Reviewed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Has_Project</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Resource_Reviewed__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Updates the Feedback Name, Assignment, and Project Role fields using values determined earlier in the flow.</description>
+        <name>UPDATE_Feedback_Fields</name>
+        <label>UPDATE Feedback Fields</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Maintain_Feedback_Share</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Assignment__c</field>
+            <value>
+                <elementReference>Get_Matching_Assignment.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Name_var</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Project_Role__c</field>
+            <value>
+                <elementReference>Get_Matching_Assignment.Role__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Updates the Feedback record OwnerId to the Feedback Queue when a non-Escalation Feedback record is moved to Submitted.</description>
+        <name>UPDATE_Owner_to_Feedback_Queue</name>
+        <label>UPDATE Owner to Feedback Queue</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Need_To_Create_Update_Records</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>GET_Feedback_Queue.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>When the Escalation record is marked as Status = Complete, we will update the related Feedback record to Closed.</description>
+        <name>Update_Related_Feedback_to_Closed</name>
+        <label>UPDATE Related Feedback to Closed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Feedback__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Feedback__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>DEC_Should_an_Escalation_be_created</targetReference>
+        </connector>
+        <object>Feedback__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Checks whether the user just turned on “Escalation Needed” during this update. We only want to create an escalation when the checkbox changes from unchecked to checked, not every time the record is edited.</description>
+        <name>Create_Escalation_Feedback</name>
+        <label>Create Escalation Feedback</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>Feedback_Subflow_Create_Escalation_Feedback</flowName>
+        <inputAssignments>
+            <name>varTriggerFeedbackId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <description>Calls the Feedback sharing subflow to create or replace Feedback share records based on record type, current submitter-derived user, prior submitter-derived user, and Created By user.</description>
+        <name>Create_Maintain_Feedback_Share</name>
+        <label>Create &amp; Maintain Feedback Share</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>Feedback_Sublow_Maintain_Feedback_Share</flowName>
+        <inputAssignments>
+            <name>varCreatedById</name>
+            <value>
+                <elementReference>$Record.CreatedById</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varCurrentSubmitterResourceUserId</name>
+            <value>
+                <elementReference>frmCurrentSubmitterResourceUserId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varDidSubmitterResourceUserChange</name>
+            <value>
+                <elementReference>frmDidSubmitterResourceUserChange</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varFeedbackId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varIsNewFeedbackRecord</name>
+            <value>
+                <elementReference>frmIsNewFeedbackRecord</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varPriorSubmitterResourceUserId</name>
+            <value>
+                <elementReference>frmPriorSubmitterResourceUserId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varRecordTypeId</name>
+            <value>
+                <elementReference>$Record.RecordTypeId</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <variables>
+        <description>Temporary variable used to stage the generated Feedback record name before writing it to the record in UPDATE Feedback Fields.</description>
+        <name>Name_var</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

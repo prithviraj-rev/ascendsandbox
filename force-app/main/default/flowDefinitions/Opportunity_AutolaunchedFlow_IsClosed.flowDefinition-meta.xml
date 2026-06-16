@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionNumber>18</activeVersionNumber>
+    <description>Autolaunched Flow:
+- Flow is auto-launched when Opportunity record is Closed
+
+UPDATE:
+- Flow notifies &quot;Kyle Nelson&quot; when Opportunity record is &quot;Closed-Won&quot;
+- Updated con_SASOperationsLeaders to have correct Id
+
+Case/Ticket:
+#00015427
+No ticket Sawyer mentioned she was not receiving email.
+
+Case #00017311:
+Notify TSD &amp; Alliance Public Grups when a Referral Opportunity is Closed Won.</description>
+    <masterLabel>Opportunity_AutolaunchedFlow_IsClosed</masterLabel>
+</FlowDefinition>

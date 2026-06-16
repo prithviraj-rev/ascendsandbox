@@ -1,0 +1,43 @@
+.color-bg{--slds-c-icon-color-background: rgb(234, 233, 233);}
+
+.color-0 {--slds-c-icon-color-foreground-default: #13862A;}
+.color-1 {--slds-c-icon-color-foreground-default: #1A329A;}
+.color-2 {--slds-c-icon-color-foreground-default: #901716;}
+.color-3 {--slds-c-icon-color-foreground-default: #51A41E;}
+.color-4 {--slds-c-icon-color-foreground-default: #AD2273;}
+.color-5 {--slds-c-icon-color-foreground-default: #BABF2B;}
+.color-6 {--slds-c-icon-color-foreground-default: #3ACC98;}
+.color-7 {--slds-c-icon-color-foreground-default: #CD8347;}
+.color-8 {--slds-c-icon-color-foreground-default: #AF30C8;}
+
+.high-priority {--slds-c-icon-color-foreground-default: red; padding-right:4px;}
+.reviewed {--slds-c-icon-color-foreground-default: rgb(188, 138, 0); padding-right:4px;}
+
+.closed {--slds-c-icon-color-foreground-default: green; padding-right:4px;}
+.canceled {--slds-c-icon-color-foreground-default: red; padding-right:4px;}
+
+
+.left-align { text-align: left;}
+.right-align { text-align: right;}
+
+p.bold, span.bold{ font-weight:bold; }
+
+.cardFix {
+    display:block;
+}
+
+.cardContainer {
+    position:relative;
+    background: rgb(234, 233, 233);
+    padding: 10px 10px 20px 10px;
+    border-radius: 5px;
+    border: solid 1px darkgray;
+}
+
+.no-wrap{
+    white-space:normal;
+}
+
+:host {
+    --sds-c-card-color-background: rgb(234, 233, 233);
+}

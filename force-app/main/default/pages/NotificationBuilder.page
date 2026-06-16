@@ -1,0 +1,22 @@
+<apex:page StandardController="Task" Extensions="NotificationBuilder">
+<apex:PageBlock >
+	<apex:Form >
+		<apex:OutPutPanel >
+			<Table width="200">
+			
+				<tr><td><apex:Outputtext value="To:"/></td><td><apex:Inputtext size="123" value="{!task.Email__c}"/></td></tr>
+				<tr><td><apex:Outputtext value="Subject:"/></td><td><apex:Inputtext value="{!task.Subject}" size="123"/></td></tr>
+				<tr><td><apex:Outputtext value="Who:"/></td><td><apex:Outputtext value="{!task.Who.Name}"/></td></tr>
+				<tr><td><apex:Outputtext value="What:"/></td><td><apex:Outputtext value="{!task.What.Name}"/></td></tr>
+				<tr><td><apex:Outputtext value="Account:"/></td><td><apex:Outputtext value="{!task.Account.Name}"/></td></tr>
+				<tr><td><apex:Outputtext value="Status:"/></td><td><apex:Outputtext value="{!task.Status}"/></td></tr>
+				<tr><td><apex:Outputtext value="Due Date:"/></td><td><apex:Outputtext value="{!task.ActivityDate}"/></td></tr>
+				<tr><td><apex:Outputtext value="Comments:"/></td><td><apex:Inputtextarea value="{!task.Description}" cols="150" rows="10"/></td></tr>
+			
+			</Table>
+		</apex:OutPutPanel>
+		<apex:commandButton value="Send" action="{!send}"/>
+		<apex:commandButton action="{!Cancel}" value="Cancel"/>
+	</apex:Form>
+</apex:PageBlock>
+</apex:page>

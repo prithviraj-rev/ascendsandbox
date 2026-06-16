@@ -1,0 +1,393 @@
+#date-range-container {
+  padding: 8px;
+  text-align: center;
+}
+
+#start-date,
+#end-date {
+  margin: 0 3px;
+  padding: 5px;
+  background-color: #EEE;
+  border: 1px solid #666;
+  border-radius: 2px;
+}
+
+.ui-datepicker {
+  box-shadow: 0 0 10px #AAA;
+}
+
+.de-gantt-chart {
+  width: 100%;
+  font-weight: 300;
+  border-spacing: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.de-gantt-chart * {
+  -webkit-transition: text-shadow 0.3s, box-shadow 0.3s, color 0.3s, background-color 0.3s, border-color 0.3s;
+  -moz-transition: text-shadow 0.3s, box-shadow 0.3s, color 0.3s, background-color 0.3s, border-color 0.3s;
+  -ms-transition: text-shadow 0.3s, box-shadow 0.3s, color 0.3s, background-color 0.3s, border-color 0.3s;
+  transition: text-shadow 0.3s, box-shadow 0.3s, color 0.3s, background-color 0.3s, border-color 0.3s;
+}
+
+.de-gantt-chart * {
+  font-family: "Roboto", "Helvetica", sans-serif;
+}
+
+.de-gantt-chart th {
+  padding: 12px;
+  font-size: 24px;
+  font-weight: 100;
+  text-align: center;
+}
+
+.de-gantt-date-row th,
+.de-gantt-date-row td {
+  background-color: #EEE;
+}
+
+.de-gantt-date {
+  cursor: none;
+}
+
+.de-gantt-chart th,
+.de-gantt-assignment-name {
+  width: 225px;
+  max-width: 225px;
+  min-width: 225px;
+  overflow: hidden;
+}
+
+.de-gantt-date-tooltip {
+  z-index: 3; /* position:absolute and left, top enforced via js */
+  padding: 5px;
+  color: white;
+  background-color: #0d5a73;
+  border: 1px solid #0b4b60;
+  border-radius: 2px;
+  box-shadow: 0 0 5px #0d5a73;
+}
+
+.de-gantt-date-line {
+  z-index: 2; /* position:absolute and left, top, height enforced via js */
+  border-left: 1px solid #0b4b60;
+  box-shadow: 0 0 10px #0d5a73;
+}
+
+.de-gantt-date-marker {
+  bottom: 4px;
+  text-align: center;
+}
+
+.de-gantt-date-marker-tick {
+  width: 0;
+  height: 0;
+  margin: 5px auto 0 auto;
+  border-top: 8px solid black;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.de-gantt-resource-name,
+.de-gantt-assignment-name {
+  padding: 8px;
+  white-space: nowrap;
+}
+
+.de-gantt-resource-body,
+.de-gantt-assignment .de-gantt-assignment-body {
+  width: 100%;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.de-gantt-resource-body div,
+.de-gantt-assignment-body div {
+  box-sizing: border-box;
+}
+
+.de-gantt-resource td {
+  border-top: 2px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.de-gantt-resource + .de-gantt-resource td {
+  border-top-width: 1px;
+}
+
+.de-gantt-resource:last-child td {
+  border-bottom-width: 2px;
+}
+
+.de-gantt-resource-name {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.de-gantt-resource-name:hover {
+  //text-shadow: 0 0 8px black;
+}
+
+.de-gantt-resource .de-gantt-resource-name::before {
+  content: "\2212";
+  margin-right: 5px;
+  font-weight: 100;
+}
+
+.de-gantt-resource.collapsed .de-gantt-resource-name::before {
+  content: "\002b";
+}
+
+.de-gantt-resource.collapsed.same-project-highlight .de-gantt-resource-name {
+  text-shadow: 0 0 8px black;
+}
+
+.de-gantt-resource-body {
+  cursor: none;
+  position: relative;
+  padding: 0;
+}
+
+.de-gantt-resource-summary {
+  position: relative;
+  height: 38px;
+  margin-top: 2px;
+}
+
+.de-gantt-resource-summary-chunk {
+  display: inline-block;
+  height: 100%;
+}
+
+.de-gantt-util-tooltip {
+  z-index: 3;
+  padding: 5px;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #7a4000;
+  border-radius: 2px;
+  box-shadow: 0 0 5px #7a4000;
+}
+
+.de-gantt-assignment {
+  padding-left: 12px;
+}
+
+.de-gantt-assignment td {
+  border-top: 1px dashed #CCC;
+}
+
+.de-gantt-assignment-body {
+  padding: 0;
+  text-align: left;
+}
+
+.de-gantt-resource + .de-gantt-assignment td {
+  border-top-width: 0;
+}
+
+.de-gantt-project-span {
+  color: #999;
+  font-style: italic;
+}
+
+.de-gantt-project-span:hover,
+.same-project-highlight .de-gantt-project-span {
+  color: #333;
+  text-shadow: 0 0 5px #666;
+}
+
+/*
+  Bars should be full height of cell, and position: relative so
+  ::before and ::after can be absolutely positioned.
+*/
+.de-gantt-project-pre-bar,
+.de-gantt-project-post-bar {
+  position: relative;
+  height: 100%;
+}
+
+/*
+  ::before is the upper half of the bar marking the time
+  the project starts before an assignment
+*/
+.de-gantt-project-pre-bar::before,
+.de-gantt-project-post-bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 50%;
+  border-bottom: 1px dashed #666;
+}
+
+/*
+  ::after is the bottom half of the same thing ^
+*/
+.de-gantt-project-pre-bar::after,
+.de-gantt-project-post-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  display: block;
+  width: 100%;
+  height: 50%;
+}
+
+/*
+  As long as the start of the bar is visible, show the border to
+  delineate the start of the project.
+*/
+.de-gantt-project-pre-bar:not(.no-start):not(.no-show)::before,
+.de-gantt-project-pre-bar:not(.no-start):not(.no-show)::after {
+  border-left: 1px solid #666;
+}
+
+/*
+  As long as the start of the bar is visible, show the border to
+  delineate the end of the project.
+*/
+.de-gantt-project-post-bar:not(.no-end):not(.no-show)::before,
+.de-gantt-project-post-bar:not(.no-end):not(.no-show)::after {
+  border-right: 1px solid #666;
+}
+
+/*
+  The bar marking the assignment start and end dates.
+*/
+.de-gantt-assignment-bar {
+  position: relative;
+  height: 95%;
+  height: calc(100% - 6px);
+  height: -webkit-calc(100% - 6px);
+  height: -moz-calc(100% - 6px);
+  margin: 3px 0;
+  background-color: #EEE;
+  border: solid #666;
+  border-width: 0 3px;
+}
+
+.same-project-highlight .de-gantt-assignment-bar {
+  box-shadow: 0 0 8px black;
+}
+
+.de-gantt-assignment-bar.date-highlight {
+  background-color: #0b4b60;
+  border-color: #1797c0;
+  box-shadow: 0 0 8px #0b4b60;
+}
+
+/*
+  No start (end) border if start (end) is not visible.
+*/
+
+.de-gantt-assignment-bar.no-start {
+  border-left-width: 0;
+}
+
+.de-gantt-assignment-bar.no-end {
+  border-right-width: 0;
+}
+
+/*
+  If there's no start (end), show an arrow at the start (end)
+  to indicate the assignment extends outside the current view,
+  but only if there's enough space (:not(.too-small)")
+*/
+
+.de-gantt-assignment-bar.no-start:not(.too-small)::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 45%;
+  top: calc(50% - 5px);
+  border-right: 8px solid #666;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.de-gantt-assignment-bar.no-end:not(.too-small)::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 45%;
+  top: calc(50% - 5px);
+  border-left: 8px solid #666;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+/*
+  If the assignment is before (after) the date range, have
+  an arrow indicate where it lies. Currently, these styles
+  are not seen, since assignments falling outside the date
+  range are removed from the view.
+*/
+
+.de-gantt-assignment-bar.no-show {
+  border-width: 0;
+  box-shadow: none;
+}
+
+.de-gantt-assignment-bar.no-show-below::before {
+  width: 0;
+  height: 0;
+  border-right: 12px solid gray;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.de-gantt-assignment-bar.no-show-above::after {
+  width: 0;
+  height: 0;
+  border-left: 12px solid gray;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.de-gantt-assignment-bar.no-show-below.date-highlight::before,
+.de-gantt-assignment-bar.no-show-above.date-highlight::after,
+.de-gantt-assignment-bar.no-start.date-highlight::before,
+.de-gantt-assignment-bar.no-end.date-highlight::after {
+  border-left-color: #1797c0;
+  border-right-color: #1797c0;
+}
+
+.de-gantt-utilization-bar {
+  position: relative;
+  top: 45%;
+  top: calc(50% - 9px);
+  height: 18px;
+  padding-left: 5px;
+  padding-top: 2px;
+  /*overflow-x: hidden;*/
+  color: #EEE;
+  background-color: #666;
+  box-shadow: 0 0 3px #666;
+}
+
+.de-gantt-assignment-bar.no-start.too-small .de-gantt-utilization-bar,
+.de-gantt-assignment-bar.no-end.too-small .de-gantt-utilization-bar {
+  display: none;
+}
+
+.de-gantt-assignment-bar.date-highlight .de-gantt-utilization-bar {
+  background-color: #1797c0;
+  box-shadow: 0 0 3px #1797c0;
+}
+
+/*.de-gantt-utilization-bar:not([data-utilization="100%"])::after {
+  content: attr(data-utilization);
+  position: absolute;
+  z-index: 1;
+  left: 100%;
+  top: -3px;
+  padding: 5px;
+  color: #666;
+  background-color: #EEE;
+}*/

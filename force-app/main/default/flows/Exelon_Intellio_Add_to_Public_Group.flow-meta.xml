@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Exelon_Intellio_Portal_User</name>
+        <label>Exelon-Intellio Portal User</label>
+        <locationX>374</locationX>
+        <locationY>276</locationY>
+        <defaultConnectorLabel>Not Exelon-Intellio Portal User</defaultConnectorLabel>
+        <rules>
+            <name>Yes_is_Exelon_Intellio_User</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.UserRole.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Exelon</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.UserRole.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Intellio</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Group</targetReference>
+            </connector>
+            <label>Yes is Exelon-Intellio User</label>
+        </rules>
+    </decisions>
+    <description>Adds portal users to public group upon creation so that list views, etc. can be shared.</description>
+    <environments>Default</environments>
+    <interviewLabel>Exelon-Intellio Add to Public Group {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Exelon-Intellio Add to Public Group</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Group_Member</name>
+        <label>Create Group Member</label>
+        <locationX>242</locationX>
+        <locationY>492</locationY>
+        <inputAssignments>
+            <field>GroupId</field>
+            <value>
+                <elementReference>Get_Group.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>UserOrGroupId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>GroupMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Group</name>
+        <label>Get Group</label>
+        <locationX>242</locationX>
+        <locationY>384</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Group_Member</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Exelon-Intellio</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <object>User</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <name>short_wait</name>
+            <connector>
+                <targetReference>Exelon_Intellio_Portal_User</targetReference>
+            </connector>
+            <label>short wait</label>
+            <offsetNumber>0</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <timeSource>RecordTriggerEvent</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Flow that creates a Timecard from a Time Entry record, then deletes the Time Entry.</description>
+    <interviewLabel>Pass Time Entry to Timecard {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Pass Time Entry to Timecard</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordDeletes>
+        <name>Delete_Time_Entry</name>
+        <label>Delete Time Entry</label>
+        <locationX>469</locationX>
+        <locationY>128</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTimeEntryId</elementReference>
+            </value>
+        </filters>
+        <object>Time_Entry__c</object>
+    </recordDeletes>
+    <startElementReference>Delete_Time_Entry</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>varTimeEntryId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

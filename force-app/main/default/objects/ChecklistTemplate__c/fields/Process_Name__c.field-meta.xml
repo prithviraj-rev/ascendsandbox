@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Process_Name__c</fullName>
+    <description>Allows multiple Checklists per object by defining the Process Name that each checklist template item related to.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Input the Name of the Process this Checklist Template relates to.</inlineHelpText>
+    <label>Process Name</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

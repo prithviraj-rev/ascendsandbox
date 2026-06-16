@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>MC001</label>
+    <protected>false</protected>
+    <values>
+        <field>BusinessHourId__c</field>
+        <value xsi:type="xsd:string">App Solutions Hours</value>
+    </values>
+    <values>
+        <field>ChangedField__c</field>
+        <value xsi:type="xsd:string">Status</value>
+    </values>
+    <values>
+        <field>ChildObject__c</field>
+        <value xsi:type="xsd:string">DurationTracking__c</value>
+    </values>
+    <values>
+        <field>ParentObject__c</field>
+        <value xsi:type="xsd:string">Case</value>
+    </values>
+    <values>
+        <field>RecordType__c</field>
+        <value xsi:type="xsd:string">App_Cases</value>
+    </values>
+    <values>
+        <field>TimeReportedUnits__c</field>
+        <value xsi:type="xsd:string">Decimal Days</value>
+    </values>
+    <values>
+        <field>UnroundedDays__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>X24HourDay__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+</CustomMetadata>

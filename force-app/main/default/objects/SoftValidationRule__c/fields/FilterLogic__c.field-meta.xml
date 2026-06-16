@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FilterLogic__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Examples: &quot;1 OR 2&quot;, &quot;(1 OR 2) AND NOT 3&quot;.
+If not set then &quot;AND&quot; logic is used.</inlineHelpText>
+    <label>Filter Logic</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionNumber>2</activeVersionNumber>
+    <description>Can be launched from the Feedback tab or directly from a Project record to create one or more related Feedback records. Supports Internal, Client, and Escalation feedback paths, auto-populates Project-related fields, and allows users to submit multiple feedback entries in a single session.</description>
+    <masterLabel>Project: Screen Flow for Feedback</masterLabel>
+</FlowDefinition>

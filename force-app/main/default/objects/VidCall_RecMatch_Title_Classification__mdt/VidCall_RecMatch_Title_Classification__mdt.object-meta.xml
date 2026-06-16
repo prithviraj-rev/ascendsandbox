@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>CMDT that contains text string to match which determine logic</description>
+    <label>VidCall RecMatch Title Classification</label>
+    <pluralLabel>VidCall RecMatch Title Classifications</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

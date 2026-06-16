@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Scheduled_for_Deletion__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used in the case time flow to mark a timecard for deletion when all case time has been deleted. A scheduled daily flow removes the timecard if this box is checked.</description>
+    <label>Scheduled for Deletion</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

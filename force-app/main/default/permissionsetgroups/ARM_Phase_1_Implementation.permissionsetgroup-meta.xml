@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Phase‑1 Revenue Cloud implementation access for project team members, including catalog, pricing design, rules, contracts, assets, and document generation. Billing, usage, and fulfillment capabilities are intentionally excluded.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>ARM – Phase 1 Implementation</label>
+    <permissionSets>force__AdvancedConfiguratorDesigner</permissionSets>
+    <permissionSets>force__BREDesigner</permissionSets>
+    <permissionSets>force__BRERuntime</permissionSets>
+    <permissionSets>force__CLMAdminUser</permissionSets>
+    <permissionSets>force__CLMRuntimeUser</permissionSets>
+    <permissionSets>force__ClauseDesigner</permissionSets>
+    <permissionSets>force__ClauseUser</permissionSets>
+    <permissionSets>force__ContextServiceAdminPsl</permissionSets>
+    <permissionSets>force__ContractsAIClauseDesigner</permissionSets>
+    <permissionSets>force__CorePricingAdmin</permissionSets>
+    <permissionSets>force__CorePricingDesignTimeUser</permissionSets>
+    <permissionSets>force__CorePricingManager</permissionSets>
+    <permissionSets>force__CorePricingRunTimeUser</permissionSets>
+    <permissionSets>force__DocGenDesigner</permissionSets>
+    <permissionSets>force__DocGenUser</permissionSets>
+    <permissionSets>force__DocumentBuilderUser</permissionSets>
+    <permissionSets>force__IndustriesConfiguratorPlatformApi</permissionSets>
+    <permissionSets>force__Microsoft365WordDesigner</permissionSets>
+    <permissionSets>force__Microsoft365WordUser</permissionSets>
+    <permissionSets>force__ObligationManager</permissionSets>
+    <permissionSets>force__ObligationUser</permissionSets>
+    <permissionSets>force__OmniStudioAdmin</permissionSets>
+    <permissionSets>force__OmniStudioExecution</permissionSets>
+    <permissionSets>force__ProductCatalogManagementAdministrator</permissionSets>
+    <permissionSets>force__ProductCatalogManagementViewer</permissionSets>
+    <permissionSets>force__ProductConfigurationRulesDesigner</permissionSets>
+    <permissionSets>force__ProductDiscoveryAdmin</permissionSets>
+    <permissionSets>force__ProductDiscoveryUser</permissionSets>
+    <permissionSets>force__RevLifecycleManagementCalculatePricesApi</permissionSets>
+    <permissionSets>force__RevLifecycleManagementCalculateTaxesApi</permissionSets>
+    <permissionSets>force__RevLifecycleManagementCoreCPQAssetization</permissionSets>
+    <permissionSets>force__RevLifecycleManagementCreateContractApi</permissionSets>
+    <permissionSets>force__RevLifecycleManagementCreateOrderFromQuote</permissionSets>
+    <permissionSets>force__RevLifecycleManagementInitiateAmendmentApi</permissionSets>
+    <permissionSets>force__RevLifecycleManagementInitiateCancellationApi</permissionSets>
+    <permissionSets>force__RevLifecycleManagementInitiateRenewalApi</permissionSets>
+    <permissionSets>force__RevLifecycleManagementPlaceOrderApi</permissionSets>
+    <permissionSets>force__RevLifecycleManagementProductAndPriceConfigurationApi</permissionSets>
+    <permissionSets>force__RevLifecycleManagementProductImportApi</permissionSets>
+    <permissionSets>force__RevLifecycleManagementQuotePricesTaxes</permissionSets>
+    <permissionSets>force__RevenueLifecycleManagementAccountingAdmin</permissionSets>
+    <permissionSets>force__RevenueLifecycleManagementBillingAdmin</permissionSets>
+    <permissionSets>force__RevenueLifecycleManagementBillingCreditMemoOperations</permissionSets>
+    <permissionSets>force__RevenueLifecycleManagementBillingOperations</permissionSets>
+    <permissionSets>force__RevenueLifecycleManagementBillingTaxAdmin</permissionSets>
+    <permissionSets>force__RevenueLifecycleManagementCreateBillingScheduleFromBillingTransactionApi</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Managed_Services_Projects</fullName>
+    <columns>NAME</columns>
+    <columns>Project_Lead__c</columns>
+    <columns>Sales_Rep__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Monthly_Recurring_Hours__c</columns>
+    <columns>Rollover_Hours__c</columns>
+    <columns>Accounting_Notes__c</columns>
+    <columns>Project_Rate__c</columns>
+    <columns>MRR__c</columns>
+    <columns>Invoice_Schedule__c</columns>
+    <columns>Service__c</columns>
+    <columns>Billing__c</columns>
+    <columns>Payment_Terms__c</columns>
+    <columns>Account__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>equals</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFDC_Projects__c.Managed_Services</value>
+    </filters>
+    <label>Closed Managed Services Projects</label>
+    <sharedTo>
+        <group>SF_Ops_Team</group>
+    </sharedTo>
+</ListView>

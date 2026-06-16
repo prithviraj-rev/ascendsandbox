@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_Stock_Keeping_Unit</name>
+        <label>Check Stock Keeping Unit</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_it_Managed_Security_SKU</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Product2.StockKeepingUnit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>001-CYBR-SVC-SAPX-USER-002</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_quantity_to_50</targetReference>
+            </connector>
+            <label>Is it Managed Security SKU?</label>
+        </rules>
+        <rules>
+            <name>Is_it_Managed_security_License_SKU</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Product2.StockKeepingUnit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>001-CYBR-LIC-SAPX-KNB4-001</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_quantity_to_50</targetReference>
+            </connector>
+            <label>Is it Managed security License SKU?</label>
+        </rules>
+        <rules>
+            <name>Is_it_Monitoring_SKU</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Product2.StockKeepingUnit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>001-INFR-SVC-MONI-DEVC-001</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_quantity_to_50</targetReference>
+            </connector>
+            <label>Is it Monitoring SKU?</label>
+        </rules>
+        <rules>
+            <name>Is_it_Monitoring_License_SKU</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Product2.ProductCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>001-INFR-LIC-MONI-LOMO-001</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_quantity_to_50</targetReference>
+            </connector>
+            <label>Is it Monitoring License SKU?</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Set Quantity for Minimum Dollar Amount {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Set Quantity for Minimum Dollar Amount</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_quantity_to_50</name>
+        <label>Set quantity to 50</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Quantity</field>
+            <value>
+                <numberValue>50.0</numberValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Stock_Keeping_Unit</targetReference>
+        </connector>
+        <object>QuoteLineItem</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

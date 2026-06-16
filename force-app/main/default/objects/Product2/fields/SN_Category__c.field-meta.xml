@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SN_Category__c</fullName>
+    <description>Derived from Service Category formula when integration is built. Must match ServiceNow catalog category exactly</description>
+    <externalId>false</externalId>
+    <label>ServiceNow Category</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

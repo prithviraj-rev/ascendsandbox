@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Type__c</fullName>
+    <label>Project Delivery</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Embedded Experts</fullName>
+                <default>false</default>
+                <label>Embedded Experts</label>
+            </value>
+            <value>
+                <fullName>Managed Services</fullName>
+                <default>false</default>
+                <label>Managed Services</label>
+            </value>
+            <value>
+                <fullName>Project</fullName>
+                <default>false</default>
+                <label>Project</label>
+            </value>
+            <value>
+                <fullName>Staff Aug</fullName>
+                <default>false</default>
+                <label>Staff Aug</label>
+            </value>
+            <value>
+                <fullName>Support Agreement</fullName>
+                <default>false</default>
+                <label>Support Agreement</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

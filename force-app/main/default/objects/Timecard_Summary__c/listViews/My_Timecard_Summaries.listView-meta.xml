@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Timecard_Summaries</fullName>
+    <columns>NAME</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Resource__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>My Timecard Summaries</label>
+</ListView>

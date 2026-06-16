@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Count_of_Daily_Assignments_with_no_hours__c</fullName>
+    <inlineHelpText>This counts the DA records that have zero hours projected and have not been manually edited by anyone.</inlineHelpText>
+    <label>Count of Daily Assignments with no Hours</label>
+    <summaryFilterItems>
+        <field>Daily_Assignment__c.Projected_Hours__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Daily_Assignment__c.Actual_Hours__c</field>
+        <operation>equals</operation>
+        <value></value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Daily_Assignment__c.Locked__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Daily_Assignment__c.Assignment__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

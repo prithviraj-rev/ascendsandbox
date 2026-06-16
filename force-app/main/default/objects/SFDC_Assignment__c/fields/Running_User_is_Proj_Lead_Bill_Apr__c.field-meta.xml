@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Running_User_is_Proj_Lead_Bill_Apr__c</fullName>
+    <formula>(Projects__r.Project_Lead__r.FirstName &amp;&quot; &quot;&amp; Projects__r.Project_Lead__r.LastName =($User.FirstName &amp;&quot; &quot;&amp; $User.LastName )) || ( Projects__r.Billing_Approver__r.FirstName  &amp;&quot; &quot;&amp; Projects__r.Billing_Approver__r.LastName =($User.FirstName &amp;&quot; &quot;&amp; $User.LastName ))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Running User is Proj Manager/Bill Apr</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Add_to_Closed_Lost_Total_Value</name>
+        <label>Add to Closed Lost Total Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closedLostTotalValue</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_Opps.Amount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>closedLostCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Opps</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_to_Closed_Won_Total_Value</name>
+        <label>Add to Closed Won Total Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closedWonTotalValue</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_Opps.Amount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>closedWonCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Opps</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_to_Open_Value</name>
+        <label>Add to Open Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>openCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>openValue</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Through_Open_Opps.Amount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Open_Opps</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Prompt_Instructions</name>
+        <elementSubtype>AddPromptInstructions</elementSubtype>
+        <label>Prompt Instructions</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Output.Prompt</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue> You are an account executive and are tasked with creating a summary of given opportunities to be used in preparation for an upcoming meeting.
+
+1. Follow Instructions Precisely: Adhere strictly to the provided information without adding extra details or opinions.
+
+ 2. Use Clear Language: Employ concise, active voice language, avoiding filler words or redundant phrases.
+
+ 3. Maintain Professionalism: Ensure a neutral and respectful tone throughout the summary.
+
+Wherever an Opportunity Name gets mentioned, hyperlink it to the absolute record URL of the Opportunity of the form [/OpportunityId].
+
+Include the following sections:
+2. Open Pipeline
+* If  {!openOpp1}, {!openOpp2}, and {!openOpp3} are all null, exclude this section.
+* Display the total number of Open Opportunities which is {!openCount} and label it as Total
+* Display the total value of Open Opportunities which is ${!openValue} and label it as Value
+* If {!openOpp1} is not null display it following this format:
+* Hyperlink displaying {!openOpp1.Name} linking to &quot;{!baseUrl}{!openOpp1.Id}&quot;
+* TCV: ${!openOpp1.Amount}
+* Stage: {!openOpp1.StageName}
+* Close Date: {!openOpp1.CloseDate}
+* If {!openOpp2} is not null display it following this format:
+* Hyperlink displaying {!openOpp2.Name} linking to &quot;{!baseUrl}{!openOpp2.Id}&quot;
+* TCV: ${!openOpp2.Amount}
+* Stage: {!openOpp2.StageName}
+* Close Date: {!openOpp2.CloseDate}
+* If {!openOpp3} is not null display it following this format:
+* Hyperlink displaying {!closedLostOpp3.Name} linking to &quot;{!baseUrl}{!openOpp3.Id}&quot;
+* TCV: ${!openOpp3.Amount}
+* Stage: {!openOpp3.StageName}
+* Close Date: {!openOpp3.CloseDate}
+
+3. Recently Won Opps (Past 1 Year)
+* If  {!closedWonOpp1}, {!closedWonOpp2}, and {!closedWonOpp3} are all null, exclude this section.
+* Display the total number of Recently Won Opportunities which is {!closedWonCount} and label it as Total
+* Display the total value of Recently Won Opportunities which is ${!closedWonTotalValue} and label it as Value
+* If {!closedWonOpp1} is not null display it following this format:
+* Hyperlink displaying {!closedWonOpp1.Name} linking to &quot;{!baseUrl}{!closedWonOpp1.Id}&quot;
+* TCV: ${!closedWonOpp1.Amount}
+* Close Date: {!closedWonOpp1.CloseDate}
+* If {!closedWonOpp2} is not null display it following this format:
+* Hyperlink displaying {!closedWonOpp2.Name} linking to &quot;{!baseUrl}{!closedWonOpp2.Id}&quot;
+* TCV: ${!closedWonOpp2.Amount}
+* Close Date: {!closedWonOpp2.CloseDate}
+* If {!closedWonOpp3} is not null display it following this format:
+* Hyperlink displaying {!closedWonOpp3.Name} linking to &quot;{!baseUrl}{!closedWonOpp3.Id}&quot;
+* TCV: ${!closedWonOpp3.Amount}
+* Close Date: {!closedWonOpp3.CloseDate}
+
+4. Recently Lost Opps (Past 1 Year)
+* If  {!closedLostOpp1}, {!closedLostOpp2}, and {!closedLostOpp3} are all null, exclude this section.
+* Display the total number of Recently Lost Opportunities which is {!closedLostCount} and label it as Total
+* Display the total value of Recently Lost Opportunities which is ${!closedLostTotalValue} and label it as Value
+* If {!closedLostOpp1} is not null display it following this format:
+* Hyperlink displaying {!closedLostOpp1.Name} linking to &quot;{!baseUrl}{!closedLostOpp1.Id}&quot;
+* TCV: ${!closedLostOpp1.Amount}
+* Close Date: {!closedLostOpp1.CloseDate}
+* If {!closedLostOpp2} is not null display it following this format:
+* Hyperlink displaying {!closedLostOpp2.Name} linking to &quot;{!baseUrl}{!closedLostOpp2.Id}&quot;
+* TCV: ${!closedLostOpp2.Amount}
+* Close Date: {!closedLostOpp2.CloseDate}
+* If {!closedLostOpp3} is not null display it following this format:
+* Hyperlink displaying {!closedLostOpp3.Name} linking to &quot;{!baseUrl}{!closedLostOpp3.Id}&quot;
+* TCV: ${!closedLostOpp3.Amount}
+* Close Date: {!closedLostOpp3.CloseDate}
+</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Closed_Lost_Opp_1</name>
+        <label>Set Closed Lost Opp 1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closedLostOpp1</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Opps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Closed_Lost_Total_Value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Closed_Lost_Opp_2</name>
+        <label>Set Closed Lost Opp 2</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closedLostOpp2</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Opps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Closed_Lost_Total_Value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Closed_Lost_Opp_3</name>
+        <label>Set Closed Lost Opp 3</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closedLostOpp3</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Opps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Closed_Lost_Total_Value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Closed_Won_Opp_1</name>
+        <label>Set Closed Won Opp 1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closedWonOpp1</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Opps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Closed_Won_Total_Value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Closed_Won_Opp_2</name>
+        <label>Set Closed Won Opp 2</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closedWonOpp2</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Opps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Closed_Won_Total_Value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Closed_Won_Opp_3</name>
+        <label>Set Closed Won Opp 3</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>closedWonOpp3</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Opps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Closed_Won_Total_Value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Open_Opp_1</name>
+        <label>Set Open Opp 1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>openOpp1</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Through_Open_Opps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Open_Value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Open_Opp_2</name>
+        <label>Set Open Opp 2</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>openOpp2</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Through_Open_Opps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Open_Value</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Open_Opp_3</name>
+        <label>Set Open Opp 3</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>openOpp3</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Through_Open_Opps</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Open_Value</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Any_Closed_Lost_Opps_Null</name>
+        <label>Any Closed Lost Opps Null?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Add_to_Closed_Lost_Total_Value</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Closed_Lost_Opp_1_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>closedLostOpp1</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Closed_Lost_Opp_1</targetReference>
+            </connector>
+            <label>Closed Lost Opp 1 Null</label>
+        </rules>
+        <rules>
+            <name>Closed_Lost_Opp_2_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>closedLostOpp2</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Closed_Lost_Opp_2</targetReference>
+            </connector>
+            <label>Closed Lost Opp 2 Null</label>
+        </rules>
+        <rules>
+            <name>Closed_Lost_Opp_3_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>closedLostOpp3</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Closed_Lost_Opp_3</targetReference>
+            </connector>
+            <label>Closed Lost Opp 3 Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Any_Closed_Won_Opps_Null</name>
+        <label>Any Closed Won Opps Null?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Add_to_Closed_Won_Total_Value</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Closed_Won_Opp_1_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>closedWonOpp1</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Closed_Won_Opp_1</targetReference>
+            </connector>
+            <label>Closed Won Opp 1 Null</label>
+        </rules>
+        <rules>
+            <name>Closed_Won_Opp_2_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>closedWonOpp2</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Closed_Won_Opp_2</targetReference>
+            </connector>
+            <label>Closed Won Opp 2 Null</label>
+        </rules>
+        <rules>
+            <name>Closed_Won_Opp_3_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>closedWonOpp3</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Closed_Won_Opp_3</targetReference>
+            </connector>
+            <label>Closed Won Opp 3 Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Any_Open_Opp_Null</name>
+        <label>Any Open Opp Null?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Add_to_Open_Value</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Open_Opp_1_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>openOpp1</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Open_Opp_1</targetReference>
+            </connector>
+            <label>Open Opp 1 Null</label>
+        </rules>
+        <rules>
+            <name>Open_Opp_2_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>openOpp2</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Open_Opp_2</targetReference>
+            </connector>
+            <label>Open Opp 2 Null</label>
+        </rules>
+        <rules>
+            <name>Open_Opp_3_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>openOpp3</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Open_Opp_3</targetReference>
+            </connector>
+            <label>Open Opp 3 Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_Stage</name>
+        <label>Which Stage?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Any_Closed_Lost_Opps_Null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Closed Lost</defaultConnectorLabel>
+        <rules>
+            <name>Closed_Won</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_Opps.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed Won</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Any_Closed_Won_Opps_Null</targetReference>
+            </connector>
+            <label>Closed Won</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>baseUrl</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Api.Partner_Server_URL_260}, FIND(&quot;/services&quot;, {!$Api.Partner_Server_URL_260}))</expression>
+    </formulas>
+    <formulas>
+        <name>yearAgo</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Flow.CurrentDate}, -12)</expression>
+    </formulas>
+    <interviewLabel>Get Recent Opportunities Prompt Triggered Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Get Recent Opportunities Prompt Triggered Flow</label>
+    <loops>
+        <name>Loop_Through_Open_Opps</name>
+        <label>Loop Through Open Opps</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Open_Opps</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Any_Open_Opp_Null</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Prompt_Instructions</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_through_Opps</name>
+        <label>Loop through Opps</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Opportunities_in_Last_Year</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Which_Stage</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Get_Open_Opps</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>PromptFlow</processType>
+    <recordLookups>
+        <name>Get_Open_Opps</name>
+        <label>Get Open Opps</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Open_Opps</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>account.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsClosed</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Opportunities_in_Last_Year</name>
+        <label>Get Opportunities in Last Year</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_Opps</targetReference>
+        </connector>
+        <filterLogic>1 AND (2 OR 3) AND 4</filterLogic>
+        <filters>
+            <field>CloseDate</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <elementReference>yearAgo</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed Won</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed Lost</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>account.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Opportunities_in_Last_Year</targetReference>
+        </connector>
+        <triggerType>Capability</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>account</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>closedLostCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>closedLostOpp1</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>closedLostOpp2</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>closedLostOpp3</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>closedLostTotalValue</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>closedWonCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>closedWonOpp1</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>closedWonOpp2</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>closedWonOpp3</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>closedWonTotalValue</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>openCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>openOpp1</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>openOpp2</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>openOpp3</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>openValue</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>recentlyClosedLostOpps</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+    <variables>
+        <name>recentlyClosedWonOpps</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+</Flow>

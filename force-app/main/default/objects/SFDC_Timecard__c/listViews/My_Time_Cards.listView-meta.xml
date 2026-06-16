@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Time_Cards</fullName>
+    <columns>Assignment__c</columns>
+    <columns>NAME</columns>
+    <columns>Date__c</columns>
+    <columns>Hours__c</columns>
+    <columns>Description_of_Work__c</columns>
+    <columns>Timesheet_Status__c</columns>
+    <columns>Billable__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Running_User_is_Resource__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>My Time Cards</label>
+</ListView>

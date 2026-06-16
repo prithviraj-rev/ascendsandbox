@@ -1,0 +1,54 @@
+<!-- 
+This page is displayed after package installation. 
+The idea is to display the very basic steps to configure the app and a 
+link to the user guide
+-->
+<apex:page showHeader="false"  sidebar="false" docType="html-5.0"   >
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <apex:slds />
+        
+        <div class="slds-grid slds-wrap slds-grid_pull-padded">
+            <div class="slds-p-horizontal_small slds-size_1-of-2">
+                
+                <div class="slds-card slds-m-around--large slds-box ">
+                    <div class="slds-text-heading_large slds-text-color_error">
+                        Before You Begin Conversion
+                    </div>
+                    
+                    <div class="slds-text-heading_medium slds-m-top--medium slds-m-bottom--x-small">
+                        Assign the Attachments and Notes Migrator Permission Set to Admins
+                    </div>
+                    
+                    <ul class="slds-list_dotted">
+                        <li>From Setup, enter Permission Sets in the Quick Find box, then select Permission Sets. </li>
+                        <li>Select the recently added permission set Attachments and Notes Migrator - Admin.</li>
+                        <li>Select System Permissions.</li>
+                        <li>
+                            Click Edit and enable the following permissions:
+                            In the Systems section:
+                            <ul class="slds-list_dotted">
+                                <li>Modify All Data</li>
+                                <li>Set Audit Fields upon Record Creation </li>
+                            </ul>
+                            In the Users section:
+                            <ul class="slds-list_dotted">
+                                <li>View All Users</li>
+                                
+                            </ul>
+                        </li>
+                        <li>Click Save.</li>
+                        <li>Click Manage Assignments. </li>
+                        <li><b>Assign the permission set</b> to anyone who will be using this tool to migrate attachments or notes. This typically includes admins.
+                        </li>
+                        
+                    </ul>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        
+    </html>
+</apex:page>

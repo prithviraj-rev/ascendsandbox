@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Grant access to the Video Call and Video Call Participant</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>VideoCall.Call_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Video Call/Video Call Participant Access</label>
+    <tabSettings>
+        <tab>standard-VideoCall</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+</PermissionSet>

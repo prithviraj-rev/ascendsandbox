@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AE_SDM_Must_be_Checked</fullName>
+    <active>true</active>
+    <description>The AE and SDM approved boxes need to be checked for the invoice status to equal Reviewed by AE/SDM.</description>
+    <errorConditionFormula>NOT($Permission.BypassValidationRules)
+&amp;&amp;
+ISPICKVAL(Invoice_Status__c, &quot;Reviewed by AE/SDM&quot;)
+&amp;&amp;
+OR(AE_Approved__c = false,
+		 SDM_Approved__c = false)</errorConditionFormula>
+    <errorMessage>To set the status to Reviewed by AE/SDM the AE and SDM must check off that they have approved.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BD_Projects_Active</fullName>
+    <columns>NAME</columns>
+    <columns>Budget_Percent_Remaining__c</columns>
+    <columns>Days_Remaining_Until_End_Date_Percentage__c</columns>
+    <columns>Project_Lead__c</columns>
+    <columns>Billing_Approver__c</columns>
+    <columns>Purchase_Order__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account__c</field>
+        <operation>startsWith</operation>
+        <value>Becton,BD</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFDC_Projects__c.Project</value>
+    </filters>
+    <label>BD Projects (Active)</label>
+    <sharedTo>
+        <roleAndSubordinatesInternal>AscendLeadership</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

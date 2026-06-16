@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Line_Item_Compact_Layout</fullName>
+    <fields>Name</fields>
+    <fields>Est_Hours__c</fields>
+    <fields>Billable_Hours_Worked__c</fields>
+    <fields>Billable_Hours_Remaining__c</fields>
+    <label>Project Line Item Compact Layout</label>
+</CompactLayout>

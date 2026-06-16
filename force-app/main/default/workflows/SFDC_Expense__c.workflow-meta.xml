@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Mileage_Calculation</fullName>
+        <description>According to the IRS, the national amount is $0.58/mile</description>
+        <field>Amount__c</field>
+        <formula>CASE(YEAR( Date__c ), 
+					2016, Miles__c *(0.54), 
+					2017, Miles__c *(0.535), 
+					2018, Miles__c *(0.545), 
+					2019, Miles__c *(0.58), 
+					2020, Miles__c *(0.575), Amount__c )</formula>
+        <name>Mileage Calculation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Expense - Mileage Calculation</fullName>
+        <actions>
+            <name>Mileage_Calculation</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(OR(ISNEW(),ISCHANGED( Miles__c )), ISPICKVAL(Category__c, &quot;Mileage&quot;) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

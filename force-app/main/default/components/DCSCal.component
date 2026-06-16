@@ -1,0 +1,142 @@
+<apex:component controller="DCSCal">
+	<apex:attribute name="targetId" type="Id" required="true" description="target object Id" assignTo="{!target}"/>
+<style>
+table.cal{
+	width:100%;
+	}
+table.cal th{
+	text-align:center;
+	}
+table.cal td{
+	width:14%;
+	height:6em;
+	margin:0.05em;
+	padding:0.05em;
+	border:solid 1px #C0C0C0;
+	vertical-align:top;
+}
+table.cal td.outside{
+	background:#E0E0E0;
+}
+table.cal td.today{
+	border:solid 2px #FF0000;
+}
+table.cal td ul{
+	list-style:none;
+	margin:0.1em 0.5em 0.1em 0.1em ;
+	padding:0em;
+}
+table.cal td ul li{
+	width:100%;
+	margin:0.2em;
+	padding:0em;
+}
+
+.s0{
+	border:solid 1px #A0A0A0;
+	background:#E0E0E0;	
+}
+.s1{
+	border:solid 1px #A0FFA0;
+	background:#E0FFE0;	
+}
+.s2{
+	border:solid 1px #A0A0FF;
+	background:#E0E0FF;	
+}
+.s3{
+	border:solid 1px #FFA0A0;
+	background:#FFE0E0;	
+}
+.s4{
+	border:solid 1px #FFFFA0;
+	background:#FFFFE0;	
+}
+.s5{
+	border:solid 1px #FFA0FF;
+	background:#FFE0FF;	
+} 
+.s6{
+	border:solid 1px #A0FFFF;
+	background:#E0FFFF;	
+}
+.s7{
+	border:solid 1px #A0EFB0;
+	background:#E0EFC0;	
+}
+ul.fieldList{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+table.key td ul li{
+	width:100%;
+	margin:0 0 2px 0;
+	padding:0 0 2px 0;
+}
+table.key{
+	width:100%;
+}
+table.key th{
+	text-align:center;
+	vertical-align:top;
+}
+table.key td{
+	vertical-align:top;
+}
+</style>
+<apex:form >
+
+
+<table class="cal"> 
+	<tr>
+		<th colspan="2"></th>
+		<th><apex:commandButton value="Prev" action="{!PrevMonth}"/></th>
+		<th><apex:outputText value="{!calMonth.title}"/></th>
+		<th><apex:commandButton value="Next" action="{!NextMonth}"/></th>
+		<th colspan="2"></th>
+	</tr>
+	<tr>
+		<apex:repeat value="{!calMonth.days}" var="day">
+		<th><apex:outputText value="{!day}"/></th>
+		</apex:repeat>
+	</tr>
+	<apex:repeat value="{!calMonth.cal}" var="weeks">
+		<tr>
+		<apex:repeat value="{!weeks}" var="day">
+		<td class="{!day.status}"><div><apex:outputText value="{!day.name}"/></div>
+		<ul>
+			<apex:repeat value="{!day.items}" var="item">
+				<li class="{!item.populateCategory}"><a href="/{!item.Id}" target="_new"><apex:outputText value="{!item.name}"/></a></li>
+			</apex:repeat>
+		</ul>
+		</td>
+		</apex:repeat>
+		</tr>
+	</apex:repeat>
+</table>
+<table class="key">
+	<tr>
+		<apex:repeat value="{!calMonth.nObjects}" var="o">
+			<th class="{!o.style}"><apex:outputText value="{!o.label}"/></th>
+		</apex:repeat>
+	</tr>
+	<tr>
+		<apex:repeat value="{!calMonth.nObjects}" var="o">
+			<td>
+				<ul class="fieldList">
+				<apex:repeat value="{!calMonth.DateFieldMeta[o.name]}" var="l">
+					<apex:outputpanel rendered="{!l.dType='DATE'}" layout="none">
+						<li class="{!o.style}">
+							<apex:outputText value="{!l.label}"/>
+						</li>
+					</apex:outputpanel>
+				</apex:repeat>
+				</ul>
+			</td>
+		</apex:repeat>
+	</tr>
+	
+</table>
+</apex:form>
+</apex:component>

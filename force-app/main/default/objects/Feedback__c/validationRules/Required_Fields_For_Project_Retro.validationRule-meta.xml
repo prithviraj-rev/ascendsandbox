@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Required_Fields_For_Project_Retro</fullName>
+    <active>true</active>
+    <description>Prevents Internal Project Retro feedback from being submitted unless at least one feedback field is populated.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Status__c, &quot;Submitted&quot;),
+
+    $RecordType.DeveloperName = &quot;Internal_Feedback&quot;,
+
+    ISPICKVAL(Type__c, &quot;Project Retro&quot;),
+
+    ISBLANK(Technical_Skills__c),
+    ISBLANK(Time_Management__c),
+    ISBLANK(Verbal_Communication__c),
+    ISBLANK(Written_Communication__c),
+    ISBLANK(Comments__c)
+)</errorConditionFormula>
+    <errorMessage>Please complete at least one feedback field (Technical Skills, Time Management, Verbal Communication, Written Communication, or Comments) before submitting.</errorMessage>
+</ValidationRule>

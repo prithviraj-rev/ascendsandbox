@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Managed_Services</fullName>
+    <fields>Name</fields>
+    <fields>Project_Stage__c</fields>
+    <fields>Start_Date__c</fields>
+    <fields>End_Date__c</fields>
+    <fields>MRR__c</fields>
+    <fields>Monthly_Recurring_Hours__c</fields>
+    <fields>Project_Lead__c</fields>
+    <label>Managed Services</label>
+</CompactLayout>

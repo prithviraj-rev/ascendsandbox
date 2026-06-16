@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Breeze</fullName>
+        <default>false</default>
+        <label>Breeze</label>
+    </customValue>
+    <customValue>
+        <fullName>Commerce Hub</fullName>
+        <default>false</default>
+        <label>Commerce Hub</label>
+    </customValue>
+    <customValue>
+        <fullName>Content Hub</fullName>
+        <default>false</default>
+        <label>Content Hub</label>
+    </customValue>
+    <customValue>
+        <fullName>Marketing Hub</fullName>
+        <default>false</default>
+        <label>Marketing Hub</label>
+    </customValue>
+    <customValue>
+        <fullName>Operations Hub</fullName>
+        <default>false</default>
+        <label>Operations Hub</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Hub</fullName>
+        <default>false</default>
+        <label>Sales Hub</label>
+    </customValue>
+    <customValue>
+        <fullName>Service Hub</fullName>
+        <default>false</default>
+        <label>Service Hub</label>
+    </customValue>
+    <customValue>
+        <fullName>Smart CRM</fullName>
+        <default>false</default>
+        <label>Smart CRM</label>
+    </customValue>
+    <description>Global value set field used to capture HubSpot Products
+
+Case/Ticket:
+W-002548</description>
+    <masterLabel>HubSpot Products</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

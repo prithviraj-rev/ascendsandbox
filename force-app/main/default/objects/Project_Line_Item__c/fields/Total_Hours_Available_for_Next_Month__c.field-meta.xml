@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Hours_Available_for_Next_Month__c</fullName>
+    <externalId>false</externalId>
+    <formula>Project__r.Monthly_Recurring_Hours__c+(IF((Project__r.Monthly_Recurring_Hours__c*Project__r.Carryover_Allowed__c) &gt;(IF(Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c&gt;0 &amp;&amp; NOT(Rollover_Hours__c&lt;0), Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c, IF(Rollover_Hours__c&lt;0 &amp;&amp; NOT((Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c)&lt;ABS(Rollover_Hours__c)),Rollover_Hours__c+Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c ,0))), (IF(Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c&gt;0 &amp;&amp; NOT(Rollover_Hours__c&lt;0), Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c, IF(Rollover_Hours__c&lt;0 &amp;&amp; NOT((Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c)&lt;ABS(Rollover_Hours__c)),Rollover_Hours__c+Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c ,0))), (Project__r.Monthly_Recurring_Hours__c*Project__r.Carryover_Allowed__c)))+IF((Rollover_Hours__c + IF(Billable_Hours_Worked__c&gt;Project__r.Monthly_Recurring_Hours__c+CarryoverHours__c || Rollover_Hours__c&lt;0, Billable_Hours_Worked__c-Project__r.Monthly_Recurring_Hours__c-CarryoverHours__c+(IF(Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c&gt;0 &amp;&amp; NOT(Rollover_Hours__c&lt;0), Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c, IF(Rollover_Hours__c&lt;0 &amp;&amp; NOT((Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c)&lt;ABS(Rollover_Hours__c)),Rollover_Hours__c+Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c ,0))),  0)*-1)&gt;0, (Rollover_Hours__c + IF(Billable_Hours_Worked__c&gt;Project__r.Monthly_Recurring_Hours__c+CarryoverHours__c || Rollover_Hours__c&lt;0, Billable_Hours_Worked__c-Project__r.Monthly_Recurring_Hours__c-CarryoverHours__c+(IF(Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c&gt;0 &amp;&amp; NOT(Rollover_Hours__c&lt;0), Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c, IF(Rollover_Hours__c&lt;0 &amp;&amp; NOT((Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c)&lt;ABS(Rollover_Hours__c)),Rollover_Hours__c+Project__r.Monthly_Recurring_Hours__c-Billable_Hours_Worked__c ,0))),  0)*-1), 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Hours Available for Next Month</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,48 @@
+<template>
+    <div class="slds-form-element">  
+        <div class="slds-combobox_container">  
+            <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aria-expanded="true" aria-haspopup="listbox" role="combobox">  
+            
+                <div data-key="searchdiv" class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">  
+                    <lightning-input
+                        label={label}
+                        type="search"
+                        value={selectedValueName}
+                        placeholder={placeholder}
+                        is-loading={showSpinner}
+                        onchange={handleChange}
+                        onfocus={handleFocus}
+                        onblur={handleBlur}
+                        onkeyup={handleKeyUp}
+                        variant={variant}
+                    ></lightning-input>
+                </div> 
+   
+                <template if:true={disaplayValues}>
+                    <div data-key="dropdownresult" class="slds-show slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">  
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">  
+                            <template if:true={message}>  
+                                <span class="slds-p-left_x-small">{message}</span>  
+                            </template> 
+
+                            <template for:each={values} for:item="value">  
+                                <li id={value.Id} key={value.Id} data-key={value.Id} data-name={value.Name} onmousedown={handleSelectValue} role="presentation" class="slds-listbox__item">  
+                                    <div data-key={value.Id} data-name={value.Name} class="slds-media slds-listbox__option slds-listbox__option_entity slds-media_center" role="option">  
+                                        <span class="slds-media__figure slds-listbox__option-icon">  
+                                            <span class="slds-icon_container">  
+                                                <lightning-icon icon-name={valueIconName} size="small"></lightning-icon>  
+                                            </span>  
+                                        </span>  
+                                        <span class="slds-media__body">  
+                                            <span data-key={value.Id} data-name={value.Name} class="slds-listbox__option-text slds-listbox__option-text_entity">{value.Name}</span>  
+                                        </span>  
+                                    </div>  
+                                </li>  
+                            </template>  
+                        </ul>  
+                    </div>  
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Account</fullName>
+        <default>false</default>
+        <label>Account</label>
+    </customValue>
+    <customValue>
+        <fullName>Contact</fullName>
+        <default>false</default>
+        <label>Contact</label>
+    </customValue>
+    <customValue>
+        <fullName>WorkOrder</fullName>
+        <default>false</default>
+        <label>Work Order</label>
+    </customValue>
+    <customValue>
+        <fullName>Project</fullName>
+        <default>false</default>
+        <label>Project</label>
+    </customValue>
+    <masterLabel>Checklist Object</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

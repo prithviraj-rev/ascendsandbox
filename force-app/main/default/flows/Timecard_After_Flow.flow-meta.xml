@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Create_or_Update</name>
+        <label>Create or Update</label>
+        <locationX>226</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Update_PLI_Max_Rate</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Update</defaultConnectorLabel>
+        <rules>
+            <name>Created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fIsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Type_of_Timecard</targetReference>
+            </connector>
+            <label>Created</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Created_or_Hours_Updated</name>
+        <label>Created or Hours Updated?</label>
+        <locationX>226</locationX>
+        <locationY>1115</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Update_Timesheet</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>fIsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Billable_Hours__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Hours__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Rollup_Timesheet_Hours</targetReference>
+            </connector>
+            <label>Update Timesheet</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Type_of_Timecard</name>
+        <label>Type of Timecard</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference>Update_Contact_Last_Timecard</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>All Others</defaultConnectorLabel>
+        <rules>
+            <name>Company_Holiday</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Project_Line_Item__r.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Company Holiday</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_PLI_Max_Rate</targetReference>
+            </connector>
+            <label>Company Holiday</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Checks if we need to update the Max Rate field on the PLI for this timecard. 
+
+8/1/25 - Added this decision to limit the amount of time we run this update action because prior to this is was running every time a Timecard was created or Updated.</description>
+        <name>Update_PLI_Max_Rate</name>
+        <label>Update PLI Max Rate?</label>
+        <locationX>226</locationX>
+        <locationY>815</locationY>
+        <defaultConnector>
+            <targetReference>Created_or_Hours_Updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Update_Max_Rate</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Project_Line_Item__r.MaxRate__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference>$Record.Rate_Client__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_PLI_Record</targetReference>
+            </connector>
+            <label>Update Max Rate</label>
+        </rules>
+    </decisions>
+    <description>8/1/25 - Case#00016258 - Added &quot;Update PLI Max Rate&quot; decision to limit the amount of time we run this update action because prior to this is was running every time a Timecard was created or Updated. Also added &quot;Created or Hours Updated&quot; decision to limit when rollup happens.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>fIsNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <name>fMaxRate</name>
+        <dataType>Currency</dataType>
+        <expression>IF( {!$Record.Project_Line_Item__r.MaxRate__c} &lt; {!$Record.Rate_Client__c} , {!$Record.Rate_Client__c}, {!$Record.Project_Line_Item__r.MaxRate__c})</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Timecard: After Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Timecard: After Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Contact_Last_Timecard</name>
+        <label>Update Contact Last Timecard</label>
+        <locationX>138</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Update_PLI_Max_Rate</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Last_Timecard__c</field>
+            <value>
+                <elementReference>$Record.Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.Assignment__r.Resource__r</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update values when timecard is created or updated</description>
+        <name>Update_PLI_Record</name>
+        <label>Update PLI Record</label>
+        <locationX>94</locationX>
+        <locationY>923</locationY>
+        <connector>
+            <targetReference>Created_or_Hours_Updated</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Project_Line_Item__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>MaxRate__c</field>
+            <value>
+                <elementReference>fMaxRate</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Project_Line_Item__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>100</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_or_Update</targetReference>
+        </connector>
+        <object>SFDC_Timecard__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Rollup_Timesheet_Hours</name>
+        <label>Rollup Timesheet Hours</label>
+        <locationX>94</locationX>
+        <locationY>1223</locationY>
+        <flowName>Timecard_Sub_Flow_Rollup_Hours_Timesheet</flowName>
+        <inputAssignments>
+            <name>varTimesheetId</name>
+            <value>
+                <elementReference>$Record.Timesheet__c</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

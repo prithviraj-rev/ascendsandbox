@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>PS for Heidi Knudsen to test new fields with salesforce/hubspot integration
+
+Case/Ticket:
+#00015894</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Point_of_Contact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Opportunity.Automated_Onboarding_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>HubSpot/Salesforce Integration Fields</label>
+</PermissionSet>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Management__c</fullName>
+    <description>Rating of the resource’s ability to manage time and meet expectations.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Consider whether the resource responded in a timely manner and met agreed-upon deadlines. (Scale is 1 to 5, where 1 needs improvement and 5 is excellent.)</inlineHelpText>
+    <label>Time Management</label>
+    <precision>1</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

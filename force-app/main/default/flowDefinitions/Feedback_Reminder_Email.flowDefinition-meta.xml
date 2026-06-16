@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Runs daily to send a consolidated reminder to submitters who have at least one qualifying open Feedback record. Recipients receive either an internal or portal list view link and are deduped so they only receive one email regardless of number of open Feedback records. Additionally, there is a check after 7 days - if a Project Retro Feedback record has not had any of the key rating fields updated, it will be deleted.</description>
+    <masterLabel>Feedback: Reminder Email</masterLabel>
+</FlowDefinition>

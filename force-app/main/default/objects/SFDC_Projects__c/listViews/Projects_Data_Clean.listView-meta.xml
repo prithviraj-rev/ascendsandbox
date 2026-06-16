@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Projects_Data_Clean</fullName>
+    <columns>NAME</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Project_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Sales_Rep__c</field>
+        <operation>contains</operation>
+        <value>paul</value>
+    </filters>
+    <label>Projects - Sales Rep Clean</label>
+    <sharedTo>
+        <group>SF_Ops_Team</group>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MRR__c</fullName>
+    <description>Project_Rate__c * Monthly_Recurring_Hours__c</description>
+    <inlineHelpText>If left blank this field will be populated by a flow. However, you can change this value as needed and your value will be retained.</inlineHelpText>
+    <label>MRR</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

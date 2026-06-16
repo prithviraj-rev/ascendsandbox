@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Time POC</label>
+    <navType>Standard</navType>
+    <setupExperience>all</setupExperience>
+    <tabs>Timecard</tabs>
+    <tabs>SFDC_Projects__c</tabs>
+    <tabs>Project_Line_Item__c</tabs>
+    <tabs>SFDC_Assignment__c</tabs>
+    <tabs>DCS_Timecard</tabs>
+    <tabs>SFDC_Timecard__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Time_POC_UtilityBar</utilityBar>
+</CustomApplication>

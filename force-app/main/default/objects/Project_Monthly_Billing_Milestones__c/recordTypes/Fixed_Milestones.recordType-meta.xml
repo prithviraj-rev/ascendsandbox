@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fixed_Milestones</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>Billing_Milestone_Compact_Layout</compactLayoutAssignment>
+    <label>Fixed Milestones</label>
+    <picklistValues>
+        <picklist>Invoice_Status__c</picklist>
+        <values>
+            <fullName>All Time Entered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approved by Billing Approver</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invoice Approved by Approver</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invoice Sent to Approver</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Invoice Sent to Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Ready</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other - See Notes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ready for GP Invoice</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Milestones_for_Fixed_Price__c</picklist>
+        <values>
+            <fullName>MIlestone 8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Milestone 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Milestone 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Milestone 3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Milestone 4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Milestone 5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Milestone 6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Milestone 7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project Launch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Upon Completion</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Revenue_Recognition_Status__c</picklist>
+        <values>
+            <fullName>Fully Recognized</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Ready</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partially Recognized</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ready for Recognition%2C See Notes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

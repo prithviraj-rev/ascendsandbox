@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Missing_Role</fullName>
+    <columns>NAME</columns>
+    <columns>Role__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Role__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Project_End_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2017</value>
+    </filters>
+    <label>Missing Role</label>
+    <sharedTo>
+        <roleAndSubordinatesInternal>AscendLeadership</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

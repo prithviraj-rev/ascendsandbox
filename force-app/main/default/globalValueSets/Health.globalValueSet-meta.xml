@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Satisfied</fullName>
+        <default>false</default>
+        <label>Satisfied</label>
+    </customValue>
+    <customValue>
+        <fullName>Neutral</fullName>
+        <default>false</default>
+        <label>Neutral</label>
+    </customValue>
+    <customValue>
+        <fullName>Dissatisfied</fullName>
+        <default>false</default>
+        <label>Dissatisfied</label>
+    </customValue>
+    <customValue>
+        <fullName>Not Applicable</fullName>
+        <default>true</default>
+        <label>Not Applicable</label>
+    </customValue>
+    <description>Account Health</description>
+    <masterLabel>Health</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

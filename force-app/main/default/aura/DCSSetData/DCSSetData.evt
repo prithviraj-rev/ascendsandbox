@@ -1,0 +1,31 @@
+<aura:event
+	type="APPLICATION"
+	description="Set data for the timecard">
+	<aura:attribute
+		name="date"
+		type="Date"/>
+	<aura:attribute
+		name="projectLineId"
+		type="Id"/>
+	<aura:attribute
+		name="projectLineName"
+		type="String"/>
+	<aura:attribute
+		name="assignmentId"
+		type="Id"/>
+	<aura:attribute
+		name="assignmentName"
+		type="String"/>
+	<aura:attribute
+		name="recordId"
+		type="Id"/>
+	<aura:attribute
+		name="isMe"
+		type="Boolean"/>
+	<aura:attribute
+		name="iAm"
+		type="Id"/>
+	<aura:attribute
+		name="refreshCalendar"
+		type="boolean"/>
+</aura:event>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Worked_on_Assignment_before_7_1_25__c</fullName>
+    <description>Deleteable after assignment update for raises</description>
+    <label>Worked on Assignment before 7/1/25</label>
+    <summarizedField>SFDC_Timecard__c.Hours__c</summarizedField>
+    <summaryFilterItems>
+        <field>SFDC_Timecard__c.Type__c</field>
+        <operation>equals</operation>
+        <value>Billable</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>SFDC_Timecard__c.Date__c</field>
+        <operation>lessThan</operation>
+        <value>7/1/2025</value>
+    </summaryFilterItems>
+    <summaryForeignKey>SFDC_Timecard__c.Assignment__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

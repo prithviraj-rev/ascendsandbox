@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<apiVersion>63.0</apiVersion>
+	<description>Shows list of "Soft Validation Rule" messages</description>
+	<isExposed>true</isExposed>
+	<masterLabel>Soft Validation</masterLabel>
+	<targets>
+		<target>lightning__RecordPage</target>
+	</targets>
+	<targetConfigs>
+		<targetConfig targets="lightning__RecordPage">
+			<property
+				label="Max Container Height (px)"
+				name="maxContainerHeight"
+				type="Integer"/>
+			<property
+				label="Max Messages To Display"
+				name="maxMessages"
+				type="Integer"/>
+		</targetConfig>
+	</targetConfigs>
+</LightningComponentBundle>

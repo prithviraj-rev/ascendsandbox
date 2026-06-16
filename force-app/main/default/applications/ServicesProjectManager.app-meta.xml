@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>Services Project Manager enables professional services and consulting organizations to manage their projects from a single location so resources are put to the best use.</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Services Project Manager</label>
+    <logo>SharedDocuments/Doextra_CRM_Solutions_Logo_small_transparent_png.png</logo>
+    <tabs>standard-Chatter</tabs>
+    <tabs>SFDC_Projects__c</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>SFDC_Assignment__c</tabs>
+    <tabs>SFDC_Timecard__c</tabs>
+    <tabs>SFDC_Expense__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>Utilization</tabs>
+    <tabs>Sales_Goal__c</tabs>
+</CustomApplication>

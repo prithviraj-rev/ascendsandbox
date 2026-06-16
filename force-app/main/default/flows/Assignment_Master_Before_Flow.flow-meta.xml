@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Update_Assignment_Name</name>
+        <label>Update Assignment Name</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>forT_AssignmentName</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Resource_Cost_is_NULL</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Client_Rate</name>
+        <label>Update Client Rate</label>
+        <locationX>50</locationX>
+        <locationY>803</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Client_Rate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Projects__r.Project_Rate__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Update_Resource_Cost</name>
+        <label>Update Resource Cost</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Resource_Cost__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Resource__r.Cost__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Rate_is_NULL</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Rate_is_NULL</name>
+        <label>Rate is NULL</label>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Rate_NULL</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Client_Rate__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Client_Rate</targetReference>
+            </connector>
+            <label>NULL</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Resource_Cost_is_NULL</name>
+        <label>Resource Cost is NULL</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <defaultConnector>
+            <targetReference>Rate_is_NULL</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>NULL</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Resource_Cost__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Resource_Cost</targetReference>
+            </connector>
+            <label>NULL</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>forT_AssignmentName</name>
+        <dataType>String</dataType>
+        <expression>Left(CASE (TEXT({!$Record.Role__c}),
+&quot;Travel&quot;,{!$Record.Resource__r.FirstName} &amp; &apos; &apos; &amp; {!$Record.Resource__r.LastName} &amp; &apos; -Travel- &apos; &amp; {!$Record.Projects__r.Name},
+&quot;Sales Engineer&quot;,
+{!$Record.Resource__r.FirstName} &amp; &apos; &apos; &amp; {!$Record.Resource__r.LastName} &amp; &apos; - &apos; &amp; {!$Record.Opportunity__r.Name},
+{!$Record.Resource__r.FirstName} &amp; &apos; &apos; &amp; {!$Record.Resource__r.LastName} &amp;&apos; - &apos; &amp; BlankValue({!$Record.Projects__r.Name}, &quot;Opp: &quot; &amp; {!$Record.Opportunity__r.Name})), 80)</expression>
+    </formulas>
+    <interviewLabel>Assignment: Master Before Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Assignment: Master Before Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Assignment_Name</targetReference>
+        </connector>
+        <object>SFDC_Assignment__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

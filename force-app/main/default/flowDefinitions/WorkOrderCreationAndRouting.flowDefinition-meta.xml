@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionNumber>45</activeVersionNumber>
+    <description>02/14: update scrn_SASMS &amp; scrn_SASPS &quot;Rate&quot; field default to fx_DefaultRate</description>
+    <masterLabel>Work Order Creation And Routing</masterLabel>
+</FlowDefinition>

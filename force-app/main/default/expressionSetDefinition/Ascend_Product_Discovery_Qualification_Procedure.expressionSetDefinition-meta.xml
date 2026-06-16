@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExpressionSetDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contextDefinitions>ExtendProductDiscoveryContext</contextDefinitions>
+    <executionMode>Cloud</executionMode>
+    <executionScale>Low</executionScale>
+    <interfaceSourceType>QualificationProcedure</interfaceSourceType>
+    <label>Ascend Product Discovery Qualification Procedure</label>
+    <processType>ProductQualification</processType>
+    <resourceInitializationType>Default</resourceInitializationType>
+    <template>false</template>
+    <versions>
+        <fullName>Ascend_Product_Discovery_Qualification_Procedure_V1</fullName>
+        <decimalScale>2</decimalScale>
+        <expressionSetDefinition>Ascend_Product_Discovery_Qualification_Procedure</expressionSetDefinition>
+        <interfaceSourceType>QualificationProcedure</interfaceSourceType>
+        <label>Ascend Product Discovery Qualification Procedure V1</label>
+        <processType>ProductQualification</processType>
+        <shouldShowExplExternally>false</shouldShowExplExternally>
+        <startDate>2026-05-18T14:41:19.000Z</startDate>
+        <status>Inactive</status>
+        <versionNumber>1</versionNumber>
+    </versions>
+</ExpressionSetDefinition>

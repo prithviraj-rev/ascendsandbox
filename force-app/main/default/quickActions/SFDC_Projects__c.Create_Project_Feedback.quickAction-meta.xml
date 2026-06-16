@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Launches the screen flow to submit internal or client feedback for the project.</description>
+    <flowDefinition>Project_Screen_Flow_for_Feedback</flowDefinition>
+    <label>Create Project Feedback</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

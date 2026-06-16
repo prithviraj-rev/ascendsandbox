@@ -1,0 +1,53 @@
+#header, h2.subTitlle{
+	display: block;
+}
+
+#header{
+	background-color:#638658;
+	color:#FFFFFF;
+	font-size:100%;
+	font-weight:bold;
+	margin:0 0 15px;
+	padding:10px 0 10px 8px;		
+}
+h2.subTitlle{
+	background-color:#999999;
+	color:#FFFFFF;
+	font-size:90%;
+	margin-top:0;
+	padding:2px 0 2px 8px;
+}
+
+#leftContainer fieldset{
+	color:#333333;
+	margin:0 15px 10px;
+	padding:2px;		
+}
+#leftContainer fieldset legend{
+	color:#333333;
+	font-weight:bold;		
+}
+#leftContainer, #rightContainer{
+	height: 450px;	
+	font-family:arial,helvetica,verdana,sans-serif;
+	/*font-size:80%;*/
+}
+#leftContainer{
+	background-color:#F3F3EC;
+	border-bottom:2px solid #638658;
+	width: 74%;
+	float: left;
+}
+#rightContainer{
+	background-color:#E8E8E8;
+	border-bottom:2px solid #999999;
+	vertical-align:top;
+	float: right;
+	width: 25%;
+}
+#rightContainer p.paragraph, #leftContainer p.paragraph{
+	color:#333333;
+	line-height:1.4em;
+	margin:0 10px 12px;		
+	margin-top: 0px;
+}

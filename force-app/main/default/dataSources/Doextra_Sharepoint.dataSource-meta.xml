@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalDataSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authProvider>Doextra_Sharepoint</authProvider>
+    <customConfiguration>{&quot;sharepointConnectorUrl&quot;:&quot;https://aro365520325.sharepoint.com&quot;,&quot;singleSiteCollection&quot;:&quot;true&quot;}</customConfiguration>
+    <isWritable>false</isWritable>
+    <label>Doextra Sharepoint</label>
+    <principalType>PerUser</principalType>
+    <protocol>Oauth</protocol>
+    <type>ContentHubSharepointOffice365</type>
+</ExternalDataSource>

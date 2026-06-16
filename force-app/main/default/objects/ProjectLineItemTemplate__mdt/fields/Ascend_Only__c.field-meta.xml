@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ascend_Only__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This PLI will only be created on the Ascend project</description>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Ascend Only</label>
+    <type>Checkbox</type>
+</CustomField>

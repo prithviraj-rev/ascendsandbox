@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <name>formServiceSKU</name>
+        <dataType>String</dataType>
+        <expression>LEFT(TEXT({!$Record.SKU_Company__c}), 3) &amp;
+&quot;-&quot; &amp;
+TEXT({!$Record.SKU_BusinessUnit__c}) &amp;
+&quot;-&quot; &amp;
+TEXT({!$Record.SKU_LOB__c}) &amp;
+&quot;-&quot; &amp;
+TEXT({!$Record.SKU_Category__c}) &amp;
+&quot;-&quot; &amp;
+TEXT({!$Record.SKU_Product__c}) &amp;
+&quot;-&quot; &amp;
+TEXT({!$Record.SKU_Subproduct__c}) &amp;
+&quot;-&quot; &amp;
+LPAD(TEXT({!$Record.SKU_Sequence__c}), 3, &quot;0&quot;)</expression>
+    </formulas>
+    <interviewLabel>update Stock Keeping Unit {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Stock Keeping Unit</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Stock_Keeping_Unit</name>
+        <label>Update Stock Keeping Unit</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>StockKeepingUnit</field>
+            <value>
+                <elementReference>formServiceSKU</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Stock_Keeping_Unit</targetReference>
+        </connector>
+        <object>Product2</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

@@ -1,0 +1,689 @@
+<apex:page controller="ctrlTimecardEntry">
+  <head>
+    <title>Doextra Time Entry Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700,400italic,700italic" />
+    <link rel="stylesheet" href="{!$Resource.timeentrycss}" />
+    <script src="{!$Resource.jQuery}"></script>
+    <script src="{!$Resource.OmniGrid}"></script>
+    <script type='text/javascript'>$(function() {
+  var $ = jQuery,
+      
+      sum,
+      getCaret,
+      
+      container = $("#container"),
+      layout,
+      
+      header = $("#header"),
+      
+      gridContainer = $("#grid-container"),
+      Grid = OmniGrid, 
+      grid, makeGrid,
+      
+      filterContainer = $("#filter-container"),
+      
+      resource = $("#resource-filter"),
+      resources,
+      currentResource,
+      
+      week = $("#week-filter"),
+      weeks = [],
+      currentWeek,
+      
+      projects = [],
+      refresh,
+      
+      buttonContainer = $("#button-container");
+  
+  sum = function( arr ) {
+    var s = arr.reduce(function( sum, current ) {
+      current = +current;
+      return current ? sum + current : sum;
+    }, 0);
+    
+    return Math.round(s * 100) / 100;
+  }
+  
+  /* http://stackoverflow.com/questions/2897155/get-cursor-position-in-characters-within-a-text-input-field
+** Returns the caret (cursor) position of the specified text field.
+** Return value range is 0-oField.value.length.
+*/
+function getCaret (oField) {
+
+  // Initialize
+  var iCaretPos = 0;
+
+  // IE Support
+  if (document.selection) {
+
+    // Set focus on the element
+    oField.focus ();
+
+    // To get cursor position, get empty selection range
+    var oSel = document.selection.createRange ();
+
+    // Move selection start to 0 position
+    oSel.moveStart ('character', -oField.value.length);
+
+    // The caret position is selection length
+    iCaretPos = oSel.text.length;
+  }
+
+  // Firefox support
+  else if (oField.selectionStart || oField.selectionStart == '0')
+    iCaretPos = oField.selectionStart;
+
+  // Return results
+  return (iCaretPos);
+}
+  
+  OmniGrid.defineCellType("doextra:TimeEntry", {
+    header: false,
+    init: function( params, fireUpdate, expose ) {
+      var thisElement = this.element,
+          t = this,
+          input = $("<input />"),
+          popup = $("<div tabindex=1 />"),
+          billable, description,
+          changeMade = false,
+          tooltip = $("<div />"),
+          tagHF = function( cName, remove ) {
+            var fn = remove ? "removeClass" : "addClass",
+                row = this.getRow(),
+                col = this.getColumn();
+            
+            row.header[fn](cName);
+            row.footer[fn](cName);
+            col.header[fn](cName);
+            col.footer[fn](cName);
+          }.bind(this),
+          pushUpdate;
+      
+      // fire updates on input change
+      input.on("oninput" in window ? "input" : "change", fireUpdate);
+      
+      this.element.hover(function() {
+        tagHF("cellhover");
+      }, function() {
+        tagHF("cellhover", true);
+      });
+      
+      this.on("update", function( evt ) {
+        var v = this.getValue(),
+            error;
+        
+        changeMade = true;
+        
+        if(v.length > 0) { // if not empty Cell
+          if(isNaN(v) || v < 0) {
+            error = "Cell value must be a positive number";
+          } else if(v.indexOf(".") !== -1 && v.split(".")[1].length > 2) {
+            error = "Decimals can only be to the hundredths place";
+          } else if(+v > 24) {
+            error = "It is impossible to work more than 24 hours in a day!";
+          }
+        } else {
+          return;
+        }
+        
+        if(error) {
+          thisElement.addClass("invalid");
+          this.setData("error", error);
+        } else {
+          thisElement.removeClass("invalid");
+          this.setData({
+            "lastValidValue": v,
+            "error": undefined
+          });
+        }
+      });
+      
+      // when a Cell updates, push the new value (if valid)
+      pushUpdate = function() {
+        var v, tid, tryUpdate, update;
+        
+        if( !changeMade ) {
+          return;
+        }
+        
+        changeMade = false;
+        
+        // if no error and there is a value
+        if( !t.getData("error") && (v = t.getData("lastValidValue")) ) {
+          tid = t.getData("timecard");
+          
+          // if the cell is empty, put in the last valid value
+          if( t.getValue() === "" ) {
+            t.setValue(v);
+          }
+          
+          update = function( newVal ) {
+            console.log("Updating timecard '" + tid + "' to " + newVal);
+            thisElement.removeClass("success")
+                        .addClass("pending");
+            t.setData("updating", true);
+            Visualforce.remoting.Manager.invokeAction(
+              '{!$RemoteAction.ctrlTimecardEntry.updateTimecard}',
+              tid, newVal,
+              billable.hasClass("checked"),
+              description.val(),
+              function( res, evt ) {
+                console.log("...success!");
+                t.setData("updating", false);
+                thisElement.removeClass("pending")
+                           .addClass("success");
+              }
+            );
+          };
+          
+          if(t.getData("updating")) {
+            if(!t.getData("waiting")) {
+              // if not waiting already, begin doing so now
+              t.setData("waiting", true);
+              var tryUpdate = function() {
+                if(t.getData("updating")) {
+                  // still creating, wait to update
+                  console.log("  Delaying update, another update is occurring...");
+                  setTimeout(tryUpdate, 100);
+                } else {
+                  // update using the latest cached value
+                  console.log("  ...done waiting, updating with latest value: " + t.getData("lastValidValue"));
+                  t.setData("waiting", false);
+                  update(t.getData("lastValidValue"));
+                }
+              };
+              
+              tryUpdate();
+            }
+          } else if(tid) {
+            // timecard exists, just do update
+            update(v);
+          } else if(t.getData("creating")) {
+            // timecard is being created, update once card is ready
+            console.log("  Setting new update value to " + v);
+            if(!t.getData("waiting")) {
+              // if not waiting already, begin doing so now
+              t.setData("waiting", true);
+              var tryUpdate = function() {
+                if(t.getData("creating")) {
+                  // still creating, wait to update
+                  console.log("  Delaying update, timecard is being created...");
+                  setTimeout(tryUpdate, 100);
+                } else {
+                  // update using the latest cached value
+                  console.log("  ...done waiting, updating with latest value: " + t.getData("lastValidValue"));
+                  t.setData("waiting", false);
+                  tid = t.getData("timecard");
+                  update(t.getData("lastValidValue"));
+                }
+              };
+              
+              tryUpdate();
+            }
+          } else {
+            // timecard does not exist, create one
+            // first, note that one is being created
+            console.log("Creating timecard...");
+            t.setData("creating", true);
+            thisElement.removeClass("success")
+                        .addClass("pending");
+            
+            Visualforce.remoting.Manager.invokeAction(
+              '{!$RemoteAction.ctrlTimecardEntry.createTimecard}',
+              t.getData("assignmentID"),
+              t.getData("lineItemID"),
+              t.getData("utc"),
+              v, // hours
+              billable.hasClass("checked"), // billable
+              description.val(), // description
+              function( res, evt ) {
+                console.log("Created timecard! : " + res);
+                t.setData({
+                  "timecard": res,
+                  "creating": false
+                });
+              }.bind(this)
+            );
+          }
+        }
+      };
+      
+      // create the popup (for billable, description)
+      billable = $("<div tabindex=0 />")
+        .addClass("billable-checkbox checked")
+        .text("Billable")
+        .click(function() {
+          changeMade = true;
+          billable.toggleClass("checked");
+        })
+        .keydown(function( ev ) {
+          if(ev.keyCode === 13) {
+            billable.click();
+          }
+        });
+      description = $("<textarea />")
+        .on("input", function() {
+          changeMade = true;
+        })
+        .change(function() {
+          changeMade = true;
+        });
+      
+      popup
+        .addClass("extra-popup")
+        .append(billable)
+        .append("<div>Description</div>")
+        .append(description);
+        
+      // when input or popup is focused, calculate position and show popup
+      // and, remove it on blur
+      input.add(popup).add(billable).add(description)
+        .focus(function() {
+          var co, ch, ph,
+              cw, pw, sw;
+          
+          // show popup, add tagging class to the cell
+          thisElement.addClass("show-popup");
+          
+          // calculate position (height first)
+          co = thisElement.offset();
+          ch = thisElement.outerHeight();
+          ph = popup.outerHeight();
+          popup.css("top", Math.max(-co.top + 5, (ch - ph) / 2));
+          
+          // now width
+          cx = thisElement.offset().left;
+          cw = thisElement.outerWidth();
+          pw = popup.outerWidth();
+          sw = window.outerWidth;
+          
+          // check if it can fit on the right
+          // (cellX + cellWidth + popupWidth < windowWidth - 5 (for padding))
+          if(co.left + cw + pw < sw - 5) {
+            popup.css("left", cw);
+          } else {
+            // otherwise, put it on the left
+            popup.css("left", Math.max(-co.left + 5, -pw));
+          }
+        })
+        .blur(function() {
+          // hide popup, remove tagging class from the cell
+          thisElement.removeClass("show-popup");
+          
+          setTimeout(function() {
+            if( !thisElement.hasClass("show-popup") ) {
+              pushUpdate();
+            }
+          }, 100);
+        });
+      
+      // arrow key navigation in input
+      input.keydown(function( ev ) {
+        var k = ev.keyCode || ev.which,
+            c = getCaret(this),
+            ri = t.getRowIndex(),
+            ci = t.getColumnIndex(),
+            e;
+        
+        //console.log("Keypress in ", this, " with caret position ", c, " key is ", k, [ri, ci]);
+        
+        if( k === 37 && c === 0 ) { // left
+          if( --ci >= 0 ) {
+            e = t.getRow().getCell(ci);
+          }
+        } else if( k === 38 ) { // up
+          if( --ri >= 0 ) {
+            e = t.getColumn().getCell(ri);
+          }
+        } else if( k === 39 && c === this.value.length ) { // right
+          if( ++ci < t.getRow().getWidth() ) {
+            e = t.getRow().getCell(ci);
+          }
+        } else if( k === 40 ) { // down
+          if( ++ri < t.getColumn().getHeight() ) {
+            e = t.getColumn().getCell(ri);
+          }
+        }
+        
+        if(e) {
+          //console.log("Selecting... ", e, "\nri = ", ri, "ci = ", ci);
+          e = e.element._input;
+          ev.preventDefault();
+          e.focus();
+          e.select();
+        }
+      });
+      
+      // save a reference, append the input and popup
+      this.element._input = input;
+      this.element._billable = billable;
+      this.element._description = description;
+      this.element
+        .append(input)
+        .append(popup);
+    },
+    
+    initialValue: "",
+    
+    getValue: function() {
+      return this._input.val();
+    },
+    
+    setValue: function( newVal ) {
+      newVal = "" + newVal;
+      this._input.val(newVal);
+      return newVal;
+    }
+  });
+  
+  OmniGrid.defineGridType("doextra:TimeEntry", {
+    rowFooters: true,
+    columnFooters: true,
+    init: function( params, controls ) {
+      var projects = params.projects,
+          week = params.week,
+          cols = "Sun Mon Tue Wed Thu Fri Sat".split(" ");
+      
+      controls.setColumns(cols);
+      this.forEachColumn(function() {
+        this.header.text(this.name);
+        this.setData("utc", week.utc[this.index]);
+        this.footer.text("0");
+      });
+      
+      projects.forEach(function( project ) {
+        var row = controls.addRow(
+          project.uniqueID,
+          "og:Default",
+          {
+            cellType: "doextra:TimeEntry",
+            header: project.displayName,
+            footer: sum,
+            initialFooter: 0
+          }
+        );
+        
+        row.setData({
+          assignmentID: project.aId,
+          lineItemID: project.pliId
+        });
+      });
+      
+      this.on("update", function( evt ) {
+        var cell = evt.source,
+            validVals = cell.getColumn().getCells().map(function( c ) {
+              return c.getData("lastValidValue");
+            });
+        
+        cell.getColumn().footer.text(sum(validVals));
+        this.getFooterRow().footer.text(sum(
+          this.getFooterRow().getCells().map(function( c ) {
+            return c.text();
+          })
+        ));
+      });
+    }
+  });
+  
+  makeGrid = function makeGrid() {
+    gridContainer.empty();
+    grid = undefined;
+    
+    if(projects.length === 0) {
+      gridContainer.append("<p>No projects to display</p>");
+    } else {
+      grid = new Grid("doextra:TimeEntry", {
+        projects: projects,
+        week: weeks[currentWeek]
+      });
+      gridContainer.append(grid.element);
+    }
+    
+    // get any existing timecards
+    Visualforce.remoting.Manager.invokeAction(
+      '{!$RemoteAction.ctrlTimecardEntry.getTimecards}',
+      resources[currentResource].Id,
+      weeks[currentWeek].utc[0],
+      weeks[currentWeek].utc[6],
+      function( res, evt ) {
+        while(res.length > 0) {
+          var card = res.pop(),
+              row, col;
+          
+          card.Date = new Date(card.Date__c);
+          
+          // to find the right row, line item ID and assignment ID must match
+          for(var i = 0; i < projects.length; i++) {
+            var p = projects[i];
+            if(p.aId === card.Assignment__c && p.pliId === card.Project_Line_Item__c) {
+              // correct row!
+              row = i;
+              break;
+            }
+          }
+          
+          // if no row found, skip and on to next card
+          if(row === undefined) {
+            console.log("Timecard " + card.Id + " did not match any current assignment / line item pair");
+            continue;
+          }
+          
+          // now, find the appropriate column (should always be found,
+          // date filter occurs in query)
+          col = weeks[currentWeek].utc.indexOf(card.Date.toUTCString());
+          
+          // otherwise, put the value in the cell and save the id
+          console.log("Setting " + row + ", " + col + " to hours: " + card.Hours__c + ", id = " + card.Id);
+          //grid.setData(row, col, "timecard", card.Id);
+          //grid.setValue(row, col, card.Hours__c);
+          grid.withCell(row, col, function() {
+            this.setData("timecard", card.Id);
+            this.setValue(card.Hours__c);
+            (card.Type__c === "Billable") || this.element._billable.removeClass("checked");
+            this.element._description.val(card.Description_of_Work__c);
+          });
+        }
+      }
+    );
+  };
+  
+  refresh = function refresh() {
+    // if the resources have not been loaded, delay the refresh
+    if(!resources) { 
+      console.log("Delaying refresh...");
+      setTimeout(refresh, 100); 
+    } else {
+      Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.ctrlTimecardEntry.getLineItems}',
+        resources[currentResource].Id,
+        weeks[currentWeek].utc[0],
+        weeks[currentWeek].utc[6],
+        function( res, evt ) {
+          projects = [];
+          for(var i = 0; i < res.length; i++) {
+            projects.push(res[i]);
+          }
+          
+          // create the display name for each project
+          projects.forEach(function( p ) {
+            p.displayName = p.pName + ": " + p.pliName + " - " + (p.aRate === undefined ? "(unknown rate)" : p.aRate);
+            p.uniqueID = p.aId + ":" + p.pliId;
+          });
+          
+          // sort the projects by their display name
+          projects.sort(function( p1, p2 ) {
+            if      (p1.displayName > p2.displayName) return 1;
+            else if (p1.displayName < p2.displayName) return -1;
+            else                                      return 0;
+          });
+          
+          makeGrid();
+        }
+      );
+    }
+  };
+  
+  // when the resource is changed, update the currentResource var
+  resource.change(function() {
+    currentResource = resource.prop("selectedIndex");
+    console.log(currentResource);
+    refresh();
+  });
+  
+  // get the available resources
+  Visualforce.remoting.Manager.invokeAction(
+    '{!$RemoteAction.ctrlTimecardEntry.getResources}',
+    function( res, evt ) {
+      resources = res;
+      resources.forEach(function( rsrc ) {
+        console.log(rsrc, rsrc.Name, rsrc.Email, rsrc.Id);
+        resource.append("<option>" + rsrc.Name
+        //+ (rsrc.Email ? "(" + rsrc.Email + ")" : "")
+        + "</option>");
+      });
+    }
+  );
+  
+  // remove the placeholder option (pick one)
+  resource.children().eq(0).remove();
+  
+  // determine the chooseable weeks
+  (function _determineWeeks() {
+    var date = new Date(),
+        yesterdate,
+        prevWeek,
+        stopMonth = date.getMonth(),
+        stopYear = date.getFullYear(),
+        
+        monthNames = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+    
+    // store the options here
+    weeks = [];
+    
+    // set the date to the start of the previous month
+    date.setMonth(date.getMonth() - 1);
+    date.setDate(1);
+    date.setHours(0, 0, 0, 0);
+    
+    // and now move it to the start of the week
+    date.setDate(1 - date.getDay());
+    console.log("Initial date: " + date);
+    
+    // initialize empty previous week (to avoid errors and dodge the need for null-checking)
+    prevWeek = {};
+    
+    while(date.getFullYear() < stopYear || date.getFullYear() === stopYear && date.getMonth() <= stopMonth) {
+      console.log("Doing date: " + date);
+      (yesterdate = new Date(date)).setDate( date.getDate() - 1 );
+      
+      // add stuff to prevWeek
+      prevWeek.endYear = yesterdate.getFullYear();
+      prevWeek.endMonth = yesterdate.getMonth();
+      prevWeek.endDay = yesterdate.getDate();
+      
+      // create new week object, reference it with prevWeek (for next iteration)
+      weeks.push(prevWeek = {
+        startYear: date.getFullYear(),
+        startMonth: date.getMonth(),
+        startDay: date.getDate()
+      });
+      
+      // add seven days
+      date.setDate( date.getDate() + 7 );
+    }
+    
+    // and note the end day for the last week
+    (yesterdate = new Date(date)).setDate( date.getDate() - 1 );
+    prevWeek.endYear = yesterdate.getFullYear();
+    prevWeek.endMonth = yesterdate.getMonth();
+    prevWeek.endDay = yesterdate.getDate();
+    
+    // for each week option, make its select option name and column titles
+    weeks.forEach(function( week ) {
+      var days = "Sun Mon Tue Wed Thu Fri Sat".split(" "), 
+          colNames = [], dates = [],
+          day;
+      
+      // select option name
+      if(week.startMonth === week.endMonth) {
+        // if the months are the same, do a shorter title (month day - day, year)
+        week.name = monthNames[week.startMonth] + " " + week.startDay + " - " + week.endDay + ", " + week.startYear;
+      } else if(week.startYear === week.endYear) {
+        // if the years are the same, do a medium title (month day - month day, year)
+        week.name = monthNames[week.startMonth] + " " + week.startDay + " - " + monthNames[week.endMonth] + " " + week.endDay + ", " + week.startYear;
+      } else {
+        // otherwise, longest title (month day, year - month day, year)
+        week.name = monthNames[week.startMonth] + " " + week.startDay + ", " + week.startYear + " - " + monthNames[week.endMonth] + " " + week.endDay + ", " + week.endYear;
+      }
+      
+      // column titles
+      for(day = new Date( week.startYear, week.startMonth, week.startDay );
+          days.length > 0; 
+          day.setDate(day.getDate() + 1)) {
+        colNames.push(days.shift() + "<br />" + (day.getMonth() + 1) + " / " + day.getDate());
+        dates.push([day.getFullYear(), day.getMonth() + 1, day.getDate()]);
+      }
+      
+      week.columns = colNames;
+      week.dates = dates;
+      week.utc = dates.map(function( date ) {
+        return new Date(Date.UTC(date[0], date[1] - 1, date[2])).toUTCString();
+      });
+    });
+  }());
+  
+  // now populate the dropdown
+  weeks.forEach(function( weekObj ) {
+    week.append("<option>" + weekObj.name + "</option>");
+  });
+  
+  // remove the placeholder option and enable the dropdown
+  week
+    .attr("disabled", false)
+    .change(function() {
+      currentWeek = week.prop("selectedIndex");
+      refresh();
+    })
+    .children().eq(0)
+    .remove();
+  
+  // the current week / resource is the first one
+  currentResource = 0;
+  currentWeek = 0;
+  
+  // once everything's ready, get the projects and make the grid
+  refresh();
+});</script>
+    
+  </head>
+  
+  <!-- look up how to use static resource -->
+  
+  <body>
+    <!-- <h1 id="header">Doextra Time Entry Page</h1> -->
+    <div id="filter-container">
+      <div>
+        Resource
+        <select id="resource-filter">
+          <option>(pick one)</option>
+        </select>
+      </div>
+      
+      <div>Show the week of
+        <select id="week-filter" disabled=''>
+          <option>(wait a second...)</option>
+        </select>
+      </div>
+    </div>
+    <div id="grid-container"></div>
+    <!-- 
+    eventual button container, if need be
+    <div id="button-container">(buttons can go here)</div>
+     -->
+  </body>
+</apex:page>

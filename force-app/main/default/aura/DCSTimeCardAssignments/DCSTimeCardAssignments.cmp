@@ -1,0 +1,46 @@
+<aura:component controller="DCSTimeCardController" implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="prototypes" type="SFDC_Timecard__c[]"/>
+    <aura:attribute name="projectTree" type="DCSTimeCardController.ProjectLevel[]"/>
+    <aura:attribute name="teamTree" type="DCSTimeCardController.TeamLevel[]"/>
+    <aura:attribute name="activeSections" type="List"/>
+    <aura:attribute name="activeResourceSections" type="List"/>
+    <aura:attribute name="delegatePermission" type="Boolean" default="false" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:DCSSetData" action="{!c.doInit}"/>
+    <lightning:card>
+        <lightning:tabset >
+            <lightning:tab label="Recent Projects">
+                <ui:scrollerWrapper class="scrollerSize">
+                    <c:DCSTimeCardAssignmentList projectTree="{!v.projectTree}" recent="true" activeSections="{!v.activeSections}"/>
+                </ui:scrollerWrapper>
+            </lightning:tab>
+            
+            <lightning:tab label="All Projects">
+                <ui:scrollerWrapper class="scrollerSize">
+                    <c:DCSTimeCardAssignmentList projectTree="{!v.projectTree}" recent="false" activeSections="{!v.activeSections}"/>
+                </ui:scrollerWrapper>
+            </lightning:tab>
+            
+            <aura:if isTrue="{!v.delegatePermission}">
+                <lightning:tab label="Team Projects">
+                    <ui:scrollerWrapper class="scrollerSize">
+                        
+                        <lightning:accordion allowMultipleSectionsOpen="true" activeSectionName="{!v.activeResourceSections}">
+                            <aura:iteration var="memberTree" items="{!v.teamTree}">
+                                <aura:if isTrue="{!memberTree.isMe==false}">
+                                    <lightning:accordionSection name="{!memberTree.treeName}" label="{!memberTree.Name}" >
+                                        <c:DCSTimeCardAssignmentList projectTree="{!memberTree.Projects}" recent="false"  activeSections="{!memberTree.ProjectSections}" />
+                                    </lightning:accordionSection>
+                                </aura:if>
+                            </aura:iteration>
+                        </lightning:accordion>
+                    </ui:scrollerWrapper>
+                </lightning:tab>
+            </aura:if>
+            
+        </lightning:tabset>
+        
+    </lightning:card>
+    
+</aura:component>

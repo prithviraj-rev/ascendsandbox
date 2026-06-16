@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Version__c</fullName>
+    <description>&quot;Text&quot; field used to capture the &quot;Version&quot;
+
+JIRA Ticket:
+AEOM-59</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is the Version for the individual Service/Product that should align with the Service Catalog</inlineHelpText>
+    <label>Version</label>
+    <length>200</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

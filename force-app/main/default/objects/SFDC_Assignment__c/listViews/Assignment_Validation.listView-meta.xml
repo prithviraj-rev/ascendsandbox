@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assignment_Validation</fullName>
+    <columns>Account__c</columns>
+    <columns>Projects__c</columns>
+    <columns>Client_Rate__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Number_Of_Hours__c</columns>
+    <columns>Hours_Worked_On_Assignment__c</columns>
+    <columns>Assignment_Hours_Remaining__c</columns>
+    <columns>NAME</columns>
+    <columns>Resource_Cost__c</columns>
+    <columns>Resource__c</columns>
+    <columns>Record_Validation__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>End_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>2/1/2022</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Managed services</value>
+    </filters>
+    <filters>
+        <field>Projects__c</field>
+        <operation>notEqual</operation>
+        <value>Doextra Internal,Doextra - Internal Project,1099 Sales Engineering,Sales Engineering</value>
+    </filters>
+    <filters>
+        <field>Inactive__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Assignment Validation</label>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+        <group>All_Internal_Users</group>
+    </sharedTo>
+</ListView>

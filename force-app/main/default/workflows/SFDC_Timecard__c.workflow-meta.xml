@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Set_Billable_Amount_for_Rollup</fullName>
+        <field>Billable_Amount_for_Rollup__c</field>
+        <formula>IF( ISPICKVAL(Type__c, &quot;Billable&quot;), Billable_Only__c, 0)</formula>
+        <name>Set Billable Amount for Rollup</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Cost_of_Timecard_for_Rollup</fullName>
+        <field>Cost_per_Timecard_for_Rollup__c</field>
+        <formula>IF(No_Cost__c = true, 0, Hours__c * Assignment__r.Resource_Cost__c)</formula>
+        <name>Set Cost of Timecard for Rollup</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Resource_Hourly_Cost</fullName>
+        <field>Resource_Hourly_Cost__c</field>
+        <formula>Assignment__r.Resource_Cost__c</formula>
+        <name>Set Resource Hourly Cost</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Timecard_Name</fullName>
+        <field>Name</field>
+        <formula>Left(TEXT(Date__c) &amp; &apos; &apos; &amp;  Project_Line_Item__r.Name, 80)</formula>
+        <name>Set Timecard Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Travel_Billable_Amount</fullName>
+        <field>Travel_Billable_Amount__c</field>
+        <formula>if(ispickval(Type__c, &quot;Travel Billable&quot;),  Billable_Only__c , 0)</formula>
+        <name>Set Travel Billable Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_to_Non_billable</fullName>
+        <field>Type__c</field>
+        <literalValue>Non-Billable</literalValue>
+        <name>Set to Non-billable</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Max_Rate_on_PLI</fullName>
+        <description>Sets the Max rate</description>
+        <field>MaxRate__c</field>
+        <formula>IF( Project_Line_Item__r.MaxRate__c &lt; Rate_Client__c , Rate_Client__c, Project_Line_Item__r.MaxRate__c)</formula>
+        <name>Update Max Rate on PLI</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>Project_Line_Item__c</targetObject>
+    </fieldUpdates>
+    <rules>
+        <fullName>Timecard Defaults</fullName>
+        <actions>
+            <name>Set_Billable_Amount_for_Rollup</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_Cost_of_Timecard_for_Rollup</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_Resource_Hourly_Cost</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_Timecard_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_Travel_Billable_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Max_Rate_on_PLI</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>SFDC_Timecard__c.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Timecard Doextra</fullName>
+        <actions>
+            <name>Set_to_Non_billable</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>SFDC_Timecard__c.Account__c</field>
+            <operation>equals</operation>
+            <value>Doextra Corporation</value>
+        </criteriaItems>
+        <description>Set to non-billable for doextra projects when first created</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

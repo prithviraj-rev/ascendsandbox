@@ -1,0 +1,18 @@
+<apex:page showHeader="true" sidebar="true" standardStylesheets="true" lightningStylesheets="true">
+    <apex:includeLightning />
+
+    <div id="flowContainer"></div>
+
+    <script>
+        $Lightning.use("c:feedbackFlowWrapperApp", function() {
+            $Lightning.createComponent(
+                "c:feedbackFlowWrapper",
+                {},
+                "flowContainer",
+                function(cmp) {
+                    console.log("Feedback flow wrapper loaded");
+                }
+            );
+        });
+    </script>
+</apex:page>

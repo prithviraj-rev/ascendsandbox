@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Work_Order_Emailed_to_SNOW</fullName>
+        <ccEmails>Support@TeamAscend.com</ccEmails>
+        <description>Work Order Emailed to SNOW</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>hmoore@teamascend.com.prod</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>support.admin@teamascend.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Work_Order_Emailed_to_SNOW</template>
+    </alerts>
+    <alerts>
+        <fullName>Work_Order_Resource_Request_Notification</fullName>
+        <description>Work Order - Resource Request Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Resource_Request_Assigned_HTML</template>
+    </alerts>
+</Workflow>

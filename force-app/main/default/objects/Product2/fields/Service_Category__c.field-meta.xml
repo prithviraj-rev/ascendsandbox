@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Category__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(SKU_LOB__c, &quot;DESK&quot;), &quot;Service Desk&quot;,
+IF(ISPICKVAL(SKU_LOB__c, &quot;INFR&quot;), &quot;Infrastructure&quot;,
+IF(ISPICKVAL(SKU_LOB__c, &quot;CYBR&quot;), &quot;Cybersecurity&quot;,
+IF(ISPICKVAL(SKU_LOB__c, &quot;HOST&quot;), &quot;Private Cloud&quot;,
+IF(ISPICKVAL(SKU_LOB__c, &quot;SUBS&quot;), &quot;Subscriptions&quot;,
+IF(ISPICKVAL(SKU_LOB__c, &quot;VOIP&quot;), &quot;VOIP&quot;,
+&quot;&quot;))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Service Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Post_to_Chatter</name>
+        <label>Post to Chatter</label>
+        <locationX>314</locationX>
+        <locationY>684</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <connector>
+            <targetReference>ASSIGN_On_Hold_Counter_EQUAL_4</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <elementReference>Case_On_Hold_Reminder</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>visibility</name>
+            <value>
+                <stringValue>allUsers</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>chatterPost</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Set the &quot;On Hold Counter&quot; to Zero</description>
+        <name>ASSIGN_On_Hold_Counter_EQUAL_4</name>
+        <label>ASSIGN On Hold Counter</label>
+        <locationX>446</locationX>
+        <locationY>876</locationY>
+        <assignmentItems>
+            <assignToReference>Case_Record_Var.On_Hold_Counter__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Case_Record_Var.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Case_Record_Var.On_Hold_Reminder_Sent__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>forT_OnHoldReminderSent</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>UPDATE_Case_LESS_4</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Increase the &quot;On Hold Counter&quot; by 1</description>
+        <name>ASSIGN_On_Hold_Counter_LESS_4</name>
+        <label>ASSIGN On Hold Counter</label>
+        <locationX>50</locationX>
+        <locationY>468</locationY>
+        <assignmentItems>
+            <assignToReference>Case_Record_Var.On_Hold_Counter__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>On_Hold_Counter_Formula</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Case_Record_Var.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>UPDATE_Case_LESS_4</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Found_Community_User</name>
+        <label>Found Community User?</label>
+        <locationX>446</locationX>
+        <locationY>576</locationY>
+        <defaultConnector>
+            <targetReference>ASSIGN_On_Hold_Counter_EQUAL_4</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_FOUND</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GET_Community_User</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Post_to_Chatter</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>On_Hold_Counter</name>
+        <label>On Hold Counter</label>
+        <locationX>402</locationX>
+        <locationY>360</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Less_Than_4</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.On_Hold_Counter__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <numberValue>7.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>GET_Record_Type.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>App_Cases</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ASSIGN_On_Hold_Counter_LESS_4</targetReference>
+            </connector>
+            <label>Less Than 7</label>
+        </rules>
+        <rules>
+            <name>Equals_4</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.On_Hold_Counter__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>7.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>GET_Record_Type.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>App_Cases</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>GET_Community_User</targetReference>
+            </connector>
+            <label>Equals 7</label>
+        </rules>
+    </decisions>
+    <description>W-002510 - created flow
+10/9/2025 - W-002565 - updated message to customer to notify them of automated closure.
+12/8/2025 - W-002565 - modified logic for when reminder is sent and what the message says.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>forD_ClosureDate</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.On_Hold_Date__c} + 14</expression>
+    </formulas>
+    <formulas>
+        <name>forT_OnHoldReminderSent</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.On_Hold_Reminder_Sent__c},
+null, &apos;1&apos;,
+&apos;1&apos;, &apos;2&apos;,
+&apos;2&apos;, &apos;3&apos;,
+&apos;4&apos;)</expression>
+    </formulas>
+    <formulas>
+        <description>Used in message to customer to tell them how many weeks until closure of Case.</description>
+        <name>forT_WeeksUntilClose</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.On_Hold_Reminder_Sent__c},
+null, &apos;within 3 weeks&apos;,
+&apos;1&apos;, &apos;within 2 weeks&apos;,
+&apos;2&apos;, &apos;within 1 week&apos;,
+&apos;by &apos; &amp; TEXT({!$Record.On_Hold_Date__c} + 28))</expression>
+    </formulas>
+    <formulas>
+        <name>On_Hold_Counter_Formula</name>
+        <dataType>Number</dataType>
+        <expression>{!$Record.On_Hold_Counter__c} + 1</expression>
+        <scale>0</scale>
+    </formulas>
+    <interviewLabel>Case On Hold Reminder {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Case On Hold Reminder</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get Community User record</description>
+        <name>GET_Community_User</name>
+        <label>GET Community User</label>
+        <locationX>446</locationX>
+        <locationY>468</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Found_Community_User</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ContactId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ContactId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>IsPortalEnabled</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get Case record type</description>
+        <name>GET_Record_Type</name>
+        <label>GET Record Type</label>
+        <locationX>402</locationX>
+        <locationY>252</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>On_Hold_Counter</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.RecordTypeId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Case</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update Case &quot;On Hold Counter&quot; field</description>
+        <name>UPDATE_Case_LESS_4</name>
+        <label>UPDATE Case</label>
+        <locationX>402</locationX>
+        <locationY>1068</locationY>
+        <inputReference>Case_Record_Var</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>276</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GET_Record_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>On Hold</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>On_Hold_Reminder__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2024-11-21</startDate>
+            <startTime>06:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <textTemplates>
+        <name>Case_On_Hold_Reminder</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hello @[{!GET_Community_User.Id}],
+
+This issue requires additional information in order to resolve. Please review and answer any open questions, being sure to @ mention the owner of the case as well as Brian Madigan. If no response is received {!forT_WeeksUntilClose}, this case will automatically close.
+
+Best regards, @[{!$Record.OwnerId}]</text>
+    </textTemplates>
+    <variables>
+        <name>Case_Record_Var</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

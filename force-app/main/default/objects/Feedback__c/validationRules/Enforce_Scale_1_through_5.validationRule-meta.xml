@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enforce_Scale_1_through_5</fullName>
+    <active>true</active>
+    <description>Ensures the rating is entered using a standardized 1 to 5 scale to maintain consistent scoring across feedback records.</description>
+    <errorConditionFormula>OR(
+AND(NOT(ISBLANK(Written_Communication__c)), OR(Written_Communication__c &lt; 1, Written_Communication__c &gt; 5)),
+AND(NOT(ISBLANK(Verbal_Communication__c)), OR(Verbal_Communication__c &lt; 1, Verbal_Communication__c &gt; 5)),
+AND(NOT(ISBLANK(Technical_Skills__c)), OR(Technical_Skills__c &lt; 1, Technical_Skills__c &gt; 5)),
+AND(NOT(ISBLANK(Time_Management__c)), OR(Time_Management__c &lt; 1, Time_Management__c &gt; 5)),
+AND(NOT(ISBLANK(Client_Satisfaction__c)), OR(Client_Satisfaction__c &lt; 1, Client_Satisfaction__c &gt; 5))
+)</errorConditionFormula>
+    <errorMessage>Rating must be a whole number between 1 and 5.</errorMessage>
+</ValidationRule>

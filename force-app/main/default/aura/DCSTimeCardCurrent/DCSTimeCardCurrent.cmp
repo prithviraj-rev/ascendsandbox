@@ -1,0 +1,76 @@
+<aura:component controller="DCSTimeCardController" implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="bp" type="DCSTimeCardController.BillingPeriod"/>
+    <aura:attribute name="hasDelegated" type="boolean" default="false"/>
+    <aura:attribute name="buckets" type="DCSTimeCardController.timeForDay[]"/>
+    <aura:attribute name="periodOffset" type="integer" default="0"/>
+    <aura:attribute name="startDate" type="date"/>
+    <aura:attribute name="totalHours" type="decimal" default="0"/>
+    <aura:attribute name="format" type="string" default="Week" />
+    <aura:attribute name="canSubmitTimesheet" type="boolean" default="true"/>
+    <aura:attribute name="timesheets" type="Object[]"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:DCSSetData" action="{!c.handleSetData}"/>
+    
+    <lightning:card>
+        <div class="slds-tabs_default" id="timecardForm">
+            <ul class="slds-tabs_default__nav" role="tablist">
+                <li class="slds-tabs_default__item slds-is-active slds-is-relative slds-grid slds-size_1-of-1 slds-p-bottom_xx-small" title="Timecard" role="presentation">
+                    <div>
+                        <div style="position:relative; float:right" class="slds-p-horizontal_medium slds-p-top_xx-small">
+                            <lightning:button iconName="utility:left" class="slds-frameless" label="Previous" onclick="{!c.handlePrevious}"/>
+                            <lightning:button iconName="utility:right" class="slds-frameless" label="Next" onclick="{!c.handleNext}"/>
+                            <span style="display:inline-block" class="{!v.bp.status + ' slds-m-horizontal_medium'}">
+                                <div>Total Hours: <ui:outputText value="{!v.totalHours}"/></div>
+                            </span>
+                            <span style="display:inline-block">
+                                <ui:inputRadio aura:id="r0" name="format" label="Week" change="{!c.handleFormat}" value="{!(v.format=='Week')?'true':'false'}"/>
+                            </span>
+                            <span style="display:inline-block">
+                                <ui:inputRadio aura:id="r1" name="format" label="Billing Period" change="{!c.handleFormat}" value="{!(v.format=='Billing Period')?'true':'false'}"/>
+                            </span>
+                        </div>
+                        
+                        <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">        
+                            <ui:outputDate value="{!v.startDate}" format="EEEE, MMM d YYYY"/>
+                        </a>
+                    </div>
+
+                    <div class="slds-col_bump-left slds-align-middle">
+                        <aura:if isTrue="{!v.timesheets.length > 0}">
+                            <aura:if isTrue="{!v.timesheets.length == 1}">
+                                <lightning:button label="Submit Timesheet" onclick="{!c.handleSubmitTimesheet}"/>
+
+                                <aura:set attribute="else">
+                                    <lightning:buttonMenu label="Submit Timesheet" menuAlignment="right" onselect="{!c.handleSubmitTimesheet}">
+                                        <aura:iteration items="{!v.timesheets}" var="timesheet">
+                                            <lightning:menuItem value="{!timesheet.Id}" label="{!timesheet.Name}"/>
+                                        </aura:iteration>
+                                    </lightning:buttonMenu>
+                                </aura:set>
+                            </aura:if> 
+                        </aura:if>
+                        
+                        <lightning:button label="Resource Planning" onclick="{!c.handleResourcePlanning}"/>
+                    </div>
+                </li>
+            </ul>
+
+            <div id="tab-default-1" class="slds-tabs_default__content slds-show " role="tabpanel" aria-labelledby="tab-default-1__item">
+                <div class="slds-grid slds-wrap slds-grid_pull-padded slds-border slds-p-horizontal_medium">
+                    <aura:iteration items="{!v.buckets}" var="day">
+                        <c:DCSTimeCardDay2 day="{!day}" showDelegated="false"/>
+                    </aura:iteration>
+                </div>
+                <aura:if isTrue="{!v.hasDelegated}">
+                    <div class="slds-p-top_small slds-p-left_small slds-border_bottom">Time for Others</div>
+                    <div class="slds-grid slds-wrap slds-grid_pull-padded slds-border slds-p-horizontal_medium">
+                        <aura:iteration items="{!v.buckets}" var="day">
+                            <c:DCSTimeCardDay2 day="{!day}" showDelegated="true"/>
+                        </aura:iteration>
+                    </div>
+                </aura:if>
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

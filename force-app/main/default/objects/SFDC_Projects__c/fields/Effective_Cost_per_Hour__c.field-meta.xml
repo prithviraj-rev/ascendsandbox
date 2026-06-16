@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Effective_Cost_per_Hour__c</fullName>
+    <formula>IF( Total_Billable_Hours_Worked__c = 0, 0, Cost_Amount__c /  Total_Billable_Hours_Worked__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Cost Amount/Total Billable Hours Worked  - Cost amount includes the cost for billable and non-billable hours.</inlineHelpText>
+    <label>Effective Cost per Hour</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

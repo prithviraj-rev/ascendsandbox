@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Queue_Review</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>Reviews</compactLayoutAssignment>
+    <label>Queue Review</label>
+    <picklistValues>
+        <picklist>Satisfaction__c</picklist>
+        <values>
+            <fullName>Dissatisfied</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Neutral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Satisfied</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

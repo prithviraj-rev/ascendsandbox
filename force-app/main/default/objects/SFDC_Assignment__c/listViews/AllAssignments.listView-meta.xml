@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllAssignments</fullName>
+    <columns>NAME</columns>
+    <columns>Projects__c</columns>
+    <columns>Role__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Number_Of_Hours__c</columns>
+    <columns>Assignment_Hours_Remaining__c</columns>
+    <columns>First_Work_Day__c</columns>
+    <columns>Client_Rate__c</columns>
+    <columns>Resource_Cost__c</columns>
+    <columns>Resource__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Assignments</label>
+</ListView>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Timecard_Compact_Layout</fullName>
+    <fields>Assignment__c</fields>
+    <fields>Date__c</fields>
+    <fields>Hours__c</fields>
+    <fields>Type__c</fields>
+    <fields>Rate_Client__c</fields>
+    <label>Timecard Compact Layout</label>
+</CompactLayout>

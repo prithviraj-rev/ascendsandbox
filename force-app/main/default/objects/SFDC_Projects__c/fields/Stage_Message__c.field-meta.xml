@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_Message__c</fullName>
+    <description>Populated by a flow to be used in the secondary field. The secondary field is the first available field in the search layout, as long as it’s supported as a secondary field. You order the list of fields in the search layout, but you don’t choose the secondary field. Only certain types of fields are supported as secondary fields: Supported fields: short-text, phone numbers, and numbers.</description>
+    <externalId>false</externalId>
+    <label>Stage Message</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

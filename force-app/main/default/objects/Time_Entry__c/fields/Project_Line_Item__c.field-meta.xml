@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Line_Item__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Project Line Item</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Project_Line_Item__c.Project__r.Project_Stage__c</field>
+            <operation>notEqual</operation>
+            <value>Completed &amp; Accepted, Cancelled, Support Contract - Expired</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>Project_Line_Item__c</referenceTo>
+    <relationshipLabel>Time Entries</relationshipLabel>
+    <relationshipName>Time_Entries</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>First_Work_Day__c</fullName>
+    <formula>if(MOD( Start_Date__c - DATE(1985,6,24),7)&lt;5,Start_Date__c,if(MOD( (Start_Date__c+1) - DATE(1985,6,24),7)&lt;5,Start_Date__c+1,if(MOD( (Start_Date__c+2) - DATE(1985,6,24),7)&lt;5,Start_Date__c+2,End_Date__c)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>First Work Day</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

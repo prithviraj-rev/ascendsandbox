@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Milestones_for_Fixed_Price__c</fullName>
+    <inlineHelpText>Enter Amount and Milestone Info in Notes</inlineHelpText>
+    <label>Milestones for Fixed Price</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Project Launch</fullName>
+                <default>false</default>
+                <label>Project Launch</label>
+            </value>
+            <value>
+                <fullName>Milestone 1</fullName>
+                <default>false</default>
+                <label>Milestone 1</label>
+            </value>
+            <value>
+                <fullName>Milestone 2</fullName>
+                <default>false</default>
+                <label>Milestone 2</label>
+            </value>
+            <value>
+                <fullName>Milestone 3</fullName>
+                <default>false</default>
+                <label>Milestone 3</label>
+            </value>
+            <value>
+                <fullName>Milestone 4</fullName>
+                <default>false</default>
+                <label>Milestone 4</label>
+            </value>
+            <value>
+                <fullName>Milestone 5</fullName>
+                <default>false</default>
+                <label>Milestone 5</label>
+            </value>
+            <value>
+                <fullName>Milestone 6</fullName>
+                <default>false</default>
+                <label>Milestone 6</label>
+            </value>
+            <value>
+                <fullName>Milestone 7</fullName>
+                <default>false</default>
+                <label>Milestone 7</label>
+            </value>
+            <value>
+                <fullName>MIlestone 8</fullName>
+                <default>false</default>
+                <label>MIlestone 8</label>
+            </value>
+            <value>
+                <fullName>Upon Completion</fullName>
+                <default>false</default>
+                <label>Upon Completion</label>
+            </value>
+            <value>
+                <fullName>Recognize Deposit Invoce</fullName>
+                <default>false</default>
+                <label>Recognize Deposit Invoce</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Great_Plains_Customer_ID__c</fullName>
+    <description>This field shows the Customer ID for Ascend Great Plains and is used to match up the data for invoicing. Added to Project as GP contains a Customer ID for each Project, where SFDC lists multiple Projects on a single Account.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>ID of Project as it appears in Great Plains (financial software).</inlineHelpText>
+    <label>Client Code</label>
+    <length>30</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,90 @@
+.messages-container{
+    overflow-y: auto;
+    padding: 0 10px;
+}
+
+.notify-alert-container{
+    display: flex;
+    border-radius: 4px;
+    align-items: unset;
+    text-align: unset;
+    padding: 8px;
+}
+
+.notify-alert-container.first{
+    margin-top: 0;
+}
+
+.notify-alert-container .left-icon-container{
+    flex-grow: 0;
+    padding-right: 10px;
+}
+
+.notify-alert-container .body-container{
+    flex-grow: 1;
+    padding-right: 5px;
+    overflow-y: auto;
+}
+
+.debug-data-container{
+    padding: 0 10px;
+    margin-top: 10px;
+}
+
+.details{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 7px;
+    margin: 7px 25px;
+    background-color: #F2F2F2;
+}
+
+.msg-line{
+    margin-top:3px;
+}
+
+.msg-line.first{
+    margin-top:0;
+}
+
+.result-msg{
+    font-weight: bold;
+}
+
+.result-msg.valid{
+    color: green;
+}
+
+.result-msg.invalid{
+    color: red;
+}
+
+.debug-details{
+    width: unset;
+}
+
+.debug-details td{
+    padding: 2px 7px;
+}
+
+.debug-details td.bold{
+    font-weight: bold;
+}
+
+.debug-details td{
+    text-align: left;
+    vertical-align: top;
+}
+
+.debug-details td.result{
+    text-align: center;
+}
+
+span.inline-btn{
+    cursor: pointer;
+    color: rgb(1, 118, 211);
+}
+
+span.inline-btn:hover{
+    color: rgb(53, 93, 150);
+}

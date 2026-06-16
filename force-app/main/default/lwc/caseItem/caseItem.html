@@ -1,0 +1,49 @@
+<template>
+    <div class="cardContainer" >
+        <lightning-card class="cardFix"  onclick={handleSelection} style="cursor:pointer;">
+            <h5 slot="title" class="no-wrap">
+                <span class="slds-p-horizontal_xx-small" style="display:inline-block; cursor:pointer;">
+                    <template if:true={isReviewed}>
+                        <lightning-icon icon-name="utility:sparkles" size="x-small" class="reviewed" ></lightning-icon>
+                    </template>
+                    <template if:true={isClosed}>
+                        <lightning-icon icon-name="utility:check" size="x-small" class={closedOrCanceled} ></lightning-icon>
+                    </template>
+                    <template if:true={highPriority}>
+                        <lightning-icon icon-name={priorityIcon} size="x-small" class="high-priority"></lightning-icon>
+                    </template>
+                    {caseRecord.CaseNumber}: {caseRecord.Subject}</span>
+                
+            </h5>
+            <div  slot="actions">
+                <lightning-icon icon-name="utility:user" size="x-small" class={ownerColorStyle}></lightning-icon>
+                {caseRecord.ownerInitials}
+            </div>
+            <lightning-layout multiple-rows="true">
+                
+                <lightning-layout-item flexibility="auto" size="6-of-12" padding="horizontal-medium" class="left-align">
+                    <span class="bold">Status: </span>{caseRecord.Status}
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" size="6-of-12" padding="horizontal-medium" class="left-align">
+                    <span class="bold">Impact: </span>{caseRecord.Impact}
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" size="6-of-12" padding="horizontal-medium" class="left-align">
+                    <span class="bold">Priority: </span>{caseRecord.Priority}
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" size="6-of-12" padding="horizontal-medium" class="left-align">
+                    <span class="bold">Due Date: </span><lightning-formatted-date-time value={caseRecord.dueDate}></lightning-formatted-date-time>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" size="6-of-12" padding="horizontal-medium" class="left-align">
+                    <span class="bold">LOE: </span>{caseRecord.LOE}
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto" size="12-of-12" padding="horizontal-medium" class="left-align">
+                    <span class="bold">Notes: </span><br/><lightning-formatted-rich-text value={shortReview} ></lightning-formatted-rich-text>
+                </lightning-layout-item>
+            </lightning-layout>
+                
+        </lightning-card>
+        <div style="position:absolute; right:5px;bottom:5px;">
+            <a href={caseRecord.caseLink} target="_blank"><lightning-icon icon-name="utility:target_mode"  size="small"></lightning-icon></a>
+        </div>
+    </div>
+</template>

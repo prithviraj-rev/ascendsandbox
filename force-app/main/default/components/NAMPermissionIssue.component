@@ -1,0 +1,36 @@
+<apex:component >
+                            
+        <div class="slds-card slds-m-horizontal--small ">
+            <div class="slds-m-top--x-small slds-clearfix" style="margin-top: 1%; margin-bottom: 1%;">
+                <div id="permissionIssue" class="slds-m-bottom-x-small slds-m-top--x-small slds-m-left--small slds-float--left" >                                
+                    <div><h1 class="slds-text-heading--medium slds-text-color--error">You don’t have permission to access some fields</h1></div>
+                    <br/>
+                    <div><h2 class="slds-text-heading--small">Assign the Attachments and Notes Migrator Permission Set to Admins</h2></div>
+                    <ol class="slds-list_ordered">
+                        <li>From Setup, enter Permission Sets in the Quick Find box, then select Permission Sets.</li>
+                        <li>Select the recently added permission set Attachments and Notes Migrator - Admin.</li>
+                        <li>Select System Permissions.</li>
+                        <li>Click Edit and enable the following permissions:
+                            <ul class="slds-is-nested">
+                                <li>In the Systems section:
+                                    <ul class="slds-is-nested slds-list_dotted">
+                                        <li>Modify All Data</li>
+                                        <li>Set Audit Fields upon Record Creation</li>
+                                    </ul>
+                                </li>
+                                <li>In the Users section:
+                                    <ul class="slds-is-nested slds-list_dotted">
+                                        <li>View All Users</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Click Save.</li>
+                        <li>Click Manage Assignments.</li>
+                        <li>Assign the permission set to anyone who will be using this tool to migrate attachments or notes. This typically includes admins.</li>
+                    </ol>
+                </div> 
+            </div>
+        </div>
+
+</apex:component>

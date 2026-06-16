@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Eligible_for_Volume_Discount__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether this product is eligible for volume-based discounting in Revenue Cloud quotes.</description>
+    <label>Eligible for Volume Discount</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

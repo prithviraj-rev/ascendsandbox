@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Record-Triggered Flow:
+- Master record triggered flow for the Opportunity Team Member object
+
+UPDATE:
+- Added &quot;Opportunity_Team_Subflow_Ascend_Solutions_Team_Role&quot; subflow 
+
+Case/Ticket:
+#00016257</description>
+    <environments>Default</environments>
+    <interviewLabel>Opportunity Team Member: After Trigger Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Team Member: After Trigger Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Rollup_Opportunity_Team_To_Opportunity</targetReference>
+        </connector>
+        <object>OpportunityTeamMember</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Opportunity_Team_Subflow_Ascend_Solutions_Team_Role</name>
+        <label>Opportunity Team Subflow: &quot;Ascend Solutions Team&quot; Role</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <flowName>Opportunity_Team_Subflow_Ascend_Solutions_Team_Role</flowName>
+        <inputAssignments>
+            <name>OpportunityTeamMember</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Rollup_Opportunity_Team_To_Opportunity</name>
+        <label>Rollup Opportunity Team To Opportunity</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <connector>
+            <targetReference>Opportunity_Team_Subflow_Ascend_Solutions_Team_Role</targetReference>
+        </connector>
+        <flowName>Opportunity_Team_Subflow_Rollup_Opportunity_Team</flowName>
+        <inputAssignments>
+            <name>varOpportunityID</name>
+            <value>
+                <elementReference>$Record.OpportunityId</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

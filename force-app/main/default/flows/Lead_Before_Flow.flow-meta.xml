@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>assign_AnnualRevenue</name>
+        <label>Assign Annual Revenue</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.AnnualRevenue__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fxAnnualRevenue</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>dec_SetAnnualRevenue</name>
+        <label>Set Annual Revenue?</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Skip</defaultConnectorLabel>
+        <rules>
+            <name>SetAnnualRevenue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.AnnualRevenue</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.AnnualRevenue__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assign_AnnualRevenue</targetReference>
+            </connector>
+            <label>Set Annual Revenue</label>
+        </rules>
+    </decisions>
+    <description>This flow includes:
+- Resolve Annual Revenue (picklist)</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>fxAnnualRevenue</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.AnnualRevenue} &lt; 1000000, &quot;Less than $1,000,000&quot;, 
+IF({!$Record.AnnualRevenue} &lt; 5000000, &quot;$1,000,000&quot;, 
+IF({!$Record.AnnualRevenue} &lt; 25000000, &quot;$10,000,000&quot;, 
+IF({!$Record.AnnualRevenue} &lt; 75000000, &quot;$50,000,000&quot;, 
+IF({!$Record.AnnualRevenue} &lt; 175000000, &quot;$100,000,000&quot;, 
+IF({!$Record.AnnualRevenue} &lt; 375000000, &quot;$250,000,000&quot;, 
+IF({!$Record.AnnualRevenue} &lt; 750000000, &quot;$500,000,000&quot;, &quot;$1,000,000,000+&quot;)))))))</expression>
+    </formulas>
+    <interviewLabel>Lead: Before Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Lead: Before Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>dec_SetAnnualRevenue</targetReference>
+        </connector>
+        <object>Lead</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

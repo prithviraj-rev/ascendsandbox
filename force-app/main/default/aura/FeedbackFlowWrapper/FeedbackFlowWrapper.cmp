@@ -1,0 +1,20 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="flowApiName" type="String" default="Project_Screen_Flow_for_Feedback"/>
+
+    <div style="height:100%; background:#f3f3f3; padding:24px 0; overflow:auto;">
+        <div style="
+            max-width: 980px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+            padding: 24px;
+            max-height: 100%;
+            overflow: auto;
+        ">
+            <lightning:flow aura:id="feedbackFlow" onstatuschange="{!c.handleStatusChange}"/>
+        </div>
+    </div>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+</aura:component>

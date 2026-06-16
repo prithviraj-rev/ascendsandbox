@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Create a new estimate from the opportunity</description>
+    <fieldOverrides>
+        <field>Name</field>
+        <formula>Opportunity.Name &amp; &apos; Estimate&apos;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Opp_Owner_Email__c</field>
+        <formula>Opportunity.Owner.Email</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Opportunity__c</field>
+        <formula>Opportunity.Id</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Status__c</field>
+        <literalValue>New</literalValue>
+    </fieldOverrides>
+    <label>New Estimate</label>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns/>
+        <quickActionLayoutColumns/>
+    </quickActionLayout>
+    <targetObject>Project_Estimate__c</targetObject>
+    <targetParentField>Opportunity__c</targetParentField>
+    <type>Create</type>
+</QuickAction>

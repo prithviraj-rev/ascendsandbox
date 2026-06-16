@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Sets the target share recipient to the Created By user for newly created Client Feedback records.</description>
+        <name>ASSIGN_Target_User_as_Created_By_User</name>
+        <label>ASSIGN Target User as Created By User</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varTargetShareUserId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varCreatedById</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>GET_Existing_Target_Share</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Sets the target share recipient to the user derived from the current Submitter Contact for Internal Feedback share creation or replacement.</description>
+        <name>ASSIGN_Target_User_as_Submitter_Resource_User</name>
+        <label>ASSIGN Target User as Submitter Resource User</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varTargetShareUserId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varCurrentSubmitterResourceUserId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>GET_Existing_Target_Share</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Determines whether the flow should create a new Feedback share, replace an existing Internal Feedback share, or take no action.</description>
+        <name>DEC_Determine_Share_Action</name>
+        <label>DEC Determine Share Action</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Action Needed</defaultConnectorLabel>
+        <rules>
+            <name>Existing_Internal_Submitter_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>frmIsInternalFeedback</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varDidSubmitterResourceUserChange</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varPriorSubmitterResourceUserId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>GET_Existing_Old_Submitter_Share</targetReference>
+            </connector>
+            <label>Existing Internal - Submitter Changed</label>
+        </rules>
+        <rules>
+            <name>New_Internal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>frmIsInternalFeedback</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varIsNewFeedbackRecord</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varCurrentSubmitterResourceUserId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <isGoTo>true</isGoTo>
+                <targetReference>ASSIGN_Target_User_as_Submitter_Resource_User</targetReference>
+            </connector>
+            <label>New Internal</label>
+        </rules>
+        <rules>
+            <name>New_Client</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>frmIsClientFeedback</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varIsNewFeedbackRecord</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varCreatedById</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ASSIGN_Target_User_as_Created_By_User</targetReference>
+            </connector>
+            <label>New Client</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determines whether a Feedback share already exists for the selected target user.</description>
+        <name>DEC_Does_Target_Share_Already_Exist</name>
+        <label>DEC Does Target Share Already Exist?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>CREATE_Feedback_Share</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Create Target Share</defaultConnectorLabel>
+        <rules>
+            <name>Target_Share_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GET_Existing_Target_Share.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Target Share Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determines whether an existing share record was found for the prior submitter-derived user.</description>
+        <name>DEC_Was_Old_Submitter_Share_Found</name>
+        <label>DEC Was Old Submitter Share Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>ASSIGN_Target_User_as_Submitter_Resource_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Old Share Doesn&apos;t Exist</defaultConnectorLabel>
+        <rules>
+            <name>Old_Share_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GET_Existing_Old_Submitter_Share.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>DELETE_Old_Submitter_Share</targetReference>
+            </connector>
+            <label>Old Share Found</label>
+        </rules>
+    </decisions>
+    <description>Launched from Feedback Master Flow to create or replace Feedback share records based on record type, current submitter-derived user, prior submitter-derived user, and Created By user.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Determines whether the Feedback record is a Client Feedback record.</description>
+        <name>frmIsClientFeedback</name>
+        <dataType>Boolean</dataType>
+        <expression>{!varRecordTypeId} = {!$Label.Feedback_Client_RecordTypeId}</expression>
+    </formulas>
+    <formulas>
+        <description>Determines whether the Feedback record is an Internal Feedback record.</description>
+        <name>frmIsInternalFeedback</name>
+        <dataType>Boolean</dataType>
+        <expression>{!varRecordTypeId} = {!$Label.Feedback_Internal_RecordTypeId}</expression>
+    </formulas>
+    <interviewLabel>Feedback: Sublow to {!$Flow.CurrentDateTime} to Feedback: Subflow - Maintain Feedback Share {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Feedback: Subflow - Maintain Feedback Share</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Creates a Feedback share record granting Read access to the target user identified by the flow.</description>
+        <name>CREATE_Feedback_Share</name>
+        <label>CREATE Feedback Share</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>AccessLevel</field>
+            <value>
+                <stringValue>Read</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ParentId</field>
+            <value>
+                <elementReference>varFeedbackId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RowCause</field>
+            <value>
+                <stringValue>Submitter_Access__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>UserOrGroupId</field>
+            <value>
+                <elementReference>varTargetShareUserId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Feedback__Share</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordDeletes>
+        <description>Deletes the outdated Feedback share tied to the prior submitter-derived user.</description>
+        <name>DELETE_Old_Submitter_Share</name>
+        <label>DELETE Old Submitter Share</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>ASSIGN_Target_User_as_Submitter_Resource_User</targetReference>
+        </connector>
+        <inputReference>GET_Existing_Old_Submitter_Share</inputReference>
+    </recordDeletes>
+    <recordLookups>
+        <description>Retrieves the existing Feedback share tied to the prior submitter-derived user so the old share can be deleted when the submitter changes.</description>
+        <name>GET_Existing_Old_Submitter_Share</name>
+        <label>GET Existing Old Submitter Share</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>DEC_Was_Old_Submitter_Share_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ParentId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varFeedbackId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>UserOrGroupId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varPriorSubmitterResourceUserId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>RowCause</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Submitter_Access__c</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Feedback__Share</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Checks whether a Feedback share already exists for the selected target user so duplicate share records are not created.</description>
+        <name>GET_Existing_Target_Share</name>
+        <label>GET Existing Target Share</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>DEC_Does_Target_Share_Already_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ParentId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varFeedbackId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>UserOrGroupId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTargetShareUserId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>RowCause</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Submitter_Access__c</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Feedback__Share</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>DEC_Determine_Share_Action</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Stores the Created By User Id from the Feedback record. Used for Client Feedback sharing.</description>
+        <name>varCreatedById</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the User Id derived from the current Submitter Contact’s Resource User field.</description>
+        <name>varCurrentSubmitterResourceUserId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Indicates whether the user derived from the Submitter Contact changed during the current transaction.</description>
+        <name>varDidSubmitterResourceUserChange</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the Id of the Feedback record being evaluated for sharing logic.</description>
+        <name>varFeedbackId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Indicates whether the Feedback record is being created for the first time.</description>
+        <name>varIsNewFeedbackRecord</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the User Id derived from the prior Submitter Contact’s Resource User field.</description>
+        <name>varPriorSubmitterResourceUserId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the Feedback record type Id so the subflow can determine whether the record is Internal Feedback or Client Feedback.</description>
+        <name>varRecordTypeId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Stores the User Id that should receive the Feedback share record after the correct sharing recipient is determined.</description>
+        <name>varTargetShareUserId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

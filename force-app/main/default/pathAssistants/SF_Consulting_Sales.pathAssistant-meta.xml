@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Opportunity</entityName>
+    <fieldName>StageName</fieldName>
+    <masterLabel>SF Consulting Sales</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Sales_Engineer__c</fieldNames>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>ForecastCategoryName</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <info>&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;https://teamascend.sharepoint.com/:w:/s/DoextraSales/EehHAWscGG1MpIVNqwU_Q4QBw06i0msaPSkBWdG_AyMEpQ?e=xm88BQ&quot; target=&quot;_blank&quot; style=&quot;font-size: 13px;&quot;&gt;Scoping Template&lt;/a&gt; - take notes in this template&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;https://teamascend.sharepoint.com/:w:/s/DoextraSales/EYoe46I0ecdNsffZOqUNUSUBecviCz_QSclN7Q551Z5QvQ?e=sLZNjy&quot; target=&quot;_blank&quot; style=&quot;font-size: 13px;&quot;&gt;Scoping Questionnaire&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Enter Sales Engineer&lt;/li&gt;&lt;li&gt;Review Estimate&lt;/li&gt;&lt;/ol&gt;</info>
+        <picklistValueName>Analyze</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Lost_Category__c</fieldNames>
+        <fieldNames>Lost_Reason__c</fieldNames>
+        <picklistValueName>Closed Lost</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <picklistValueName>Closed Won</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>ForecastCategoryName</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <picklistValueName>Contract</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>CloseDate</fieldNames>
+        <fieldNames>ForecastCategoryName</fieldNames>
+        <fieldNames>Amount</fieldNames>
+        <info>&lt;ol&gt;&lt;li&gt;Deliver &lt;a href=&quot;https://teamascend.sharepoint.com/:p:/s/DoextraSales/EfqKEsum9XVDprOav-s8lnEBLOV6vTpyPHfVlG3p07JBsQ?e=iGslhf&quot; target=&quot;_blank&quot; style=&quot;font-size: 13px;&quot;&gt;Proposal Presentation&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Update estimated Close Date&lt;/li&gt;&lt;li&gt;Upload PPT and SOW to the Opportunity&lt;/li&gt;&lt;li&gt;Send SOW via CongaSign&lt;/li&gt;&lt;/ol&gt;</info>
+        <picklistValueName>Propose</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>CloseDate</fieldNames>
+        <info>&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;https://teamascend.sharepoint.com/:w:/s/DoextraSales/Ea8M8XgMiX9FkpOzlziX8ycBgd7-j1O7Ie-ZxqTlL0ON0g?e=4Eafd3&quot; target=&quot;_blank&quot; style=&quot;font-size: 13px;&quot;&gt;Discovery Template&lt;/a&gt; - take notes in this template&lt;/li&gt;&lt;li&gt;Deliver &lt;a href=&quot;https://teamascend.sharepoint.com/:p:/s/DoextraSales/ESO-U0jfBO9Kmpiy2rek-2oBJEQZYbkm0iwwkZXdfn8osw?e=nIkzif&quot; target=&quot;_blank&quot; style=&quot;font-size: 13px;&quot;&gt;Pitch Deck&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Add new contacts and associate to opportunity&lt;/li&gt;&lt;li&gt;Complete Discovery Tab&lt;/li&gt;&lt;li&gt;Schedule Scoping and Request Resources&lt;/li&gt;&lt;/ol&gt;</info>
+        <picklistValueName>Qualify</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Salesforce_Consulting</recordTypeName>
+</PathAssistant>

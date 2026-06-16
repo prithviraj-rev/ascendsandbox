@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Timecard_Approved_Date__c</fullName>
+    <label>Last Timecard Approved Date</label>
+    <summarizedField>SFDC_Timecard__c.Date__c</summarizedField>
+    <summaryFilterItems>
+        <field>SFDC_Timecard__c.Timesheet_Approved__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>SFDC_Timecard__c.Assignment__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

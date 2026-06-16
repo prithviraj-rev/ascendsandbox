@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Added this perm set as a member to the Customer Portal. Removed profiles as members as that was causing confusion with non-Salesforce team members. Only members on the SAS team will receive this permission set to stop confusion with non-SAS users.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Customer Portal Member Access</label>
+</PermissionSet>

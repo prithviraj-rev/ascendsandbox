@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The project in which the reviewed resource was engaged.</description>
+    <inlineHelpText>Select the project that this feedback relates to.</inlineHelpText>
+    <label>Project</label>
+    <referenceTo>SFDC_Projects__c</referenceTo>
+    <relationshipLabel>Feedback</relationshipLabel>
+    <relationshipName>Feedback</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

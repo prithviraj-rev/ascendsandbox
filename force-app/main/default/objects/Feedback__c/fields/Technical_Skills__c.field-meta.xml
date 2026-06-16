@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Technical_Skills__c</fullName>
+    <description>Rating of the resource’s technical proficiency in relation to the project.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Consider whether the resource demonstrated appropriate technical knowledge, problem-solving ability, and execution on deliverables for their role. (Scale is 1 to 5, where 1 needs improvement and 5 is excellent.)</inlineHelpText>
+    <label>Technical Skills</label>
+    <precision>1</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

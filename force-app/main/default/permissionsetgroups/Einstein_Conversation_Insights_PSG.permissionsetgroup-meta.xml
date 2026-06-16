@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Einstein Conversation Insights, Sales Signals, Generative Insights, Call Explorer, &amp; AI User</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Einstein Conversation Insights PSG</label>
+    <status>Updated</status>
+</PermissionSetGroup>

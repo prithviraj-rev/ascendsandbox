@@ -1,0 +1,6 @@
+<aura:documentation>
+    <aura:description>test Documentation</aura:description>
+	<aura:example name="ExampleName" ref="lightningcomponentdemo:DCSTimeCardDetail" label="Label">
+		<div>test</div>
+	</aura:example>
+</aura:documentation>

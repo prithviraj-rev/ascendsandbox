@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Sales Emails &amp; Summaries, Opportunity Scoring, &amp; EAC</label>
+    <permissionSets>Ascend_Sales_Cloud_Einstein</permissionSets>
+    <permissionSets>force__EinsteinGPTSalesEmails</permissionSets>
+    <permissionSets>force__EinsteinGPTSalesSummaries</permissionSets>
+    <permissionSets>force__StandardEinsteinActivityCapturePsl</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

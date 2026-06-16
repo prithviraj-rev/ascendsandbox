@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Assigned to those that participate in the invoicing process. As of 1/27/21 this grants edit access to Invoice notes and SOW Hours on the project object.</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SFDC_Projects__c.Invoice_Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SFDC_Projects__c.SOW_Hours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Invoice Manager</label>
+    <license>Salesforce</license>
+</PermissionSet>

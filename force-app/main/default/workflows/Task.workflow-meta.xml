@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>New_Doc_NDA_MSA_Task</fullName>
+        <description>New Doc NDA/MSA Task</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/New_NDA_Task_Assigned</template>
+    </alerts>
+    <alerts>
+        <fullName>New_NDA_MSA_Task</fullName>
+        <description>New NDA/MSA Task</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/NDA_Task_Assigned</template>
+    </alerts>
+    <alerts>
+        <fullName>New_NDA_MSA_Task_Owner_Review</fullName>
+        <description>New NDA/MSA Task Owner Review</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Doextra_Project_Management/NDA_Task_Assigned_Owner_Review</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Assign_to_Heidi</fullName>
+        <field>OwnerId</field>
+        <lookupValue>shobbs@teamascend.com.prod</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Assign to Heidi</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Resource Request</fullName>
+        <actions>
+            <name>Assign_to_Heidi</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Task.Purpose__c</field>
+            <operation>equals</operation>
+            <value>Resource Request</value>
+        </criteriaItems>
+        <description>Assigns all resource requests to Heidi upon creation.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Billing_Milestones_2_Months_Ago</fullName>
+    <booleanFilter>1 AND (2 or 3)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Project__c</columns>
+    <columns>Invoice_Status__c</columns>
+    <columns>Total_Billable_Hours__c</columns>
+    <columns>Project_Lead__c</columns>
+    <columns>Billing_Approver__c</columns>
+    <columns>Billing_Method__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Subcontractor__c</columns>
+    <columns>Milestones_for_Fixed_Price__c</columns>
+    <columns>Notes__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Services_Month__c</field>
+        <operation>equals</operation>
+        <value>N_MONTHS_AGO:2</value>
+    </filters>
+    <filters>
+        <field>Running_User_is_Billing_Approver__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Running_User_is_Project_Lead__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>My Billing Milestones 2 Months Ago</label>
+</ListView>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Milestone_Compact_Layout</fullName>
+    <fields>Name</fields>
+    <fields>RecordTypeId</fields>
+    <fields>Invoice_Status__c</fields>
+    <fields>Services_Month__c</fields>
+    <fields>Billing_Approver__c</fields>
+    <fields>Total_Billable_Hours__c</fields>
+    <fields>Hours_Remaining_on_Project__c</fields>
+    <label>Billing Milestone Compact Layout</label>
+</CompactLayout>

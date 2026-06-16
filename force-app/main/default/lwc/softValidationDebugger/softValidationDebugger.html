@@ -1,0 +1,411 @@
+<template>
+    <lightning-spinner size="medium" if:true={asyncJobsWorking}></lightning-spinner>
+    <div class="slds-box slds-p-around_none" style="display:flex; flex-flow:column; height:100%;">
+        <div style="padding:10px;">
+            Record Id:
+            <div style="width:300px; display:inline-block; margin-left:10px; padding-right:90px; position:relative;">
+                <lightning-input type="text" data-id="dataSourceRecordId" value={dataSourceRecordId} max-length="18" label="Record Id:" variant="label-hidden"></lightning-input>
+                <button class="slds-button slds-button_brand" style="position:absolute; right:0; top:50%; transform: translate(0, -50%);" onclick={evaluateOnClick}>Evaluate</button>
+            </div>
+        </div>
+        <div style="flex:1; overflow:auto;">
+            <template if:true={hasMessageToShow}>
+                <div class="messages-container">
+                    <div class={messageToShow.cssClasses} style={messageToShow.cssStyles} role="alert">
+                        <template if:true={messageToShow.iconName}>
+                            <div class="left-icon-container">
+                                <lightning-icon icon-name={messageToShow.iconName} alternative-text={messageToShow.iconAlternativeText} title={messageToShow.iconTitle} size="x-small" variant={messageToShow.iconVariant}></lightning-icon>
+                            </div>
+                        </template>
+                        <div class="body-container" style={messageToShow.msgBodyCssStyles}>
+                            <lightning-formatted-rich-text value={messageToShow.msgRichText}></lightning-formatted-rich-text>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <template if:true={hasRuleEvalData}>
+                <div class="debug-data-container">
+                    <div class="msg-line first">
+                      <span class="result-msg">Summary:</span>
+                    </div>
+                    <div class="msg-line">
+                        Is qualified for evaluation? -
+                        <template if:true={ruleEvalData.isQualifiedForEvaluation}><span class="result-msg valid"> YES</span>
+                            <template if:false={ruleEvalData.ruleRecord.IsActive__c}> (<span class="result-msg invalid">inactive</span>)</template>
+                        </template>
+                        <template if:false={ruleEvalData.isQualifiedForEvaluation}><span class="result-msg invalid"> NO</span></template>
+                        <template if:true={pageState.isQualifiedForEvaluationShow}><span class="inline-btn" onclick={isQualifiedForEvaluationShowOnClick}> (hide details)</span></template>
+                        <template if:false={pageState.isQualifiedForEvaluationShow}><span class="inline-btn" onclick={isQualifiedForEvaluationShowOnClick}> (show details)</span></template>
+                    </div>
+                    <template if:true={pageState.isQualifiedForEvaluationShow}>
+                        <div class="details" style="display:block;">
+                            <table class="debug-details">
+                                <tr>
+                                    <td></td>
+                                    <td class="bold">
+                                        Expected:
+                                    </td>
+                                    <td class="bold">
+                                        Actual:
+                                    </td>
+                                    <td class="bold">
+                                        Qualifies?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">
+                                        Object API Name:
+                                    </td>
+                                    <td>
+                                        {isQualifiedForEvaluationExpectedObj}
+                                    </td>
+                                    <td>
+                                        {isQualifiedForEvaluationActualObj}
+                                    </td>
+                                    <td class="result">
+                                        <template if:true={isQualifiedForEvaluationObjIsQualified}>
+                                            <span class="result-msg valid">YES</span>
+                                        </template>
+                                        <template if:false={isQualifiedForEvaluationObjIsQualified}>
+                                            <span class="result-msg invalid">NO</span>
+                                        </template>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">
+                                        Record Type Dev Name:
+                                    </td>
+                                    <td>
+                                        {isQualifiedForEvaluationExpectedRT}
+                                    </td>
+                                    <td>
+                                        {isQualifiedForEvaluationActualRT}
+                                    </td>
+                                    <td class="result">
+                                        <template if:true={isQualifiedForEvaluationRTIsQualified}>
+                                            <span class="result-msg valid">YES</span>
+                                        </template>
+                                        <template if:false={isQualifiedForEvaluationRTIsQualified}>
+                                            <span class="result-msg invalid">NO</span>
+                                        </template>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="bold">
+                                        Business Unit:
+                                    </td>
+                                    <td>
+                                        {isQualifiedForEvaluationExpectedBU}
+                                    </td>
+                                    <td>
+                                        {isQualifiedForEvaluationActualBU}
+                                    </td>
+                                    <td class="result">
+                                        <template if:true={isQualifiedForEvaluationBUIsQualified}>
+                                            <span class="result-msg valid">YES</span>
+                                        </template>
+                                        <template if:false={isQualifiedForEvaluationBUIsQualified}>
+                                            <span class="result-msg invalid">NO</span>
+                                        </template>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </template>
+                    <template if:true={ruleEvalData.isQualifiedForEvaluation}>
+                        <template if:true={ruleEvalData._success}>
+                            <div class="msg-line">
+                                Evaluation result:
+                                <template if:true={ruleEvalData.isQualified}>
+                                    <span class="result-msg valid"> TRUE</span> - message will be displayed
+                                </template>
+                                <template if:false={ruleEvalData.isQualified}>
+                                    <span class="result-msg invalid"> FALSE</span> - message will not be displayed
+                                </template>
+                            </div>
+                        </template>
+                        <template if:false={ruleEvalData._success}>
+                            <div class="msg-line">
+                                Evaluation result: <span class="result-msg invalid">ERROR</span>
+                            </div>
+                        </template>
+                        <template if:true={ruleEvalData.successParse}>
+                            <template if:true={ruleEvalData._hasCriteria}>
+                                <div class="msg-line" style="margin-top: 25px;">
+                                    <span class="result-msg">Criteria Evaluation:</span>
+                                </div>
+                                <template for:each={criteriaDebugData} for:item="criterion">
+                                    <div key={criterion.index}>
+                                        <div class="msg-line">
+                                            Criterion #{criterion.index}:
+                                            <template if:true={criterion._hasEvaluationData}>
+                                                <template if:true={criterion.evaluation._hasResult}>
+                                                    <template if:true={criterion.evaluation.result}>
+                                                        <span class="result-msg valid"> TRUE</span>
+                                                    </template>
+                                                    <template if:false={criterion.evaluation.result}>
+                                                        <span class="result-msg invalid"> FALSE</span>
+                                                    </template>
+                                                </template>
+                                                <template if:false={criterion.evaluation._hasResult}>
+                                                    <span> ?</span>
+                                                </template>
+                                                <template if:true={criterion._showDetails}><span data-name={criterion._name} class="inline-btn" onclick={criterionShowDetailsOnClick}> (hide details)</span></template>
+                                                <template if:false={criterion._showDetails}><span data-name={criterion._name} class="inline-btn" onclick={criterionShowDetailsOnClick}> (show details)</span></template>
+                                                <template if:true={criterion._showDetails}>
+                                                    <div class="details">
+                                                        <div class="msg-line first">
+                                                            <span class="result-msg">Left Expression: </span>{criterion.evaluation.leftExp._resultValueComposite}
+                                                            <template if:true={criterion.evaluation.leftExp._showDetails}><span data-name={criterion.evaluation.leftExp._name} class="inline-btn" onclick={criterionShowDetailsOnClick}> (hide details)</span></template>
+                                                            <template if:false={criterion.evaluation.leftExp._showDetails}><span data-name={criterion.evaluation.leftExp._name} class="inline-btn" onclick={criterionShowDetailsOnClick}> (show details)</span></template>
+                                                        </div>
+                                                        <template if:true={criterion.evaluation.leftExp._showDetails}>
+                                                            <div class="details">
+                                                                <table class="debug-details">
+                                                                    <tr>
+                                                                        <td>
+                                                                            Expression:
+                                                                        </td>
+                                                                        <td>
+                                                                            {criterion.evaluation.leftExp.expressionString}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            Evaluation value:
+                                                                        </td>
+                                                                        <td>
+                                                                            {criterion.evaluation.leftExp._resultValue}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            Evaluation type:
+                                                                        </td>
+                                                                        <td>
+                                                                            {criterion.evaluation.leftExp._resultType}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            Logs:
+                                                                        </td>
+                                                                        <td>
+                                                                            <template if:true={criterion.evaluation.leftExp._hasLogs}>
+                                                                                <template for:each={criterion.evaluation.leftExp._logItems} for:item="logItem">
+                                                                                    <div class={logItem.cssClasses} key={logItem.index}>
+                                                                                        {logItem.logStr}
+                                                                                    </div>
+                                                                                </template>
+                                                                            </template>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </template>
+                                                        <div class="msg-line">
+                                                            <span class="result-msg">Operator: </span>{criterion.evaluation.operator}
+                                                        </div>
+                                                        <div class="msg-line">
+                                                            <span class="result-msg">Right Expression: </span>{criterion.evaluation.rightExp._resultValueComposite}
+                                                            <template if:true={criterion.evaluation.rightExp._showDetails}><span data-name={criterion.evaluation.rightExp._name} class="inline-btn" onclick={criterionShowDetailsOnClick}> (hide details)</span></template>
+                                                            <template if:false={criterion.evaluation.rightExp._showDetails}><span data-name={criterion.evaluation.rightExp._name} class="inline-btn" onclick={criterionShowDetailsOnClick}> (show details)</span></template>
+                                                        </div>
+                                                        <template if:true={criterion.evaluation.rightExp._showDetails}>
+                                                            <div class="details">
+                                                                <table class="debug-details">
+                                                                    <tr>
+                                                                        <td>
+                                                                            Expression:
+                                                                        </td>
+                                                                        <td>
+                                                                            {criterion.evaluation.rightExp.expressionString}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            Evaluation value:
+                                                                        </td>
+                                                                        <td>
+                                                                            {criterion.evaluation.rightExp._resultValue}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            Evaluation type:
+                                                                        </td>
+                                                                        <td>
+                                                                            {criterion.evaluation.rightExp._resultType}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            Logs:
+                                                                        </td>
+                                                                        <td>
+                                                                            <template if:true={criterion.evaluation.rightExp._hasLogs}>
+                                                                                <template for:each={criterion.evaluation.rightExp._logItems} for:item="logItem">
+                                                                                    <div class={logItem.cssClasses} key={logItem.index}>
+                                                                                        {logItem.logStr}
+                                                                                    </div>
+                                                                                </template>
+                                                                            </template>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </template>
+                                                        <div class="msg-line">
+                                                            <span class="result-msg">Evaluation result:</span>
+                                                            <template if:true={criterion.evaluation._hasResult}>
+                                                                <template if:true={criterion.evaluation.result}>
+                                                                    <span class="result-msg valid"> TRUE</span>
+                                                                </template>
+                                                                <template if:false={criterion.evaluation.result}>
+                                                                    <span class="result-msg invalid"> FALSE</span>
+                                                                </template>
+                                                            </template>
+                                                            <template if:false={criterion.evaluation._hasResult}>
+                                                                <span> ?</span>
+                                                            </template>
+                                                            <template if:true={criterion.evaluation._hasLogs}>
+                                                                <template if:true={criterion.evaluation._showLogs}><span data-name={criterion.evaluation._logsName} class="inline-btn" onclick={criterionShowDetailsOnClick}> (hide details)</span></template>
+                                                                <template if:false={criterion.evaluation._showLogs}><span data-name={criterion.evaluation._logsName} class="inline-btn" onclick={criterionShowDetailsOnClick}> (show details)</span></template>
+                                                                <template if:true={criterion.evaluation._showLogs}>
+                                                                    <div class="details">
+                                                                        <template for:each={criterion.evaluation._logItems} for:item="logItem">
+                                                                            <div class={logItem.cssClasses} key={logItem.index}>
+                                                                                {logItem.logStr}
+                                                                            </div>
+                                                                        </template>
+                                                                    </div>
+                                                                </template>
+                                                            </template>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:false={criterion._hasEvaluationData}>
+                                                <span> ?</span>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+                            </template>
+                            <div class="msg-line" style="margin-top: 25px;">
+                                <span class="result-msg">Filter Logic Evaluation:</span>
+                            </div>
+                            <div class="msg-line">
+                                Expression: <u>{ruleEvalData._filterLogicExp}</u>
+                            </div>
+                            <template if:true={ruleEvalData._hasFilterLogicExp}>
+                                <div class="msg-line">
+                                    Evaluation result:
+                                    <template if:true={ruleEvalData._hasFilterLogicDebugData}>
+                                        <template if:true={ruleEvalData.debugData.filterLogic._hasResult}>
+                                            <template if:true={ruleEvalData.debugData.filterLogic.evaluation.result}>
+                                                <span class="result-msg valid"> TRUE</span>
+                                            </template>
+                                            <template if:false={ruleEvalData.debugData.filterLogic.evaluation.result}>
+                                                <span class="result-msg invalid"> FALSE</span>
+                                            </template>
+                                        </template>
+                                        <template if:false={ruleEvalData.debugData.filterLogic._hasResult}>
+                                            <span> ?</span>
+                                        </template>
+                                        <template if:true={ruleEvalData.debugData.filterLogic._hasLogs}>
+                                            <template if:true={pageState.isFilterLogicLogsShow}><span class="inline-btn" onclick={isFilterLogicLogsShowOnClick}> (hide logs)</span></template>
+                                            <template if:false={pageState.isFilterLogicLogsShow}><span class="inline-btn" onclick={isFilterLogicLogsShowOnClick}> (show logs)</span></template>
+                                            <template if:true={pageState.isFilterLogicLogsShow}>
+                                                <div class="details">
+                                                    <template for:each={ruleEvalData.debugData.filterLogic._logItems} for:item="logItem">
+                                                        <div class={logItem.cssClasses} key={logItem.index}>
+                                                            {logItem.logStr}
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                        </template>
+                                    </template>
+                                    <template if:false={ruleEvalData._hasFilterLogicDebugData}>
+                                        <span> ?</span>
+                                    </template>
+                                </div>
+                            </template>
+                            <template if:true={ruleEvalData._hasMessageMergeFields}>
+                                <div class="msg-line" style="margin-top: 25px;">
+                                    <span class="result-msg">Message Merge Fields Evaluation:</span>
+                                </div>
+                                <template for:each={messageMergeFieldsDebugData} for:item="msgMergeField">
+                                    <div key={msgMergeField.index}>
+                                        <div class="msg-line">
+                                            <span class="result-msg">Merge Field #{msgMergeField.index}: </span>
+                                            <template if:false={msgMergeField.evaluation._resultIsError}><span>{msgMergeField.evaluation._resultValueComposite}</span></template>
+                                            <template if:true={msgMergeField.evaluation._resultIsError}><span class="result-msg invalid">{msgMergeField.evaluation._resultValueComposite}</span></template>
+                                            <template if:true={msgMergeField.evaluation._showDetails}><span data-name={msgMergeField.evaluation._name} class="inline-btn" onclick={messageMergeFieldShowDetailsOnClick}> (hide details)</span></template>
+                                            <template if:false={msgMergeField.evaluation._showDetails}><span data-name={msgMergeField.evaluation._name} class="inline-btn" onclick={messageMergeFieldShowDetailsOnClick}> (show details)</span></template>
+                                        </div>
+                                        <template if:true={msgMergeField.evaluation._showDetails}>
+                                            <div class="details">
+                                                <table class="debug-details">
+                                                    <tr>
+                                                        <td>
+                                                            Expression:
+                                                        </td>
+                                                        <td>
+                                                            {msgMergeField.evaluation.expressionString}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Evaluation value:
+                                                        </td>
+                                                        <td>
+                                                            {msgMergeField.evaluation._resultValue}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Evaluation type:
+                                                        </td>
+                                                        <td>
+                                                            {msgMergeField.evaluation._resultType}
+                                                        </td>
+                                                    </tr>
+                                                    <template if:true={msgMergeField.evaluation._resultIsError}>
+                                                        <tr>
+                                                            <td>
+                                                                Evaluation error:
+                                                            </td>
+                                                            <td>
+                                                                {msgMergeField.evaluation._resultError}
+                                                            </td>
+                                                        </tr>
+                                                    </template>
+                                                    <tr>
+                                                        <td>
+                                                            Logs:
+                                                        </td>
+                                                        <td>
+                                                            <template if:true={msgMergeField.evaluation._hasLogs}>
+                                                                <template for:each={msgMergeField.evaluation._logItems} for:item="logItem">
+                                                                    <div class={logItem.cssClasses} key={logItem.index}>
+                                                                        {logItem.logStr}
+                                                                    </div>
+                                                                </template>
+                                                            </template>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </template>
+                        </template>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

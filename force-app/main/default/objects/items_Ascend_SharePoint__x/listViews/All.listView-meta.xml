@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>Name__c</columns>
+    <columns>DisplayUrl</columns>
+    <columns>Author__c</columns>
+    <columns>Comment__c</columns>
+    <columns>ContentLength__c</columns>
+    <columns>CreationDate__c</columns>
+    <columns>DownloadUrl__c</columns>
+    <columns>ExternalId</columns>
+    <columns>IsFolder__c</columns>
+    <columns>MimeType__c</columns>
+    <columns>ParentId__c</columns>
+    <columns>UpdateDate__c</columns>
+    <columns>UpdatedBy__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

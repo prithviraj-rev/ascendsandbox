@@ -1,0 +1,82 @@
+<aura:component >
+    <aura:attribute name="pl" type="DCSTimeCardController.LineLevel"/>
+    <aura:attribute name="al" type="DCSTimeCardController.LineLevel[]"/>
+    <aura:attribute name="assignmentCount" type="integer"/>
+    <aura:attribute name="recent" type="boolean"/>
+    <aura:attribute name="assignmentDetail" type="boolean" default="false"/>
+    <aura:attribute name="hasFeatureLines" type="boolean" default="false"/>
+    <aura:attribute name="showFeatureLines" type="boolean" default="false"/>
+    <aura:registerEvent name="setData" type="c:DCSSetData"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    
+    <li  role="treeitem" aria-level="2"  class="{!(v.recent &amp;&amp; !v.pl.Recent) ? 'slds-hide' : 'slds-show'}">
+        <aura:if isTrue="{!v.assignmentCount==1}">
+            <div class="slds-tree__item slds-p-vertical_none">
+                <aura:if isTrue="{!v.hasFeatureLines}">
+                    <div style="margin-left: -31px;padding-right:15px;">
+                        <aura:if isTrue="{!NOT(v.showFeatureLines)}">
+                            <lightning:buttonIcon iconName="utility:chevronright" variant="bare" onclick="{! c.handleClick }" alternativeText="Show Feature Lines" title="Show Feature Lines" />
+                            <aura:set attribute="else">
+                                <lightning:buttonIcon iconName="utility:chevrondown" variant="bare" onclick="{! c.handleClick }" alternativeText="Hide Feature Lines" title="Hide Feature Lines" />
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </aura:if>
+                <a href="javascript:void(0);" tabindex="-1" role="presentation" title="Tree Item" onclick="{!c.sendProject}">
+                    <aura:if isTrue="{!v.assignmentDetail}">
+                        <ui:outputText value="{!v.al[0].Name}" class="slds-truncate" />
+                        <aura:set attribute="else">
+                            <ui:outputText value="{!v.pl.Name +' Hrs left: '+v.pl.BillableHoursRemaining}" class="slds-truncate back" />
+                        </aura:set>
+                    </aura:if>
+                </a>
+
+                <aura:if isTrue="{!v.assignmentDetail}">
+                    <div class="slds-is-absolute front" style="right:10px">
+                        {!v.al[0].HoursWorked + '/' + v.al[0].HoursTotal}
+                    </div>
+                    <aura:set attribute="else">
+                        <div class="slds-is-absolute front" style="right:10px">
+                            {!v.pl.HoursWorked + '/' + v.pl.HoursTotal}
+                        </div>
+                    </aura:set>
+                </aura:if>
+            </div>
+
+            <div class="slds-progress-bar slds-progress-bar_small" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{!'width:'+v.pl.HoursPct}" role="progressbar">
+                <span class="{!'slds-progress-bar__value '+v.pl.ColorText}" style="{!'width:'+v.pl.HoursPct+'%'}">
+                    <span class="slds-assistive-text">Progress: {!v.pl.HoursPct}%</span>
+                </span>
+            </div>
+            
+            <aura:set attribute="else">
+                <lightning:buttonIcon iconName="utility:chevronright" variant="bare" onclick="{! c.handleClick }" alternativeText="Show Feature Lines" title="Show Feature Lines" />
+                <div class="slds-tree__item slds-p-vertical_none">
+                    <ui:outputText value="{!v.pl.Name + ' Hrs left: '+v.pl.BillableHoursRemaining}" class="slds-truncate" />
+                </div>
+                <div class="slds-tree__item slds-p-vertical_none">
+                    <ul>
+                        <aura:iteration items="{!v.al}" var="aLine">
+                            <c:DCSTimeCardAssignmentItem2 pl="{!v.pl}" al="{!aLine}" recent="{!v.recent}" assignmentDetail="true"/>
+                            
+                        </aura:iteration>
+                    </ul>
+                </div>
+            </aura:set>
+        </aura:if>
+        <aura:if isTrue="{!v.showFeatureLines}">
+            <ul role="group">
+                <aura:iteration items="{!v.pl.FeatureLines}" var="fLine">
+                    <li role="treeitem" aria-level="3">
+                        <div class="slds-tree__item slds-border_bottom slds-truncate">
+                            <a href="javascript:void(0);" onclick="{!c.sendProject}">
+                                <ui:outputText value="{!fLine.FullText}" class="slds-truncate back" title="{!fLine.Description}" />
+                            </a>
+                        </div>
+                    </li>
+                </aura:iteration>
+            </ul>
+        </aura:if>
+    </li>    
+</aura:component>

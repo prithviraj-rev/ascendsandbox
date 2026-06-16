@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Operations_Access</name>
+    </customPermissions>
+    <description>Used to give access to operations specific actions. In particular a couple of screen flow components.</description>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.Stage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SFDC_Projects__c.Non_Billable_Project__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Operations Access</label>
+</PermissionSet>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Feedback__c</entityName>
+    <fieldName>Status__c</fieldName>
+    <masterLabel>Client Feedback Path</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;This feedback has been escalated and appropriate follow-up is underway.&lt;/p&gt;</info>
+        <picklistValueName>Escalated</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Please remember to update the Status to &lt;b&gt;Submitted &lt;/b&gt;when you&amp;#39;re done providing feedback.&lt;/p&gt;</info>
+        <picklistValueName>New</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Client_Feedback</recordTypeName>
+</PathAssistant>

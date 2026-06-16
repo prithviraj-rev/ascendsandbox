@@ -1,0 +1,101 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+            Case View - {pageData.reviewName}
+        </h3>
+
+ 
+        <lightning-layout slot="actions">     
+            <lightning-layout-item  class="right-align">
+                <template if:true={hasFilter}>
+                    <lightning-button label="Reset Filters" variant="Brand" onclick={handleResetSelectedFilters} icon-name="utility:remove_link" class="slds-m-left_x-small"></lightning-button>
+                </template>  
+                <template for:each={columns} for:item="col">
+                    <lightning-button-group  key={col.fieldName}>
+                        <template if:true={col.headerVisible}>
+                            <template if:true={col.filterable}>
+                                <lightning-button data-field={col.fieldName} variant="brand" label={col.label} title={col.label} onclick={handleHeaderAction} class="slds-m-left_x-small"></lightning-button>
+                            </template>
+                            <template if:false={col.filterable}>
+                                <lightning-button data-field={col.fieldName} label={col.label} title={col.label} class="slds-m-left_x-small"></lightning-button>
+                            </template>
+                            <template if:true={col.sortable}>
+                                <lightning-button-icon icon-name={col.sortIcon} data-field={col.fieldName} onclick={handleHeaderSort} ></lightning-button-icon>
+                            </template>
+                        </template>
+                    </lightning-button-group>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <lightning-layout class="slds-p-left_small slds-p-top_small">
+            <lightning-layout-item > {listSizeStatus}</lightning-layout-item>
+            <lightning-layout-item padding="horizontal-small">
+            Refreshed: <lightning-formatted-date-time value={lastRefreshed} year="numeric" month="numeric" day="numeric" hour="2-digit" minute="2-digit" second="2-digit" time-zone-name="short"></lightning-formatted-date-time>
+            </lightning-layout-item>
+            <lightning-layout-item>{filterMapDescription}</lightning-layout-item>
+            <template if:true={searchTerm}>
+                <lightning-layout-item>Searched for {searchTerm}</lightning-layout-item>
+            </template>
+            <lightning-layout-item padding="horizontal-small" alignment-bump="right">
+                <template if:true={activeCallout}>
+                    <div class="spinContainer">
+                        <div class="slds-spinner_container ">
+                            <div role="status" class="slds-spinner slds-spinner_x-small">
+                                <span class="slds-assistive-text">Query in progress</span>
+                                <div class="slds-spinner__dot-a"></div>
+                                <div class="slds-spinner__dot-b"></div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </lightning-layout-item>
+
+            <lightning-layout-item  onkeyup={handleSearchKeyUp} >
+                <lightning-input variant="label-hidden" name="enter-search" type="search" oncommit={handleSearchClear}  class="slds-m-right_small" ></lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+
+
+    </lightning-card>
+
+    <lightning-layout vertical-align="start" class="slds-grid slds-wrap">
+        <template for:each={filteredCaseList} for:item="acase">
+            <lightning-layout-item key={acase.Id} size="4" small-device-size="12" medium-device-size="6" large-device-size="4" class="slds-col slds-p-around_xx-small">
+                <c-case-item case-record={acase}  view-fields={pageData.cardFields}  onselected={handleCaseSelection}></c-case-item>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+    
+    
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class={modalStyle}>
+        <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use> 
+                </svg>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <template if:false={modalIsFilter}>
+                <c-case-view-edit case-record={selectedCase} edit-fields={pageData.editFields} onreturn={handleCaseReturn}></c-case-view-edit>
+            </template>
+            <template if:true={modalIsFilter}>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{filterModalTitle}</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-checkbox-group name="Checkbox Group"
+                                    options={filterModalList}
+                                    value={filterModalListSelected}
+                                    onchange={handleFilterChange}></lightning-checkbox-group>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_brand" type="submit" onclick={handleFilterDone}>Done</button>
+                </div>
+            </template> 
+            
+        </div>
+    </section>
+    <div class={modalBackdropStyle} role="presentation"></div>
+</template>

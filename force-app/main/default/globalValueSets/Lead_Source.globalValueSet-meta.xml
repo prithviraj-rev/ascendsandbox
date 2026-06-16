@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Event</fullName>
+        <default>false</default>
+        <label>Event</label>
+    </customValue>
+    <customValue>
+        <fullName>Existing - Cross Sell</fullName>
+        <default>false</default>
+        <label>Existing - Cross Sell</label>
+    </customValue>
+    <customValue>
+        <fullName>Existing - Up Sell</fullName>
+        <default>false</default>
+        <label>Existing - Up Sell</label>
+    </customValue>
+    <customValue>
+        <fullName>Marketing</fullName>
+        <default>false</default>
+        <label>Marketing</label>
+    </customValue>
+    <customValue>
+        <fullName>Referral - Client</fullName>
+        <default>false</default>
+        <label>Referral - Client</label>
+    </customValue>
+    <customValue>
+        <fullName>Referral - Employee</fullName>
+        <default>false</default>
+        <label>Referral - Employee</label>
+    </customValue>
+    <customValue>
+        <fullName>Referral - Prospect</fullName>
+        <default>false</default>
+        <label>Referral - Prospect</label>
+    </customValue>
+    <customValue>
+        <fullName>Referral - Vendor/Partner</fullName>
+        <default>false</default>
+        <label>Referral - Vendor/Partner</label>
+    </customValue>
+    <customValue>
+        <fullName>Self Generated</fullName>
+        <default>false</default>
+        <label>Self Generated</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <masterLabel>Lead Source</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,27 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,lightning:isUrlAddressable" >
+                <!-- Passed In Attributes -->
+    <aura:attribute name="settings" type="String" default='[{"class":"","label":"Google","value": "http://www.google.com", "target":"_blank", "tooltip":"Search"}]' />
+    <aura:attribute name="group" type="String" default='' />
+    <aura:attribute name="columns" type="Integer" default='1' />
+    
+    <!-- Attributes -->
+    <aura:attribute name="links" type="Object[]" />
+    
+    <!-- Handlers -->
+    <aura:handler               name="init"       value="this"       action="{!c.doInit}"/>
+    
+    <div class="slds-card slds-box slds-box_xx-small slds-grid slds-wrap">
+        <aura:if isTrue="{! not(empty(v.group)) }">
+            <div class="slds-size_1-of-1 slds-text-heading_small slds-p-around_xx-small slds-border_bottom">{! v.group }</div>
+        </aura:if>
+        <aura:iteration items="{! v.links }" var="link">
+            <div class="{! 'slds-p-around_x-small slds-truncate slds-size_1-of-' + v.columns}">
+                <lightning:formattedUrl class="{! link.class }"
+                                        value="{! link.value }"
+                                        target="{! link.target }"
+                                        tooltip="{! link.tooltip }"
+                                        label="{! link.label }" />
+            </div>
+        </aura:iteration>
+    </div>
+</aura:component>

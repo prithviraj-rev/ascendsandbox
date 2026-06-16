@@ -1,0 +1,12 @@
+<aura:component >
+    <aura:attribute name="entry" type="SFDC_Timecard__c"/>
+    <aura:registerEvent name="setData" type="c:DCSSetData"/>
+    
+    <div class="slds-truncate point" onclick="{!c.sendRecord}">
+        <ui:outputText value="{!v.entry.Hours__c + ': ' + v.entry.Project_Line_Item__r.Name}"/>
+        <lightning:icon iconName="utility:info_alt" size="xx-small" class="slds-p-left_xxx-small" title="{!v.entry.Description_of_Work__c}"/>
+    </div>
+    
+    
+    
+</aura:component>

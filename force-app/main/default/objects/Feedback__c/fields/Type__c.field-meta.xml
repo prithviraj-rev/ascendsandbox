@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <description>Picklist field used to categorize the type of feedback being captured on this record.</description>
+    <inlineHelpText>Select the option that best represents the nature of the feedback. If your feedback covers multiple areas, please select &apos;General Feedback&apos;.</inlineHelpText>
+    <label>Type</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>General Feedback</fullName>
+                <default>true</default>
+                <label>General Feedback</label>
+            </value>
+            <value>
+                <fullName>Client Feedback</fullName>
+                <default>false</default>
+                <label>Client Feedback</label>
+            </value>
+            <value>
+                <fullName>Client Communication</fullName>
+                <default>false</default>
+                <label>Client Communication</label>
+            </value>
+            <value>
+                <fullName>Communication SLAs</fullName>
+                <default>false</default>
+                <label>Communication SLAs</label>
+            </value>
+            <value>
+                <fullName>Deliverables</fullName>
+                <default>false</default>
+                <label>Deliverables</label>
+            </value>
+            <value>
+                <fullName>Jira / User Stories</fullName>
+                <default>false</default>
+                <label>Jira / User Stories</label>
+            </value>
+            <value>
+                <fullName>Project Retro</fullName>
+                <default>false</default>
+                <label>Project Retro</label>
+            </value>
+            <value>
+                <fullName>Time Logging</fullName>
+                <default>false</default>
+                <label>Time Logging</label>
+            </value>
+            <value>
+                <fullName>Work Product</fullName>
+                <default>false</default>
+                <label>Work Product</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

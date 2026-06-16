@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Justin_s_Assignments</fullName>
+    <columns>NAME</columns>
+    <columns>Projects__c</columns>
+    <columns>Avg_Hours_per_Day__c</columns>
+    <columns>Avg_Hours_per_Week__c</columns>
+    <columns>Assignment_Hours_Remaining__c</columns>
+    <columns>End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Resource__c</field>
+        <operation>equals</operation>
+        <value>Justin Williams</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <label>Justin&apos;s Assignments</label>
+    <sharedTo>
+        <role>AscendLeadership</role>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BusinessLabel__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>This field can be populated with a designator for the method or flow to aid in reporting</inlineHelpText>
+    <label>Business Label</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

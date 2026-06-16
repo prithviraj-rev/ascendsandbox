@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feature_Group__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Feature Group</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Salesforce Configuration</fullName>
+                <default>true</default>
+                <label>Salesforce Configuration</label>
+            </value>
+            <value>
+                <fullName>Salesforce Customization</fullName>
+                <default>false</default>
+                <label>Salesforce Customization</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Outlook Integration</fullName>
+                <default>false</default>
+                <label>Outlook Integration</label>
+            </value>
+            <value>
+                <fullName>Data Migration</fullName>
+                <default>false</default>
+                <label>Data Migration</label>
+            </value>
+            <value>
+                <fullName>Reports and Dashboards</fullName>
+                <default>false</default>
+                <label>Reports and Dashboards</label>
+            </value>
+            <value>
+                <fullName>Integrations (3rd party/App Exchange/APIs)</fullName>
+                <default>false</default>
+                <label>Integrations (3rd party/App Exchange/APIs)</label>
+            </value>
+            <value>
+                <fullName>Deployments</fullName>
+                <default>false</default>
+                <label>Deployments</label>
+            </value>
+            <value>
+                <fullName>Testing</fullName>
+                <default>false</default>
+                <label>Testing</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

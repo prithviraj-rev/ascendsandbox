@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Daily_Assignments</fullName>
+    <columns>NAME</columns>
+    <columns>Assignment__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Daily_Date__c</columns>
+    <columns>Daily_Hours__c</columns>
+    <columns>Projected_Billable_Amount__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>My Daily Assignments</label>
+</ListView>

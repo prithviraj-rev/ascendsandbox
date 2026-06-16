@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionNumber>2</activeVersionNumber>
+    <description>Generates Project Retro Internal Feedback records 7 days before the Project End Date.
+This subflow builds the peer feedback matrix from the current active Project roster, prevents duplicates, and bulk-creates Feedback records for all non-self combinations.</description>
+    <masterLabel>Project: Subflow - Create Retro Feedback</masterLabel>
+</FlowDefinition>

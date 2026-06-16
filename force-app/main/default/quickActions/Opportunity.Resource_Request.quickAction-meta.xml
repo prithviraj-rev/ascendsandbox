@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Create a resource request</description>
+    <fieldOverrides>
+        <field>ActivityDate</field>
+        <formula>TODAY() +
+CASE(MOD( TODAY() - DATE( 1900, 1, 7 ), 7 ),
+4,4,
+5,4,
+6,3,
+2)</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Description</field>
+        <formula>&quot;Type of resource(s) (architect, consultant, developer) and preferred person if applicable:&quot; &amp; BR() &amp; BR() &amp;
+&quot;Skillset (cloud, industry, integrations, etc.):&quot; &amp; BR() &amp; BR() &amp;
+&quot;Description of use case, work to be done:&quot; &amp; BR() &amp; BR() &amp;
+&quot;Timeline for scoping or project (kickoff date, total hours, and timeframe):&quot; &amp; BR() &amp; BR() &amp;
+&quot;Remote/onsite:&quot; &amp; BR() &amp; BR() &amp;
+&quot;Rate:&quot;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Priority</field>
+        <literalValue>Normal</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Purpose__c</field>
+        <literalValue>Resource Request</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Status</field>
+        <literalValue>Not Started</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Subject</field>
+        <formula>&quot;Scoping Resource or Project Resource(s)&quot;</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>Type</field>
+        <literalValue>Other</literalValue>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>WhatId</field>
+        <formula>Opportunity.Id</formula>
+    </fieldOverrides>
+    <label>Resource Request</label>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Subject</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Description</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>ActivityDate</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Priority</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns/>
+    </quickActionLayout>
+    <successMessage>Your request has been submitted</successMessage>
+    <targetObject>Task</targetObject>
+    <targetParentField>What</targetParentField>
+    <type>Create</type>
+</QuickAction>

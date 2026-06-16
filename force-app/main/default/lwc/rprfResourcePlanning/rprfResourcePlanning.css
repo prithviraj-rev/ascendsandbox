@@ -1,0 +1,303 @@
+.rp-header {
+    background-color: #f9f9f9;
+}
+
+.rp-body {
+    background-color: white;
+    min-width: 1600px;
+    overflow-x: auto;
+}
+
+.rp-spinner {
+
+}
+
+.rp-day-locked {
+    background-color: #dbe9f7 !important;
+}
+
+.rp-out-range-date,
+.rp-weekend-day {
+    background-color: #eee !important;
+}
+
+.rp-holidays {
+    background-color: #e49edd !important;
+}
+
+.rp-pto {
+    background-color: #95dcf7 !important;
+}
+
+.rp-day-total-green {
+    background-color: #c2f9c4;
+}
+
+.rp-day-total-red {
+    background-color: #ff9494;
+}
+
+.rp-day-status-green {
+    position: relative;
+    background: white;
+    overflow: hidden;
+}
+  
+.rp-day-status-green:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 0;
+    border-color: transparent #c2f9c4 transparent transparent;
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+.rp-day-status-red {
+    position: relative;
+    background: white;
+    overflow: hidden;
+}
+  
+.rp-day-status-red:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 0;
+    border-color: transparent #ff9494 transparent transparent;
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+.review-complete {
+    top: 0;
+    left: 0;
+    padding: 1px 5px;
+    font-weight: bold;
+    border: var(--lwc-borderWidthThin, 1px) solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder, rgb(229, 229, 229)));
+    border-radius: 4px;
+}
+
+.page-header-title {
+    flex: 1 1 7%;
+}
+
+.page-header-actions-middle {
+    flex: 1 1 0%;
+}
+
+.previous-week-btn {
+    right: 130px;
+}
+
+.date-picker-container {
+    top: 0;
+    right: 0;
+    width: 130px;
+    --lwc-lineHeightReset: 0;
+}
+
+.hide-date-picker-help {
+    top: 38px;
+    right: 0;
+    width: 132px;
+    height: 14px;
+}
+
+.resource-project-container {
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.rotate-container {
+    width: 14px;
+    overflow: hidden;
+    max-height: 80px;
+    height: 80px;
+    margin-left: 18px;
+}
+
+.rotated {
+    transform: rotate(270deg);
+    white-space: nowrap;
+}
+
+.rotate-container .rotated {
+    height: 100%;
+    cursor: default;
+    max-width: 80px;
+    min-width: 80px;
+}
+
+.empty-header-cells {
+    border: none;
+    background-color: transparent;
+}
+
+.assignment-name {
+    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    padding-right: 15px;
+}
+
+.project-name {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+    padding-right: 15px;
+}
+
+.message-on-assignment {
+    width: auto;
+    min-width: 77px;
+    border-left: 1px solid grey !important;
+}
+
+.remaining-assignment-hours {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+}
+
+.assignment-max-daily-hours {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+}
+
+.assignment-est-hours {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+}
+
+.assignment-start-date,
+.assignment-end-date {
+    width: 93px;
+    min-width: 93px;
+    max-width: 93px;
+}
+
+.total-assignment-hours-by-days {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+    border-left: 1px solid grey;
+}
+
+.total-hours-by-days {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+    border-left: 1px solid grey !important;
+}
+
+.assignment-hours-by-days {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+    border-top: var(--lwc-borderWidthThin, 1px) solid var(--slds-g-color-border-base-1, var(--lwc-colorBorder, rgb(229, 229, 229)));
+}
+
+.field-edit {
+    cursor: pointer;
+}
+
+.help-text {
+    display: none;
+    top: 5px;
+    left: 35px;
+    width: 200px;
+    z-index: 1;
+}
+
+.assignment-hours-by-days:hover .help-text {
+    display: block;
+}
+
+.actual-hours-input {
+    --slds-g-color-border-base-1: #747474;
+    --slds-g-color-neutral-base-95: white;
+    --slds-g-color-neutral-base-50: #181818;
+}
+
+.action-buttons {
+    --slds-c-button-color-border-active: transparent;
+}
+
+.slds-table_bordered {
+    border-top: none;
+}
+
+.slds-table_bordered tbody tr:first-child td {
+    border-top: none;
+}
+
+.slds-table_bordered tbody tr:last-child td:not(.assignment-hours-by-days,.total-assignment-hours-by-days) {
+    border-left: none;
+}
+
+.slds-table_bordered tbody tr:last-child td{
+    border-top: 1px solid grey;
+}
+
+.slds-table thead tr > th .slds-truncate {
+    white-space: break-spaces;
+}
+
+.legend-container {
+    width: 330px;
+    margin-right: 50px;
+}
+
+.legend-item {
+    width: 100px;
+    min-width: 100px;
+    height: 30px;
+}
+
+.legend-item-label {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 3px;
+}
+
+.legend-item-value {
+    position:relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.legend-item-color {
+    width: 16px;
+    height: 16px;
+    border: 1px solid lightgray;
+}
+
+.legend-item-color:hover + .slds-popover.slds-popover_tooltip.slds-hide {
+    display : block !important;
+}
+
+.legend-item-help-left {
+    position: absolute;
+    top: 30px;
+    left: -15px;
+    width: 300px;
+}
+
+.legend-item-help-right {
+    position: absolute;
+    top: 30px;
+    left: -267px;
+    width: 300px;
+}
+
+.resource-abstract-lookup, .project-abstract-lookup {
+    width:300px;
+}

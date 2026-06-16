@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Billing_Milestones_LM</fullName>
+    <booleanFilter>(1 or 2) and 3 and 4</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Total_Billable_Hours__c</columns>
+    <columns>Billing_Approver__c</columns>
+    <columns>Project_Lead__c</columns>
+    <columns>Total_Dollar_Amount_from_Timecards__c</columns>
+    <columns>Project__c</columns>
+    <columns>Invoice_Status__c</columns>
+    <columns>Notes__c</columns>
+    <columns>Project_Status__c</columns>
+    <columns>Billing_Method__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Running_User_is_Billing_Approver__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Running_User_is_Project_Lead__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Services_Month__c</field>
+        <operation>equals</operation>
+        <value>LAST_MONTH</value>
+    </filters>
+    <filters>
+        <field>Project_Record_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Managed Services</value>
+    </filters>
+    <label>My Billing Milestones Last Month</label>
+</ListView>

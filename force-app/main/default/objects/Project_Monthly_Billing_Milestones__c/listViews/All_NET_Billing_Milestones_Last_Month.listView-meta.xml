@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_NET_Billing_Milestones_Last_Month</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Total_Billable_Hours__c</columns>
+    <columns>Project_Lead__c</columns>
+    <columns>Billing_Approver__c</columns>
+    <columns>Project__c</columns>
+    <columns>Invoice_Status__c</columns>
+    <columns>Notes__c</columns>
+    <columns>Billing_Method__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Subcontractor__c</columns>
+    <columns>Milestones_for_Fixed_Price__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Project_Monthly_Billing_Milestones__c.T_M_Milestones</value>
+    </filters>
+    <filters>
+        <field>Services_Month__c</field>
+        <operation>equals</operation>
+        <value>LAST_MONTH</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>.NET</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>Intellio</value>
+    </filters>
+    <label>All .NET Billing Milestones Last Month</label>
+    <sharedTo>
+        <group>SF_Ops_Team</group>
+        <group>Salesforce_Delivery_Team</group>
+    </sharedTo>
+</ListView>

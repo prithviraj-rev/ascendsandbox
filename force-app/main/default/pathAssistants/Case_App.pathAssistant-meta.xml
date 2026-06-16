@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Case</entityName>
+    <fieldName>Status</fieldName>
+    <masterLabel>Case App</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Project__c</fieldNames>
+        <fieldNames>Type</fieldNames>
+        <fieldNames>Reason</fieldNames>
+        <fieldNames>LOE_Estimate__c</fieldNames>
+        <picklistValueName>Assigned - In Progress</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <fieldNames>Project__c</fieldNames>
+        <fieldNames>Type</fieldNames>
+        <fieldNames>Reason</fieldNames>
+        <fieldNames>LOE_Estimate__c</fieldNames>
+        <picklistValueName>New</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>App_Cases</recordTypeName>
+</PathAssistant>

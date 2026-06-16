@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Impowr_Delete_Service_Lines_Button</name>
+    </customPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Impowr Delete Service Lines Button</label>
+</PermissionSet>

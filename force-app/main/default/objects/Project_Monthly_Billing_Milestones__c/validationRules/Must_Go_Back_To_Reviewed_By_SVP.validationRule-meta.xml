@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Must_Go_Back_To_Reviewed_By_SVP</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT($Permission.BypassValidationRules)
+&amp;&amp;
+RecordType.Name = &quot;Overage Milestone&quot;
+&amp;&amp;
+OR(ISPICKVAL(Invoice_Status__c, &quot;Reviewed by AE/SDM&quot;),
+			ISPICKVAL(Invoice_Status__c, &quot;Final Approval SVP&quot;),
+			ISPICKVAL(Invoice_Status__c, &quot;Ready for GP Invoice&quot;),
+			ISPICKVAL(Invoice_Status__c, &quot;Invoice Sent to Client&quot;))
+&amp;&amp;
+OR(AE_Approved__c = false,
+			SDM_Approved__c = false)</errorConditionFormula>
+    <errorMessage>If you are removing AE or SDM approval you must set the status back to Reviewed by SVP or none.</errorMessage>
+</ValidationRule>

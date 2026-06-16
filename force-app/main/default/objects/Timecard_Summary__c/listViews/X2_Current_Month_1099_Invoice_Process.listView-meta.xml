@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2_Current_Month_1099_Invoice_Process</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Resource_Type__c</columns>
+    <columns>Resource__c</columns>
+    <columns>End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Resource_Type__c</field>
+        <operation>equals</operation>
+        <value>1099</value>
+    </filters>
+    <filters>
+        <field>End_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_MONTH</value>
+    </filters>
+    <label>2 - Current Month 1099 Invoice Process</label>
+</ListView>

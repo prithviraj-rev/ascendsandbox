@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Billing_Milestones_Last_Month</fullName>
+    <columns>NAME</columns>
+    <columns>Total_Billable_Hours__c</columns>
+    <columns>Project_Lead__c</columns>
+    <columns>Billing_Approver__c</columns>
+    <columns>Project__c</columns>
+    <columns>Invoice_Status__c</columns>
+    <columns>Notes__c</columns>
+    <columns>Billing_Method__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Subcontractor__c</columns>
+    <columns>Milestones_for_Fixed_Price__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Project_Monthly_Billing_Milestones__c.T_M_Milestones</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>LAST_MONTH</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value>- MS -</value>
+    </filters>
+    <label>All PS Billing Milestones Last Month</label>
+    <sharedTo>
+        <roleAndSubordinatesInternal>AscendLeadership</roleAndSubordinatesInternal>
+    </sharedTo>
+</ListView>

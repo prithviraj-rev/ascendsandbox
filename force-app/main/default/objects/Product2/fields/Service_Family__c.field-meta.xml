@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Family__c</fullName>
+    <description>Formula field used to concatenate the &quot;Type&quot; and &quot;Line of Business&quot; fields
+
+Case/Ticket:
+#00014681</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Type__c) + &quot; - &quot; +  TEXT(Service_Offering__c)</formula>
+    <label>Service Family</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

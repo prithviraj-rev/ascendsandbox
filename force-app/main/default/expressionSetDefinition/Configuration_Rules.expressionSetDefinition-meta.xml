@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExpressionSetDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contextDefinitions>Ascend_SalesTransactionContext</contextDefinitions>
+    <executionMode>Cloud</executionMode>
+    <executionScale>Low</executionScale>
+    <interfaceSourceType>Constraint</interfaceSourceType>
+    <label>Configuration Rules</label>
+    <processType>Constraint</processType>
+    <resourceInitializationType>Off</resourceInitializationType>
+    <template>false</template>
+    <versions>
+        <fullName>Configuration_Rules_V1</fullName>
+        <decimalScale>2</decimalScale>
+        <expressionSetDefinition>Configuration_Rules</expressionSetDefinition>
+        <interfaceSourceType>Constraint</interfaceSourceType>
+        <label>Configuration Rules V1</label>
+        <processType>Constraint</processType>
+        <shouldShowExplExternally>false</shouldShowExplExternally>
+        <startDate>2026-04-15T07:17:43.000Z</startDate>
+        <status>Inactive</status>
+        <versionNumber>1</versionNumber>
+    </versions>
+</ExpressionSetDefinition>

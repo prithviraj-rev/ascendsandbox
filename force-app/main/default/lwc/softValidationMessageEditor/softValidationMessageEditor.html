@@ -1,0 +1,113 @@
+<template>
+    <template if:true={isIniting}>
+        <article class="slds-card">
+            <div class="slds-card__body slds-card__body_inner" style="height:100px;">
+                <lightning-spinner size="medium"></lightning-spinner>
+            </div>
+        </article>
+    </template>
+
+    <template if:false={isIniting}>
+        <lightning-spinner size="medium" if:true={isLoading}></lightning-spinner>
+
+        <template if:true={hasPageMessages}>
+            <div class="messages-container slds-m-bottom_x-small">
+                <template for:each={pageMessages} for:item="msgItem">
+                    <div class={msgItem.cssClasses} style={msgItem.cssStyles} role="alert" key={msgItem.index}>
+                        <div class="left-icon-container">
+                            <lightning-icon icon-name={msgItem.iconName} alternative-text={msgItem.iconAlternativeText} title={msgItem.iconTitle} size="x-small" variant={msgItem.iconVariant}></lightning-icon>
+                        </div>
+                        <div class="body-container" style={msgItem.msgBodyCssStyles}>
+                            <lightning-formatted-rich-text value={msgItem.msgRichText}></lightning-formatted-rich-text>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template if:true={rule}>
+            <lightning-card title="Message Configuration">
+                <lightning-button variant="brand" label="Save" slot="actions" disabled={formIsSaved} onclick={handleSaveBtnClick}></lightning-button>
+                <div class="slds-p-horizontal_small">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-size_1-of-3">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-size_1-of-1">
+                                    <lightning-combobox
+                                            name="messageType"
+                                            label="Type"
+                                            value={rule.MessageType__c}
+                                            options={ruleMessageTypeOptions}
+                                            onchange={handleInputChange}
+                                            required>
+                                    </lightning-combobox>
+                                </div>
+                                <div class="slds-size_1-of-1 slds-m-top_x-small">
+                                    <lightning-input
+                                            type="number"
+                                            name="messageMaxHeight"
+                                            value={rule.MessageMaxHeight__c}
+                                            onchange={handleInputChange}
+                                            label="Max Height"
+                                            min="0"
+                                            max="9999"
+                                            field-level-help="Message max height in pixels">
+                                    </lightning-input>
+                                </div>
+                                <template if:true={ruleMsgIsCustom}>
+                                    <div class="slds-size_1-of-1 slds-m-top_x-small">
+                                        <lightning-input
+                                                type="color"
+                                                label="Background Color"
+                                                name="backgroundColor"
+                                                value={ruleMsgBackgroundColor}
+                                                onchange={handleInputChange}>
+                                        </lightning-input>
+                                    </div>
+                                    <div class="slds-size_1-of-1 slds-m-top_x-small">
+                                        <lightning-input
+                                                type="text"
+                                                name="iconName"
+                                                value={ruleMsgIconNameUserInput}
+                                                onchange={handleInputChange}
+                                                label="Icon Name"
+                                                field-level-help="SLDS icon name (without quotes), like 'error', 'warning', 'info_alt', etc.">
+                                        </lightning-input>
+                                        <label style="font-style:italic;">Only Icons from "Utility" category are supported, check <a href="https://www.lightningdesignsystem.com/icons/#utility" target="_blank">this</a> page for a full list.</label>
+                                    </div>
+                                    <div class="slds-size_1-of-1">
+                                        <lightning-combobox
+                                                name="iconVariant"
+                                                label="Icon Variant"
+                                                value={ruleMsgIconVariant}
+                                                options={iconVariantOptions}
+                                                onchange={handleInputChange}>
+                                        </lightning-combobox>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="slds-size_2-of-3">
+                            <div class="slds-m-left_large">
+                                <div class={ruleMsgCssClasses} style={ruleMsgCssStyles} role="alert">
+                                    <template if:true={ruleMsgIconName}>
+                                        <div class="left-icon-container">
+                                            <lightning-icon icon-name={ruleMsgIconName} alternative-text={ruleMsgIconAlternativeText} title={ruleMsgIconTitle} size="x-small" variant={ruleMsgIconVariant}></lightning-icon>
+                                        </div>
+                                    </template>
+                                    <div class={richTextEditorContainerCssClasses} style="width:100%;">
+                                        <lightning-record-edit-form object-api-name="SoftValidationRule__c">
+                                            <lightning-input-field field-name="Message__c" value={rule.Message__c} onchange={handleMsgChange} variant="label-hidden" required="true"></lightning-input-field>
+                                        </lightning-record-edit-form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+        </template>
+    </template>
+
+    <div lwc:dom=manual class="standard-styles-override"></div>
+</template>

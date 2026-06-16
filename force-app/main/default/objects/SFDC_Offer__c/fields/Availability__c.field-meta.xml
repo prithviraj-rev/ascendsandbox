@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Availability__c</fullName>
+    <label>Availability</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fully Engaged</fullName>
+                <default>false</default>
+                <label>Fully Engaged</label>
+            </value>
+            <value>
+                <fullName>Limited Engagement</fullName>
+                <default>false</default>
+                <label>Limited Engagement</label>
+            </value>
+            <value>
+                <fullName>Provide Insight</fullName>
+                <default>false</default>
+                <label>Provide Insight</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

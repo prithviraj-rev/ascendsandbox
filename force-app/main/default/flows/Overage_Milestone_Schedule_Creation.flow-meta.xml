@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Add_to_Collection</name>
+        <label>Add to Collection</label>
+        <locationX>138</locationX>
+        <locationY>756</locationY>
+        <assignmentItems>
+            <assignToReference>var_BillingMilestoneCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>var_CurrentBM</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_PLIs</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Billing_Milestone_Values</name>
+        <label>Assign Billing Milestone Values</label>
+        <locationX>138</locationX>
+        <locationY>636</locationY>
+        <assignmentItems>
+            <assignToReference>var_CurrentBM.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>0123b000000UtmIAAS</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_CurrentBM.Services_Month__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fx_BMServicesMonth</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_CurrentBM.Project__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_PLIs.Project__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_CurrentBM.Current_Overage__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_PLIs.Ending_Rollover_Hours__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_CurrentBM.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>fx_CurrentBMName</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Collection</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Run_Now</name>
+        <label>Run Now</label>
+        <locationX>182</locationX>
+        <locationY>276</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fx_RunDates</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_PLIs</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>fx_BMServicesMonth</name>
+        <dataType>Date</dataType>
+        <expression>DATE(YEAR(TODAY()),MONTH(TODAY()) - 1,1)</expression>
+    </formulas>
+    <formulas>
+        <name>fx_CurrentBMName</name>
+        <dataType>String</dataType>
+        <expression>{!Loop_PLIs.Project__r.Name} 
+&amp; &quot; - &quot; 
+&amp; CASE(MONTH({!$Flow.CurrentDate}), 1, &quot;Q4&quot;, 4, &quot;Q1&quot;, 7, &quot;Q2&quot;, 10, &quot;Q3&quot;, &quot;QX&quot;)
+&amp; &quot; &quot;
+&amp; IF(MONTH(TODAY()) = 1, TEXT(YEAR({!$Flow.CurrentDate}) - 1), TEXT(YEAR({!$Flow.CurrentDate})))
+&amp; &quot; Quarterly True Up&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>fx_PLIDate</name>
+        <dataType>Date</dataType>
+        <expression>IF(MONTH(TODAY()) = 1,
+			DATE(YEAR(TODAY()) - 1, 12, 1),
+				DATE(YEAR(TODAY()),MONTH(TODAY()) - 1,1))</expression>
+    </formulas>
+    <formulas>
+        <name>fx_RunDates</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+	OR(MONTH(TODAY()) = 1,
+	       MONTH(TODAY()) = 4,
+		MONTH(TODAY()) = 7,
+		MONTH(TODAY()) = 10),
+	DAY(TODAY()) = 6)</expression>
+    </formulas>
+    <interviewLabel>Overage Milestone Schedule Creation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Overage Milestone Schedule Creation</label>
+    <loops>
+        <name>Loop_PLIs</name>
+        <label>Loop PLIs</label>
+        <locationX>50</locationX>
+        <locationY>516</locationY>
+        <collectionReference>Get_PLIs</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Billing_Milestone_Values</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_Billing_Milestones</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Billing_Milestones</name>
+        <label>Create Billing Milestones</label>
+        <locationX>50</locationX>
+        <locationY>972</locationY>
+        <inputReference>var_BillingMilestoneCollection</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_PLIs</name>
+        <label>Get PLIs</label>
+        <locationX>50</locationX>
+        <locationY>396</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_PLIs</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Ending_Rollover_Hours__c</field>
+            <operator>LessThan</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Date__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>fx_PLIDate</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Project_Line_Item__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Run_Now</targetReference>
+        </connector>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2022-10-06</startDate>
+            <startTime>23:45:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_BillingMilestoneCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Project_Monthly_Billing_Milestones__c</objectType>
+    </variables>
+    <variables>
+        <name>var_CurrentBM</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Project_Monthly_Billing_Milestones__c</objectType>
+    </variables>
+    <variables>
+        <name>var_CurrentBMProjectName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

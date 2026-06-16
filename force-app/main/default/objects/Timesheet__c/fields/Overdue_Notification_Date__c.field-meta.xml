@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Overdue_Notification_Date__c</fullName>
+    <description>Date for workflow notification about overdue timesheet.</description>
+    <formula>IF( WEEKDAY(End_Date__c) = 6 || WEEKDAY(End_Date__c) = 7, End_Date__c , End_Date__c - 2)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Overdue Notification Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

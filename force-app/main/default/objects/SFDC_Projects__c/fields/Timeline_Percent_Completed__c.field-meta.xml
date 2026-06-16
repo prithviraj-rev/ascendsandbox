@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Timeline_Percent_Completed__c</fullName>
+    <formula>If(IsPickVal(Project_Stage__c,&quot;Active&quot;),(Today()-Start_Date__c) / (End_Date__c-Start_Date__c),if(IsBlank(Project_Close_Date__c),1,((Project_Close_Date__c-Start_Date__c) / (End_Date__c-Start_Date__c))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Timeline Percent Completed</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

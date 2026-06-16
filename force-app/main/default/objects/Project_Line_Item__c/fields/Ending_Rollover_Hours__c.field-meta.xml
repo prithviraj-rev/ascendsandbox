@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ending_Rollover_Hours__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Rollover_Hours__c &lt; 0, 
+   MIN(Rollover_Hours__c +  Billable_Hours_Remaining__c , 0), 
+   IF(Rollover_Hours__c &gt;= 0 &amp;&amp; Billable_Hours_Remaining__c &lt; 0, 
+      Rollover_Hours__c - Billable_Hours_Worked__c+BaseHours__c+CarryoverHours__c ,
+      IF(Rollover_Hours__c &gt; 0 &amp;&amp; Billable_Hours_Remaining__c &gt; 0, 
+         Rollover_Hours__c
+            - IF(Billable_Hours_Worked__c&gt;(BaseHours__c + CarryoverHours__c), 
+                 Billable_Hours_Worked__c-BaseHours__c-CarryoverHours__c, 
+                 0),
+       0)
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Rollover Hours actively updated as time is logged through the end of the month.</inlineHelpText>
+    <label>Ending Rollover Hours</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

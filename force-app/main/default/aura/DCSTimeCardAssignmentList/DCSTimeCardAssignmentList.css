@@ -1,0 +1,36 @@
+.THIS .tcbg{
+    opacity: 0.5;
+    background: white;
+}
+.THIS section {
+    padding-top:2px;
+    padding-bottom:2px;
+}
+.THIS .slds-accordion__summary{
+    margin-bottom:0px;
+}
+
+.THIS .GreenSection H3{
+    background: #C6FFC6; /*GREEN */
+}
+
+.THIS .YellowSection H3{
+    background: #FFFFC6; /*YELLOW */
+}
+
+.THIS .RedSection H3{
+    background: #FFC6C6; /*RED */
+}
+
+
+.THIS .Green{
+    background: #C6FFC6; /*GREEN */
+}
+
+.THIS .Yellow{
+    background: #FFFFC6; /*YELLOW */
+}
+
+.THIS .Red{
+    background: #FFC6C6; /*RED */
+}

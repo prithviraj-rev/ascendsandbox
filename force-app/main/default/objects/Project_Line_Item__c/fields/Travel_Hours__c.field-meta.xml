@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Travel_Hours__c</fullName>
+    <description>This field is simply a pass through roll-up to get travel hours from time cards to the project.</description>
+    <inlineHelpText>This field is simply a pass through roll-up to get travel hours from time cards to the project.</inlineHelpText>
+    <label>Travel Hours</label>
+    <summarizedField>SFDC_Timecard__c.Hours__c</summarizedField>
+    <summaryFilterItems>
+        <field>SFDC_Timecard__c.Type__c</field>
+        <operation>equals</operation>
+        <value>Travel Billable, Travel Non-Billable</value>
+    </summaryFilterItems>
+    <summaryForeignKey>SFDC_Timecard__c.Project_Line_Item__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

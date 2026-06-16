@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submitter_User__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Stores the Salesforce User who submitted the feedback record. This field is used for record visibility and sharing so the submitter can continue to access the feedback after ownership is transferred to the Feedback Queue.</description>
+    <inlineHelpText>Automatically populated with the running user who submitted the feedback. Used for sharing and visibility when the record owner changes to the Feedback Queue.</inlineHelpText>
+    <label>Submitter User</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Feedbacks</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

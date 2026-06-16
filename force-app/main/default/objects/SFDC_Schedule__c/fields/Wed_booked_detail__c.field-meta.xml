@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wed_booked_detail__c</fullName>
+    <label>W detail</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>work</fullName>
+                <default>false</default>
+                <label>work</label>
+            </value>
+            <value>
+                <fullName>meetings</fullName>
+                <default>false</default>
+                <label>meetings</label>
+            </value>
+            <value>
+                <fullName>out-of-town</fullName>
+                <default>false</default>
+                <label>out-of-town</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

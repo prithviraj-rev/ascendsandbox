@@ -1,0 +1,123 @@
+<aura:component controller="DCSTimeCardController" implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+    <aura:attribute name="timeCheck" type="Integer" default="0"/>
+    <aura:attribute name="selectedTimeCard" type="Object"  />
+    <aura:attribute name="selectedAssignment" type="Object"  />
+    <aura:attribute name="selectedProjectLine" type="Object"  />
+    <aura:attribute name="simpleTimeCard" type="Object"  />
+    <aura:attribute name="recordError" type="String" />
+    <aura:attribute name="remoteRecordId" type="Id" />
+    <aura:handler event="c:DCSSetData" action="{!c.handleSetData}"/>
+    <aura:attribute name="projectLineName" type="String" />
+    <aura:attribute name="assignmentName" type="String" />
+    <aura:attribute name="hasDelegates" type="boolean" default="false" />
+    <aura:attribute name="isDelegate" type="boolean" default="false" />
+    <aura:attribute name="delegateInfo" type="Object"  />
+    <aura:attribute name="delegatePermission" type="Boolean" default="false" />
+    <aura:attribute name="isLoading" type="Boolean" default="true" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:if isTrue="{!v.isLoading}">
+    	<lightning:spinner variant="brand" size="large" aura:id="spin"/>
+    </aura:if>
+    
+    <force:recordData aura:id="timecardRecordLDS" 
+                      targetRecord="{!v.selectedTimeCard}"
+                      targetFields="{!v.simpleTimeCard}"
+                      targetError="{!v.recordError}"
+                      layoutType="FULL"
+                      recordUpdated="{!c.recordUpdated}"/>
+    
+    <lightning:card>
+        <!-- Display Lightning Data Service errors, if any -->
+        <aura:if isTrue="{!not(empty(v.recordError))}">
+            <div class="recordError">
+                <ui:message title="Error" severity="error" closable="true">
+                    {!v.recordError}
+                </ui:message>
+            </div>
+        </aura:if>
+        
+        <div class="slds-tabs_default">
+            <ul class="slds-tabs_default__nav" role="tablist">
+                <li class="slds-tabs_default__item slds-is-active" title="Timecard" role="presentation">
+                    <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">Timecard</a></li>
+            </ul>
+            <div id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+                
+                <div class="slds-form slds-form_compound slds-p-horizontal--medium">
+                    <fieldset class="slds-form-element">
+                        <div class="slds-form-element__group">
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1">
+                                    <label class="slds-form-element__label" for="tcPLI">Project Line Item</label>
+                                    <ui:inputText aura:id="tcPLI" value="{!v.projectLineName }" disabled="true"/>
+                                    <!--lightning:input readonly="true" label="Project Line Item" type="text" aura:id="tcPLI" value="{!v.simpleTimeCard.Project_Line_Item__r.Name }"/-->
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1">
+                                    <label class="slds-form-element__label" for="tcA">Assignment</label>
+                                    <ui:inputText aura:id="tcA" value="{!v.assignmentName }" disabled="true"/>
+                                    <!--lightning:input readonly="true" label="Assignment" type="text" aura:id="tcA" value="{!v.simpleTimeCard.Assignment__r.Name }"/-->
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-3">
+                                    <label class="slds-form-element__label" for="tcDateB">Date</label>
+                                    <ui:inputDate aura:id="tcDateB" value="{!v.simpleTimeCard.Date__c}" required="true" displayDatePicker="true"/>
+                                </div>
+                                <div class="slds-form-element slds-size_1-of-3">
+                                    <label class="slds-form-element__label" for="tcHours">Hours</label>
+                                    <ui:inputNumber aura:id="tcHours" value="{!v.simpleTimeCard.Hours__c}" required="true"/>
+                                </div>
+                                <div class="slds-form-element slds-size_1-of-3 slds-m-right_small">
+                                    <label class="slds-form-element__label" for="tcType">Type</label>
+                                    <ui:inputSelect aura:id="tcType" value="{!v.simpleTimeCard.Type__c}" required="true"/>
+                                </div>
+                            </div>
+                            <aura:if isTrue="{!v.delegatePermission}">
+                                <div class="{!(v.hasDelegates==true)?'slds-form-element__row':'slds-hide'}" >
+                                    <div class="slds-form-element slds-size_1-of-1">
+                                        <label class="slds-form-element__label" for="tcDoW">Delegated Resource</label>
+                                        <ui:inputSelect aura:id="tcDelegates" value="{!v.simpleTimeCard.Resource_Delegate__c}" required="false"/>
+                                    </div>
+                                </div>
+                            </aura:if>
+                            
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1">
+                                    <label class="slds-form-element__label" for="tcDoW">Description of Work</label>
+                                    <ui:inputTextArea rows="2" aura:id="tcDoW" required="true" value="{!v.simpleTimeCard.Description_of_Work__c }"/>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1">
+                                    <label class="slds-form-element__label" for="tcIN">Internal Notes</label>
+                                    <ui:inputTextArea rows="2" aura:id="tcIN" value="{!v.simpleTimeCard.Internal_Notes__c }"/>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        </div>
+                        
+                        
+                        
+                    </fieldset>
+                </div>
+                
+                <div class="slds-p-horizontal_medium">             
+                    <ui:button label="Save Time" press="{!c.handleSaveTimecard}"
+                               class="slds-m-top--medium"/>
+                    <ui:button label="Save As New Entry" press="{!c.handleSaveAsNewTimecard}"
+                               class="{!(v.simpleTimeCard.Id==null)?'slds-hide':'slds-m-top--medium'}"/>
+                    <ui:button label="Reset" press="{!c.handleCancel}"
+                               class="slds-m-top--medium"/>
+                </div>
+                
+                
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

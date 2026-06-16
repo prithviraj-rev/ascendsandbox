@@ -1,0 +1,15 @@
+.THIS .point{
+    cursor:pointer;
+}
+.THIS .rightFloat{
+    float:right;
+}
+.THIS .Complete{
+    background: #C6FFC6;
+}
+.THIS .Partial{
+    background: #FFFFC6;
+}
+.THIS .Empty{
+    background: #FFC6C6;
+}
