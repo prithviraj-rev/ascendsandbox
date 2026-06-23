@@ -4,68 +4,25 @@
     <active>true</active>
     <label>Contract Lifecycle Management</label>
     <picklistValues>
-        <picklist>Stage__c</picklist>
-        <values>
-            <fullName>Activated</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Contract Expired</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Contract Terminated</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Signed</fullName>
-            <default>true</default>
-        </values>
-    </picklistValues>
-    <picklistValues>
         <picklist>Status</picklist>
-        <values>
-            <fullName>Activated</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Awaiting Signature</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Canceled</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Contract Expired</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Contract Terminated</fullName>
-            <default>false</default>
-        </values>
         <values>
             <fullName>Draft</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>In Approval Process</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Negotiating</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Rejected</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Signature Declined</fullName>
+            <fullName>Activated</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Signed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Expired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Terminated</fullName>
             <default>false</default>
         </values>
     </picklistValues>
