@@ -1,0 +1,17 @@
+# RCA/RCB RAG framework — Python dependencies.
+# Core (required):
+pyyaml>=6.0
+numpy>=1.24
+
+# LLM provider:
+#   local (default) -> a self-hosted model via Ollama/OpenAI-compatible server,
+#                      reached over stdlib HTTP. NO pip dependency, NO Claude.
+#   anthropic       -> Claude. Only if you opt in: `pip install anthropic` + key.
+# anthropic>=0.45
+
+# Embeddings (choose per config/model.yaml -> embeddings.provider):
+#   local  -> install sentence-transformers (recommended; on-device, no token cost)
+#   voyage -> install voyageai (hosted; needs VOYAGE_API_KEY)
+#   hashing-> no extra install (deterministic fallback used automatically if 'local' is missing)
+sentence-transformers>=2.2 ; python_version >= "3.8"
+# voyageai>=0.2

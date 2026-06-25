@@ -46,3 +46,4 @@ sf project retrieve start -m "CustomObject:OrderItemRelationship" -o ascendsandb
 sf project retrieve start -m "CustomObject:QuoteLineRelationship" -o ascendsandbox
 sf project retrieve start -m "CustomObject:AssetActionSource" -o ascendsandbox
 sf project retrieve start -m "CustomObject:AssetStatePeriod" -o ascendsandbox
+sf project retrieve start -m "ExpressionSetDefinition:Rev_Mgmt_Default_Pricing_Procedure1" -o ascendsandbox

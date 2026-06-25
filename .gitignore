@@ -46,3 +46,11 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+
+# RAG framework — generated vector store / caches (regenerable from `rag index`)
+index/chunks.jsonl
+index/vectors.npy
+index/meta.json
+index/manifest.json
+index/query_cache.json
+index/review.log
