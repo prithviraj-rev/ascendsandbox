@@ -80067,7 +80067,7 @@
             <label>Assign TotalLineAmount to ItemSubtotal and ItemNetTotalPrice to ItemTotalPrice</label>
             <name>AssignTotalLineAmounttoItemSubtotalandItemNetTotalPricetoItemTotalPrice</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>43</sequenceNumber>
+            <sequenceNumber>44</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
@@ -80259,7 +80259,7 @@
             <description>Assignment</description>
             <hasNestedExplainability>false</hasNestedExplainability>
             <label>Assignment</label>
-            <name>Assignment125</name>
+            <name>Assignment128</name>
             <parentStep>ListContainer13</parentStep>
             <resultIncluded>false</resultIncluded>
             <sequenceNumber>2</sequenceNumber>
@@ -80977,7 +80977,7 @@
             <label>Calculate item group subtotal by adding item net total prices of all the lines</label>
             <name>Calculateitemgroupsubtotalbyaddingitemnettotalpricesofallthelines</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>42</sequenceNumber>
+            <sequenceNumber>43</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
@@ -82606,7 +82606,7 @@
             <label>Calculate subtotal by adding total line amounts of all the lines</label>
             <name>Calculatesubtotalbyaddingtotallineamountsofallthelines</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>41</sequenceNumber>
+            <sequenceNumber>42</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
@@ -82761,7 +82761,7 @@
             <label>Calculate total amount by adding item net total prices of all the lines</label>
             <name>Calculatetotalamountbyaddingitemnettotalpricesofallthelines</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>40</sequenceNumber>
+            <sequenceNumber>41</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
@@ -83124,7 +83124,7 @@
             <label>Discount Distribution Service</label>
             <name>DiscountDistributionService</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>48</sequenceNumber>
+            <sequenceNumber>49</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
@@ -84263,6 +84263,71 @@
                     <name>formula-section-0-input</name>
                     <output>false</output>
                     <type>Formula</type>
+                    <value>NetUnitPrice + NetUnitPrice * ItemUnitPriceUplift__std</value>
+                </parameters>
+                <parameters>
+                    <input>true</input>
+                    <name>formulaSectionCount</name>
+                    <output>false</output>
+                    <type>Literal</type>
+                    <value>1</value>
+                </parameters>
+                <parameters>
+                    <input>true</input>
+                    <name>HideWaterfall</name>
+                    <output>false</output>
+                    <type>Literal</type>
+                    <value>false</value>
+                </parameters>
+                <parameters>
+                    <input>true</input>
+                    <name>sectionCount</name>
+                    <output>false</output>
+                    <type>Literal</type>
+                    <value>0</value>
+                </parameters>
+                <parameters>
+                    <input>true</input>
+                    <name>selectedFunction</name>
+                    <output>false</output>
+                    <type>Literal</type>
+                    <value>Get</value>
+                </parameters>
+                <parameters>
+                    <input>true</input>
+                    <name>IsRealTime</name>
+                    <output>false</output>
+                    <type>Literal</type>
+                    <value>false</value>
+                </parameters>
+                <parameters>
+                    <input>false</input>
+                    <name>formula-section-0-output</name>
+                    <output>true</output>
+                    <type>Parameter</type>
+                    <value>NetUnitPrice</value>
+                </parameters>
+            </customElement>
+            <description>Formula Based Pricing</description>
+            <hasNestedExplainability>false</hasNestedExplainability>
+            <label>Formula Based Pricing 6</label>
+            <name>FormulaBasedPricing6</name>
+            <parentStep>ListContainer22</parentStep>
+            <resultIncluded>false</resultIncluded>
+            <sequenceNumber>2</sequenceNumber>
+            <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+            <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+            <shouldShowExplExternally>false</shouldShowExplExternally>
+            <stepType>BusinessKnowledgeModel</stepType>
+        </steps>
+        <steps>
+            <actionType>FormulaBasedPricing</actionType>
+            <customElement>
+                <parameters>
+                    <input>true</input>
+                    <name>formula-section-0-input</name>
+                    <output>false</output>
+                    <type>Formula</type>
                     <value>IF ( ISNULL ( Amortized_Term_Months__c ) , IF ( ContractTermsMonths__c = 1 , 1600 , ( 1600 * ( ( Constant_MonthlyRate * POWER ( 1 + Constant_MonthlyRate , ContractTermsMonths__c ) ) / ( POWER ( 1 + Constant_MonthlyRate , ContractTermsMonths__c ) - 1 ) ) ) / ( 1 + Constant_MonthlyRate ) ) , IF ( Amortized_Term_Months__c = 1 , 1600 , ( 1600 * ( ( Constant_MonthlyRate * POWER ( 1 + Constant_MonthlyRate , Amortized_Term_Months__c ) ) / ( POWER ( 1 + Constant_MonthlyRate , Amortized_Term_Months__c ) - 1 ) ) ) / ( 1 + Constant_MonthlyRate ) ) )</value>
                 </parameters>
                 <parameters>
@@ -85001,7 +85066,7 @@
             <label>List Container 13</label>
             <name>ListContainer13</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>44</sequenceNumber>
+            <sequenceNumber>45</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
@@ -85034,7 +85099,7 @@
             <label>List Container 16</label>
             <name>ListContainer16</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>45</sequenceNumber>
+            <sequenceNumber>46</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
@@ -85045,7 +85110,7 @@
             <label>List Container 17</label>
             <name>ListContainer17</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>46</sequenceNumber>
+            <sequenceNumber>47</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
@@ -85100,7 +85165,18 @@
             <label>List Container 21</label>
             <name>ListContainer21</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>47</sequenceNumber>
+            <sequenceNumber>48</sequenceNumber>
+            <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+            <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+            <shouldShowExplExternally>false</shouldShowExplExternally>
+            <stepType>ListGroup</stepType>
+        </steps>
+        <steps>
+            <hasNestedExplainability>false</hasNestedExplainability>
+            <label>List Container 22</label>
+            <name>ListContainer22</name>
+            <resultIncluded>false</resultIncluded>
+            <sequenceNumber>39</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
@@ -85236,6 +85312,69 @@
             <label>List Operation 1</label>
             <name>ListOperation1</name>
             <parentStep>ListContainer16</parentStep>
+            <resultIncluded>false</resultIncluded>
+            <sequenceNumber>1</sequenceNumber>
+            <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+            <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+            <shouldShowExplExternally>false</shouldShowExplExternally>
+            <stepType>AdvancedListFilter</stepType>
+        </steps>
+        <steps>
+            <advancedCondition>
+                <conditionLogic>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7 AND 8</conditionLogic>
+                <criteria>
+                    <operator>IsNotNull</operator>
+                    <sequenceNumber>1</sequenceNumber>
+                    <sourceFieldName>ItemUnitPriceUplift__std</sourceFieldName>
+                </criteria>
+                <criteria>
+                    <operator>IsNotNull</operator>
+                    <sequenceNumber>2</sequenceNumber>
+                    <sourceFieldName>ItemRampIdentifier</sourceFieldName>
+                </criteria>
+                <criteria>
+                    <operator>IsNotNull</operator>
+                    <sequenceNumber>3</sequenceNumber>
+                    <sourceFieldName>ItemSegmentIdentifier</sourceFieldName>
+                </criteria>
+                <criteria>
+                    <operator>IsNotNull</operator>
+                    <sequenceNumber>4</sequenceNumber>
+                    <sourceFieldName>IsLineGroupRamped__std</sourceFieldName>
+                </criteria>
+                <criteria>
+                    <operator>Equals</operator>
+                    <sequenceNumber>5</sequenceNumber>
+                    <sourceFieldName>IsLineGroupRamped__std</sourceFieldName>
+                    <value>true</value>
+                    <valueType>Literal</valueType>
+                </criteria>
+                <criteria>
+                    <operator>NotEquals</operator>
+                    <sequenceNumber>6</sequenceNumber>
+                    <sourceFieldName>SalesTransactionActionType</sourceFieldName>
+                    <value>&apos;Cancel&apos;</value>
+                    <valueType>Literal</valueType>
+                </criteria>
+                <criteria>
+                    <operator>GreaterThan</operator>
+                    <sequenceNumber>7</sequenceNumber>
+                    <sourceFieldName>LineItemQuantity</sourceFieldName>
+                    <value>0</value>
+                    <valueType>Literal</valueType>
+                </criteria>
+                <criteria>
+                    <operator>NotEquals</operator>
+                    <sequenceNumber>8</sequenceNumber>
+                    <sourceFieldName>ItemSegmentName</sourceFieldName>
+                    <value>&apos;Year 1&apos;</value>
+                    <valueType>Literal</valueType>
+                </criteria>
+            </advancedCondition>
+            <hasNestedExplainability>false</hasNestedExplainability>
+            <label>List Operation 10</label>
+            <name>ListOperation10</name>
+            <parentStep>ListContainer22</parentStep>
             <resultIncluded>false</resultIncluded>
             <sequenceNumber>1</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
@@ -85479,11 +85618,18 @@
         </steps>
         <steps>
             <advancedCondition>
-                <conditionLogic>1</conditionLogic>
+                <conditionLogic>1 AND 2</conditionLogic>
                 <criteria>
                     <operator>IsNotNull</operator>
                     <sequenceNumber>1</sequenceNumber>
                     <sourceFieldName>HeaderAdjustmentValue__std</sourceFieldName>
+                </criteria>
+                <criteria>
+                    <operator>NotEquals</operator>
+                    <sequenceNumber>2</sequenceNumber>
+                    <sourceFieldName>HeaderAdjustmentValue__std</sourceFieldName>
+                    <value>0</value>
+                    <valueType>Literal</valueType>
                 </criteria>
             </advancedCondition>
             <hasNestedExplainability>false</hasNestedExplainability>
@@ -86096,13 +86242,18 @@
         </steps>
         <steps>
             <advancedCondition>
-                <conditionLogic>1</conditionLogic>
+                <conditionLogic>1 AND 2</conditionLogic>
                 <criteria>
                     <operator>Equals</operator>
                     <sequenceNumber>1</sequenceNumber>
                     <sourceFieldName>ItemStockKeepingUnit</sourceFieldName>
                     <value>&apos;001-INFR-LIC-MONI-LOMO-001&apos;</value>
                     <valueType>Literal</valueType>
+                </criteria>
+                <criteria>
+                    <operator>IsNull</operator>
+                    <sequenceNumber>2</sequenceNumber>
+                    <sourceFieldName>ParentSalesTransactionItem</sourceFieldName>
                 </criteria>
             </advancedCondition>
             <hasNestedExplainability>false</hasNestedExplainability>
@@ -86398,13 +86549,6 @@
                     <name>section-0-input1</name>
                     <output>false</output>
                     <type>Parameter</type>
-                    <value>NetUnitPrice</value>
-                </parameters>
-                <parameters>
-                    <input>true</input>
-                    <name>section-1-input1</name>
-                    <output>false</output>
-                    <type>Parameter</type>
                     <value>ItemNetTotalPrice</value>
                 </parameters>
                 <parameters>
@@ -86412,18 +86556,11 @@
                     <name>sectionCount</name>
                     <output>false</output>
                     <type>Literal</type>
-                    <value>2</value>
+                    <value>1</value>
                 </parameters>
                 <parameters>
                     <input>true</input>
                     <name>section-0-input2</name>
-                    <output>false</output>
-                    <type>Literal</type>
-                    <value>halfUp</value>
-                </parameters>
-                <parameters>
-                    <input>true</input>
-                    <name>section-1-input2</name>
                     <output>false</output>
                     <type>Literal</type>
                     <value>halfUp</value>
@@ -86440,13 +86577,6 @@
                     <name>section-0-output</name>
                     <output>true</output>
                     <type>Parameter</type>
-                    <value>NetUnitPrice</value>
-                </parameters>
-                <parameters>
-                    <input>false</input>
-                    <name>section-1-output</name>
-                    <output>true</output>
-                    <type>Parameter</type>
                     <value>ItemNetTotalPrice</value>
                 </parameters>
             </customElement>
@@ -86455,7 +86585,7 @@
             <label>Rounding Values</label>
             <name>RoundingValues</name>
             <resultIncluded>false</resultIncluded>
-            <sequenceNumber>39</sequenceNumber>
+            <sequenceNumber>40</sequenceNumber>
             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
             <shouldShowExplExternally>false</shouldShowExplExternally>
